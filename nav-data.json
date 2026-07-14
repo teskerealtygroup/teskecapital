@@ -1,0 +1,27 @@
+{
+  "fundName": "Teske Capital Model Portfolio",
+  "portfolioType": "Proprietary Model Portfolio",
+  "reportingFrequency": "Weekly",
+  "inceptionDate": "2026-07-14",
+  "initialCapital": 5000,
+  "currentBalance": 5280,
+  "cumulativeProfitLoss": 280,
+  "currentNav": 105.6,
+  "initialNav": 100,
+  "sinceInceptionReturn": 0.056,
+  "annualizedReturn": 0,
+  "completedWeeks": 1,
+  "latestWeekEnding": "2026-07-14",
+  "latestWeeklyReturn": 0.056,
+  "latestWeeklyProfitLoss": 280,
+  "updatedAt": "2026-07-14T22:31:16.110Z",
+  "performanceHistory": [
+    {
+      "weekEnding": "2026-07-14",
+      "endingBalance": 5280,
+      "weeklyReturn": 0.056,
+      "nav": 105.6
+    }
+  ],
+  "disclaimer": "Model portfolio results represent proprietary capital managed before the launch of an outside-investor fund. Results are unaudited and may not reflect fees, expenses, taxes, or the performance of any future investment vehicle."
+}
