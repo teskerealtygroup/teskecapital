@@ -421,38 +421,39 @@
         }
 
         /* Hero */
-        .market-background {
+.market-background {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: 1;
 
+    display: block;
     width: 100%;
     height: 100%;
 
     pointer-events: none;
 
-    opacity: 0.5;
+    opacity: 0.9;
 }
 
 .hero-market-overlay {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 2;
 
     pointer-events: none;
 
     background:
         linear-gradient(
             90deg,
-            rgba(5, 5, 6, 0.2) 0%,
-            rgba(5, 5, 6, 0.05) 45%,
-            rgba(5, 5, 6, 0.28) 100%
+            rgba(5, 5, 6, 0.12) 0%,
+            rgba(5, 5, 6, 0.02) 48%,
+            rgba(5, 5, 6, 0.18) 100%
         ),
         linear-gradient(
             180deg,
-            rgba(5, 5, 6, 0.02) 0%,
-            rgba(5, 5, 6, 0.12) 60%,
-            rgba(5, 5, 6, 0.55) 100%
+            transparent 0%,
+            rgba(5, 5, 6, 0.08) 65%,
+            rgba(5, 5, 6, 0.28) 100%
         );
 }
 
@@ -489,28 +490,13 @@
                 );
         }
 
-        .hero::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-
-    pointer-events: none;
-
-    background:
-        radial-gradient(
-            circle at 78% 30%,
-            rgba(223, 38, 56, 0.08),
-            transparent 32%
-        );
-
-    opacity: 0.8;
+.hero::before {
+    content: none;
 }
 
         .hero-layout {
             position: relative;
-            z-index: 2;
+            z-index: 3;
 
             display: grid;
             grid-template-columns:
@@ -1764,15 +1750,11 @@
 
     <main>
         <section class="hero" id="home">
-            <canvas
+<canvas
     id="marketBackground"
     class="market-background"
     aria-hidden="true"
 ></canvas>
-<div
-    class="hero-market-overlay"
-    aria-hidden="true"
-></div>
 
 <div
     class="hero-market-overlay"
@@ -3076,7 +3058,7 @@ function drawMarketGrid() {
     marketContext.save();
 
     marketContext.strokeStyle =
-        "rgba(255, 255, 255, 0.026)";
+    "rgba(255, 255, 255, 0.10)";
 
     marketContext.lineWidth = 1;
 
@@ -3156,8 +3138,8 @@ function drawMarketCandles() {
 
             const candleColor =
                 isPositive
-                    ? "rgba(223, 38, 56, 0.22)"
-                    : "rgba(145, 145, 154, 0.15)";
+                    ? "rgba(223, 38, 56, 0.55)"
+                    : "rgba(175, 175, 185, 0.32)";
 
             marketContext.strokeStyle =
                 candleColor;
@@ -3251,7 +3233,7 @@ function drawMarketLine() {
     }
 
     marketContext.strokeStyle =
-        "rgba(231, 37, 57, 0.15)";
+    "rgba(242, 72, 89, 0.85)";
 
     marketContext.lineWidth = 8;
 
