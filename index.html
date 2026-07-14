@@ -90,6 +90,9 @@
         button {
             font: inherit;
         }
+        .hidden {
+    display: none !important;
+}
 
         section {
             scroll-margin-top: calc(var(--header-height) + 20px);
@@ -754,7 +757,248 @@
         .section {
             padding: 120px 0;
         }
+/* Model Portfolio Performance */
 
+.performance {
+    position: relative;
+    overflow: hidden;
+
+    border-bottom: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(223, 38, 56, 0.11),
+            transparent 27%
+        ),
+        linear-gradient(
+            145deg,
+            #0b0b0d,
+            #070708
+        );
+}
+
+.performance::before {
+    content: "TC";
+
+    position: absolute;
+    top: 50%;
+    right: 5%;
+
+    color: rgba(255, 255, 255, 0.022);
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(12rem, 27vw, 28rem);
+    font-weight: 800;
+    letter-spacing: -0.12em;
+    line-height: 1;
+
+    pointer-events: none;
+
+    transform: translateY(-52%);
+}
+
+.performance-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.performance-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.performance-header-copy {
+    max-width: 800px;
+}
+
+.performance-header h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+}
+
+.performance-header-description {
+    max-width: 650px;
+    margin-top: 22px;
+
+    color: var(--gray);
+}
+
+.performance-status {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px 14px;
+
+    border: 1px solid rgba(223, 38, 56, 0.28);
+    border-radius: 100px;
+
+    color: var(--red-light);
+
+    background: rgba(223, 38, 56, 0.07);
+
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.performance-status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    box-shadow: 0 0 13px rgba(223, 38, 56, 0.8);
+}
+
+.performance-grid {
+    margin-top: 58px;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.performance-card {
+    position: relative;
+
+    min-width: 0;
+    min-height: 180px;
+    padding: 25px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.012)
+        ),
+        #101013;
+
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.performance-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(223, 38, 56, 0.42);
+}
+
+.performance-card.primary {
+    border-color: rgba(223, 38, 56, 0.36);
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(223, 38, 56, 0.14),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #171317,
+            #0e0e11
+        );
+}
+
+.performance-label {
+    display: block;
+
+    color: var(--gray-dark);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.performance-value {
+    display: block;
+
+    margin-top: 18px;
+
+    overflow-wrap: anywhere;
+
+    color: var(--white);
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+}
+
+.performance-detail {
+    display: block;
+
+    margin-top: 9px;
+
+    color: var(--gray);
+
+    font-size: 0.76rem;
+}
+
+.performance-positive {
+    color: #42d392 !important;
+}
+
+.performance-negative {
+    color: var(--red-light) !important;
+}
+
+.performance-neutral {
+    color: var(--white) !important;
+}
+
+.performance-disclaimer {
+    margin-top: 28px;
+    padding-top: 23px;
+
+    border-top: 1px solid var(--border);
+
+    color: #66666e;
+
+    font-size: 0.68rem;
+    line-height: 1.75;
+}
+
+.performance-empty {
+    margin-top: 58px;
+    padding: 35px;
+
+    border: 1px solid var(--border);
+
+    color: var(--gray);
+
+    background: rgba(255, 255, 255, 0.018);
+
+    text-align: center;
+}
+
+.performance-empty strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--silver);
+
+    font-size: 1rem;
+}
         /* Approach */
 
         .approach {
@@ -1490,6 +1734,14 @@
             .asset-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .performance-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.performance-header {
+    align-items: flex-start;
+    flex-direction: column;
+}
 
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1582,11 +1834,19 @@
             }
 
             .asset-grid,
+            .performance-grid,
             .principles-grid,
             .process-grid,
             .footer-links {
-                grid-template-columns: 1fr;
+               grid-template-columns: 1fr;
             }
+            .performance-card {
+    min-height: 155px;
+}
+
+.performance-status {
+    white-space: normal;
+}
 
             .principles-panel {
                 padding: 28px 20px;
@@ -2137,7 +2397,169 @@
 
     </div>
 </section>
+<section
+    class="section performance"
+    id="performance"
+>
+    <div class="container performance-inner">
+        <div class="performance-header reveal">
+            <div class="performance-header-copy">
+                <p class="eyebrow">
+                    Proprietary Model Portfolio
+                </p>
 
+                <h2>
+                    Model Portfolio Performance
+                </h2>
+
+                <p class="performance-header-description">
+                    A transparent view of Teske Capital’s proprietary
+                    model portfolio before the acceptance of outside
+                    investor capital.
+                </p>
+            </div>
+
+            <div class="performance-status">
+                <span class="performance-status-dot"></span>
+
+                <span id="performanceUpdatedStatus">
+                    Awaiting portfolio data
+                </span>
+            </div>
+        </div>
+
+        <div
+            class="performance-grid reveal"
+            id="performanceMetrics"
+        >
+            <article class="performance-card primary">
+                <span class="performance-label">
+                    Current NAV
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepageCurrentNav"
+                >
+                    $100.00
+                </strong>
+
+                <span class="performance-detail">
+                    NAV per model unit
+                </span>
+            </article>
+
+            <article class="performance-card primary">
+                <span class="performance-label">
+                    Since-Inception Return
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepageSinceInception"
+                >
+                    0.00%
+                </strong>
+
+                <span class="performance-detail">
+                    Total portfolio return
+                </span>
+            </article>
+
+            <article class="performance-card">
+                <span class="performance-label">
+                    Portfolio Value
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepagePortfolioValue"
+                >
+                    $0.00
+                </strong>
+
+                <span class="performance-detail">
+                    Current proprietary capital value
+                </span>
+            </article>
+
+            <article class="performance-card">
+                <span class="performance-label">
+                    Net Gain / Loss
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepageNetGainLoss"
+                >
+                    $0.00
+                </strong>
+
+                <span class="performance-detail">
+                    Dollar change since inception
+                </span>
+            </article>
+
+            <article class="performance-card">
+                <span class="performance-label">
+                    Latest Weekly Return
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepageLatestWeekly"
+                >
+                    0.00%
+                </strong>
+
+                <span
+                    class="performance-detail"
+                    id="homepageLatestWeekDetail"
+                >
+                    No completed weeks
+                </span>
+            </article>
+
+            <article class="performance-card">
+                <span class="performance-label">
+                    Annualized Return
+                </span>
+
+                <strong
+                    class="performance-value"
+                    id="homepageAnnualizedReturn"
+                >
+                    0.00%
+                </strong>
+
+                <span class="performance-detail">
+                    Compounded from recorded results
+                </span>
+            </article>
+        </div>
+
+        <div
+            class="performance-empty hidden"
+            id="performanceEmptyState"
+        >
+            <strong>
+                Model portfolio has not been initialized
+            </strong>
+
+            Performance data will appear after the initial portfolio
+            value is entered in the Teske Capital NAV calculator.
+        </div>
+
+        <p class="performance-disclaimer reveal">
+            Performance reflects Teske Capital’s proprietary model
+            portfolio prior to accepting outside investor capital.
+            Results are unaudited and do not reflect management fees,
+            fund expenses, taxes, or the performance of any future
+            investment vehicle. Past performance does not guarantee
+            future results.
+        </p>
+    </div>
+</section>
         <section
             class="section approach"
             id="approach"
@@ -2886,6 +3308,481 @@
 
         currentYear.textContent =
             new Date().getFullYear();
+        const NAV_STORAGE_KEY =
+    "teskeCapitalNavCalculatorV1";
+
+const HOMEPAGE_INITIAL_NAV = 100;
+
+const homepageCurrentNav =
+    document.getElementById(
+        "homepageCurrentNav"
+    );
+
+const homepageSinceInception =
+    document.getElementById(
+        "homepageSinceInception"
+    );
+
+const homepagePortfolioValue =
+    document.getElementById(
+        "homepagePortfolioValue"
+    );
+
+const homepageNetGainLoss =
+    document.getElementById(
+        "homepageNetGainLoss"
+    );
+
+const homepageLatestWeekly =
+    document.getElementById(
+        "homepageLatestWeekly"
+    );
+
+const homepageLatestWeekDetail =
+    document.getElementById(
+        "homepageLatestWeekDetail"
+    );
+
+const homepageAnnualizedReturn =
+    document.getElementById(
+        "homepageAnnualizedReturn"
+    );
+
+const performanceUpdatedStatus =
+    document.getElementById(
+        "performanceUpdatedStatus"
+    );
+
+const performanceMetrics =
+    document.getElementById(
+        "performanceMetrics"
+    );
+
+const performanceEmptyState =
+    document.getElementById(
+        "performanceEmptyState"
+    );
+
+function formatHomepageCurrency(value) {
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    ).format(Number(value) || 0);
+}
+
+function formatHomepagePercent(value) {
+    const number =
+        Number(value) || 0;
+
+    const sign =
+        number > 0 ? "+" : "";
+
+    return (
+        sign +
+        new Intl.NumberFormat(
+            "en-US",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        ).format(number * 100) +
+        "%"
+    );
+}
+
+function formatHomepageDate(dateString) {
+    if (!dateString) {
+        return "No completed weeks";
+    }
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        }
+    ).format(
+        new Date(
+            dateString + "T00:00:00"
+        )
+    );
+}
+
+function setHomepagePerformanceClass(
+    element,
+    value
+) {
+    element.classList.remove(
+        "performance-positive",
+        "performance-negative",
+        "performance-neutral"
+    );
+
+    if (value > 0) {
+        element.classList.add(
+            "performance-positive"
+        );
+
+        return;
+    }
+
+    if (value < 0) {
+        element.classList.add(
+            "performance-negative"
+        );
+
+        return;
+    }
+
+    element.classList.add(
+        "performance-neutral"
+    );
+}
+
+function calculateHomepagePerformance(
+    calculatorData
+) {
+    const entries =
+        Array.isArray(calculatorData.entries)
+            ? calculatorData.entries
+                .slice()
+                .sort(
+                    function (
+                        firstEntry,
+                        secondEntry
+                    ) {
+                        return (
+                            new Date(
+                                firstEntry.weekEnding
+                            ) -
+                            new Date(
+                                secondEntry.weekEnding
+                            )
+                        );
+                    }
+                )
+            : [];
+
+    const initialCapital =
+        Number(
+            calculatorData.initialCapital
+        ) || 0;
+
+    let runningBalance =
+        initialCapital;
+
+    const rebuiltEntries =
+        entries.map(
+            function (entry) {
+                const startingBalance =
+                    runningBalance;
+
+                const profitLoss =
+                    Number(entry.profitLoss) || 0;
+
+                const endingBalance =
+                    startingBalance +
+                    profitLoss;
+
+                const weeklyReturn =
+                    startingBalance !== 0
+                        ? profitLoss /
+                            startingBalance
+                        : 0;
+
+                runningBalance =
+                    endingBalance;
+
+                return {
+                    ...entry,
+                    startingBalance,
+                    endingBalance,
+                    weeklyReturn
+                };
+            }
+        );
+
+    const initialUnits =
+        Number(
+            calculatorData.initialUnits
+        ) ||
+        (
+            initialCapital /
+            HOMEPAGE_INITIAL_NAV
+        );
+
+    const currentBalance =
+        rebuiltEntries.length > 0
+            ? rebuiltEntries[
+                rebuiltEntries.length - 1
+            ].endingBalance
+            : initialCapital;
+
+    const currentNav =
+        initialUnits > 0
+            ? currentBalance /
+                initialUnits
+            : HOMEPAGE_INITIAL_NAV;
+
+    const sinceInceptionReturn =
+        initialCapital > 0
+            ? currentBalance /
+                initialCapital -
+                1
+            : 0;
+
+    const netGainLoss =
+        currentBalance -
+        initialCapital;
+
+    const latestEntry =
+        rebuiltEntries.length > 0
+            ? rebuiltEntries[
+                rebuiltEntries.length - 1
+            ]
+            : null;
+
+    let annualizedReturn = 0;
+
+    if (
+        calculatorData.inceptionDate &&
+        latestEntry &&
+        sinceInceptionReturn > -1
+    ) {
+        const inceptionDate =
+            new Date(
+                calculatorData.inceptionDate +
+                "T00:00:00"
+            );
+
+        const latestDate =
+            new Date(
+                latestEntry.weekEnding +
+                "T00:00:00"
+            );
+
+        const elapsedWeeks =
+            (
+                latestDate -
+                inceptionDate
+            ) /
+            (
+                1000 *
+                60 *
+                60 *
+                24 *
+                7
+            );
+
+        if (elapsedWeeks > 0) {
+            annualizedReturn =
+                Math.pow(
+                    1 +
+                    sinceInceptionReturn,
+                    52 / elapsedWeeks
+                ) - 1;
+        }
+    }
+
+    return {
+        initialCapital,
+        currentBalance,
+        currentNav,
+        sinceInceptionReturn,
+        netGainLoss,
+        latestEntry,
+        annualizedReturn,
+        completedWeeks:
+            rebuiltEntries.length
+    };
+}
+
+function loadHomepagePerformance() {
+    try {
+        const storedData =
+            localStorage.getItem(
+                NAV_STORAGE_KEY
+            );
+
+        if (!storedData) {
+            performanceMetrics.classList.add(
+                "hidden"
+            );
+
+            performanceEmptyState.classList.remove(
+                "hidden"
+            );
+
+            performanceUpdatedStatus.textContent =
+                "Awaiting portfolio data";
+
+            return;
+        }
+
+        const calculatorData =
+            JSON.parse(storedData);
+
+        if (
+            !calculatorData ||
+            Number(
+                calculatorData.initialCapital
+            ) <= 0
+        ) {
+            performanceMetrics.classList.add(
+                "hidden"
+            );
+
+            performanceEmptyState.classList.remove(
+                "hidden"
+            );
+
+            performanceUpdatedStatus.textContent =
+                "Awaiting portfolio data";
+
+            return;
+        }
+
+        const performance =
+            calculateHomepagePerformance(
+                calculatorData
+            );
+
+        performanceMetrics.classList.remove(
+            "hidden"
+        );
+
+        performanceEmptyState.classList.add(
+            "hidden"
+        );
+
+        homepageCurrentNav.textContent =
+            formatHomepageCurrency(
+                performance.currentNav
+            );
+
+        homepageSinceInception.textContent =
+            formatHomepagePercent(
+                performance.sinceInceptionReturn
+            );
+
+        homepagePortfolioValue.textContent =
+            formatHomepageCurrency(
+                performance.currentBalance
+            );
+
+        homepageNetGainLoss.textContent =
+            (
+                performance.netGainLoss > 0
+                    ? "+"
+                    : ""
+            ) +
+            formatHomepageCurrency(
+                performance.netGainLoss
+            );
+
+        homepageLatestWeekly.textContent =
+            formatHomepagePercent(
+                performance.latestEntry
+                    ? performance.latestEntry
+                        .weeklyReturn
+                    : 0
+            );
+
+        homepageLatestWeekDetail.textContent =
+            performance.latestEntry
+                ? "Week ending " +
+                    formatHomepageDate(
+                        performance.latestEntry
+                            .weekEnding
+                    )
+                : "No completed weeks";
+
+        homepageAnnualizedReturn.textContent =
+            formatHomepagePercent(
+                performance.annualizedReturn
+            );
+
+        setHomepagePerformanceClass(
+            homepageCurrentNav,
+            performance.currentNav -
+                HOMEPAGE_INITIAL_NAV
+        );
+
+        setHomepagePerformanceClass(
+            homepageSinceInception,
+            performance.sinceInceptionReturn
+        );
+
+        setHomepagePerformanceClass(
+            homepageNetGainLoss,
+            performance.netGainLoss
+        );
+
+        setHomepagePerformanceClass(
+            homepageLatestWeekly,
+            performance.latestEntry
+                ? performance.latestEntry
+                    .weeklyReturn
+                : 0
+        );
+
+        setHomepagePerformanceClass(
+            homepageAnnualizedReturn,
+            performance.annualizedReturn
+        );
+
+        performanceUpdatedStatus.textContent =
+            performance.completedWeeks > 0
+                ? performance.completedWeeks +
+                    (
+                        performance.completedWeeks === 1
+                            ? " completed week"
+                            : " completed weeks"
+                    )
+                : "Portfolio initialized";
+    } catch (error) {
+        console.error(
+            "Could not load Teske Capital performance:",
+            error
+        );
+
+        performanceMetrics.classList.add(
+            "hidden"
+        );
+
+        performanceEmptyState.classList.remove(
+            "hidden"
+        );
+
+        performanceUpdatedStatus.textContent =
+            "Performance unavailable";
+    }
+}
+
+loadHomepagePerformance();
+
+window.addEventListener(
+    "storage",
+    function (event) {
+        if (
+            event.key ===
+            NAV_STORAGE_KEY
+        ) {
+            loadHomepagePerformance();
+        }
+    }
+);
+
+window.setInterval(
+    loadHomepagePerformance,
+    3000
+);
         const marketCanvas =
     document.getElementById("marketBackground");
 
