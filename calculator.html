@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow, noarchive"
+    >
+
+    <meta
+        name="theme-color"
+        content="#080808"
+    >
+
+    <title>Teske Capital | NAV Calculator</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --red: #df2638;
+            --red-light: #f24859;
+            --red-dark: #961322;
+
+            --black: #050506;
+            --black-soft: #09090b;
+            --panel: #101013;
+            --panel-light: #17171b;
+            --panel-lighter: #1d1d22;
+
+            --white: #f5f5f7;
+            --silver: #c8c8ce;
+            --gray: #92929a;
+            --gray-dark: #6b6b73;
+
+            --green: #42d392;
+            --green-soft: rgba(66, 211, 146, 0.12);
+
+            --border: rgba(255, 255, 255, 0.1);
+            --border-strong: rgba(255, 255, 255, 0.17);
+
+            --shadow:
+                0 28px 80px rgba(0, 0, 0, 0.45);
+
+            --container: 1320px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            color: var(--white);
+
+            background:
+                radial-gradient(
+                    circle at 85% 5%,
+                    rgba(223, 38, 56, 0.11),
+                    transparent 24%
+                ),
+                linear-gradient(
+                    145deg,
+                    #070708,
+                    #0a090a 55%,
+                    #100809
+                );
+
+            font-family: "Inter", sans-serif;
+            line-height: 1.6;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .container {
+            width: min(
+                calc(100% - 36px),
+                var(--container)
+            );
+
+            margin-inline: auto;
+        }
+
+        .top-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red),
+                    var(--red-light),
+                    var(--red),
+                    transparent
+                );
+        }
+
+        /* Login */
+
+        .login-screen {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .login-card {
+            width: min(100%, 470px);
+            padding: 42px;
+
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.06),
+                    rgba(255, 255, 255, 0.015)
+                ),
+                var(--panel);
+
+            box-shadow: var(--shadow);
+        }
+
+        .login-mark {
+            width: 64px;
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.45);
+            border-radius: 6px;
+
+            color: var(--red-light);
+
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .login-card h1 {
+            margin-top: 26px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2rem, 7vw, 3rem);
+            letter-spacing: -0.05em;
+            line-height: 1.05;
+        }
+
+        .login-card > p {
+            margin-top: 14px;
+
+            color: var(--gray);
+        }
+
+        .login-form {
+            margin-top: 30px;
+        }
+
+        .login-error {
+            min-height: 24px;
+            margin-top: 12px;
+
+            color: var(--red-light);
+
+            font-size: 0.82rem;
+        }
+
+        /* Dashboard header */
+
+        .site-header {
+            border-bottom: 1px solid var(--border);
+
+            background:
+                rgba(5, 5, 6, 0.87);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: 92px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand-lockup {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.42);
+            border-radius: 5px;
+
+            color: var(--red-light);
+
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-family: "Manrope", sans-serif;
+            font-weight: 800;
+        }
+
+        .brand-copy strong {
+            display: block;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1rem;
+        }
+
+        .brand-copy span {
+            display: block;
+
+            color: var(--gray-dark);
+
+            font-size: 0.74rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main */
+
+        .dashboard {
+            padding: 70px 0 110px;
+        }
+
+        .dashboard-intro {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 13px;
+
+            color: var(--red-light);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 27px;
+            height: 1px;
+
+            background: var(--red);
+        }
+
+        .dashboard-intro h1 {
+            max-width: 800px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.6rem, 6vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.055em;
+            line-height: 1;
+        }
+
+        .dashboard-intro p {
+            max-width: 650px;
+            margin-top: 19px;
+
+            color: var(--gray);
+        }
+
+        .status-badge {
+            flex: 0 0 auto;
+
+            padding: 10px 14px;
+
+            border:
+                1px solid rgba(66, 211, 146, 0.3);
+            border-radius: 100px;
+
+            color: var(--green);
+
+            background: var(--green-soft);
+
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        /* Cards */
+
+        .metrics-grid {
+            margin-top: 50px;
+
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .metric-card {
+            min-width: 0;
+            padding: 24px;
+
+            border: 1px solid var(--border);
+            border-radius: 6px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.045),
+                    rgba(255, 255, 255, 0.012)
+                ),
+                var(--panel);
+        }
+
+        .metric-label {
+            color: var(--gray-dark);
+
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            display: block;
+
+            margin-top: 13px;
+
+            overflow-wrap: anywhere;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.25rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .metric-detail {
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--gray);
+
+            font-size: 0.77rem;
+        }
+
+        .positive {
+            color: var(--green) !important;
+        }
+
+        .negative {
+            color: var(--red-light) !important;
+        }
+
+        .neutral {
+            color: var(--white) !important;
+        }
+
+        .workspace {
+            margin-top: 22px;
+
+            display: grid;
+            grid-template-columns:
+                minmax(330px, 0.78fr)
+                minmax(0, 1.22fr);
+
+            gap: 22px;
+            align-items: start;
+        }
+
+        .panel {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: 7px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.04),
+                    rgba(255, 255, 255, 0.01)
+                ),
+                var(--panel);
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.22);
+        }
+
+        .panel-header {
+            padding: 24px 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-header h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 1.22rem;
+            letter-spacing: -0.025em;
+        }
+
+        .panel-header p {
+            margin-top: 4px;
+
+            color: var(--gray);
+
+            font-size: 0.78rem;
+        }
+
+        .panel-body {
+            padding: 25px;
+        }
+
+        /* Forms */
+
+        .form-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--silver);
+
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        .field-hint {
+            display: block;
+
+            margin-top: 6px;
+
+            color: var(--gray-dark);
+
+            font-size: 0.68rem;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 5px;
+
+            outline: none;
+
+            color: var(--white);
+
+            background: #09090b;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        input,
+        select {
+            height: 50px;
+            padding: 0 14px;
+        }
+
+        textarea {
+            min-height: 94px;
+            padding: 13px 14px;
+
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color:
+                rgba(223, 38, 56, 0.72);
+
+            box-shadow:
+                0 0 0 3px rgba(223, 38, 56, 0.1);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #56565e;
+        }
+
+        .input-prefix {
+            position: relative;
+        }
+
+        .input-prefix span {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+
+            color: var(--gray-dark);
+
+            transform: translateY(-50%);
+        }
+
+        .input-prefix input {
+            padding-left: 30px;
+        }
+
+        .button {
+            min-height: 48px;
+            padding: 0 19px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            border: 1px solid transparent;
+            border-radius: 5px;
+
+            color: var(--white);
+
+            font-size: 0.82rem;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+        }
+
+        .button:disabled {
+            cursor: not-allowed;
+
+            opacity: 0.45;
+
+            transform: none;
+        }
+
+        .button-primary {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--red-light),
+                    var(--red-dark)
+                );
+        }
+
+        .button-secondary {
+            border-color: var(--border-strong);
+
+            background:
+                rgba(255, 255, 255, 0.04);
+        }
+
+        .button-danger {
+            border-color:
+                rgba(223, 38, 56, 0.38);
+
+            color: var(--red-light);
+
+            background:
+                rgba(223, 38, 56, 0.08);
+        }
+
+        .button-small {
+            min-height: 36px;
+            padding: 0 12px;
+
+            font-size: 0.72rem;
+        }
+
+        .button-full {
+            width: 100%;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-top: 2px;
+        }
+
+        .setup-message {
+            padding: 13px 14px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.24);
+            border-radius: 5px;
+
+            color: #d9a4aa;
+
+            background:
+                rgba(223, 38, 56, 0.07);
+
+            font-size: 0.75rem;
+        }
+
+        /* History */
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 830px;
+
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px 13px;
+
+            border-bottom: 1px solid var(--border);
+
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            color: var(--gray-dark);
+
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: var(--silver);
+
+            font-size: 0.78rem;
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background:
+                rgba(255, 255, 255, 0.018);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .empty-state {
+            padding: 55px 25px;
+
+            color: var(--gray);
+
+            text-align: center;
+        }
+
+        .empty-state strong {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: var(--silver);
+        }
+
+        /* Export */
+
+        .export-panel {
+            margin-top: 22px;
+        }
+
+        .export-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .export-card {
+            padding: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 6px;
+
+            background: var(--black-soft);
+        }
+
+        .export-card h3 {
+            font-size: 0.9rem;
+        }
+
+        .export-card p {
+            min-height: 57px;
+            margin-top: 8px;
+
+            color: var(--gray);
+
+            font-size: 0.72rem;
+        }
+
+        .export-card .button {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .admin-warning {
+            margin-top: 22px;
+            padding: 16px 18px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 5px;
+
+            color: var(--gray-dark);
+
+            background:
+                rgba(255, 255, 255, 0.018);
+
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1050px) {
+            .metrics-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .export-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .export-card p {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                width:
+                    min(
+                        calc(100% - 26px),
+                        var(--container)
+                    );
+            }
+
+            .header-inner {
+                min-height: 78px;
+            }
+
+            .brand-mark {
+                width: 42px;
+                height: 42px;
+            }
+
+            .brand-copy span {
+                display: none;
+            }
+
+            .header-actions .button-secondary {
+                padding: 0 12px;
+            }
+
+            .dashboard {
+                padding: 52px 0 80px;
+            }
+
+            .dashboard-intro {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .panel-body {
+                padding: 20px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .button {
+                width: 100%;
+            }
+
+            .login-card {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-line"></div>
+
+    <section
+        class="login-screen"
+        id="loginScreen"
+    >
+        <div class="login-card">
+            <div class="login-mark">
+                TC
+            </div>
+
+            <h1>
+                Admin access
+            </h1>
+
+            <p>
+                Enter the Teske Capital administrator passcode
+                to access the internal NAV calculator.
+            </p>
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+                <div class="field">
+                    <label for="adminPasscode">
+                        Administrator passcode
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPasscode"
+                        autocomplete="current-password"
+                        placeholder="Enter passcode"
+                        required
+                    >
+                </div>
+
+                <p
+                    class="login-error"
+                    id="loginError"
+                ></p>
+
+                <button
+                    type="submit"
+                    class="button button-primary button-full"
+                >
+                    Open NAV Calculator
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div
+        id="adminDashboard"
+        class="hidden"
+    >
+        <header class="site-header">
+            <div class="container header-inner">
+                <div class="brand-lockup">
+                    <div class="brand-mark">
+                        TC
+                    </div>
+
+                    <div class="brand-copy">
+                        <strong>
+                            Teske Capital
+                        </strong>
+
+                        <span>
+                            Internal NAV Administration
+                        </span>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button
+                        class="button button-secondary button-small"
+                        id="logoutButton"
+                        type="button"
+                    >
+                        Lock Page
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <div class="container">
+                <div class="dashboard-intro">
+                    <div>
+                        <p class="eyebrow">
+                            Proprietary Model Portfolio
+                        </p>
+
+                        <h1>
+                            Weekly NAV Calculator
+                        </h1>
+
+                        <p>
+                            Establish the model portfolio, record weekly
+                            gains or losses, and export public NAV data
+                            for the Teske Capital homepage.
+                        </p>
+                    </div>
+
+                    <span class="status-badge">
+                        Local Admin Data
+                    </span>
+                </div>
+
+                <section class="metrics-grid">
+                    <article class="metric-card">
+                        <span class="metric-label">
+                            Current Balance
+                        </span>
+
+                        <strong
+                            class="metric-value"
+                            id="currentBalanceMetric"
+                        >
+                            $0.00
+                        </strong>
+
+                        <span
+                            class="metric-detail"
+                            id="balanceDetail"
+                        >
+                            Fund not initialized
+                        </span>
+                    </article>
+
+                    <article class="metric-card">
+                        <span class="metric-label">
+                            Current NAV
+                        </span>
+
+                        <strong
+                            class="metric-value"
+                            id="currentNavMetric"
+                        >
+                            $100.00
+                        </strong>
+
+                        <span class="metric-detail">
+                            NAV per model unit
+                        </span>
+                    </article>
+
+                    <article class="metric-card">
+                        <span class="metric-label">
+                            Since Inception
+                        </span>
+
+                        <strong
+                            class="metric-value"
+                            id="sinceInceptionMetric"
+                        >
+                            0.00%
+                        </strong>
+
+                        <span class="metric-detail">
+                            Total portfolio return
+                        </span>
+                    </article>
+
+                    <article class="metric-card">
+                        <span class="metric-label">
+                            Annualized Return
+                        </span>
+
+                        <strong
+                            class="metric-value"
+                            id="annualizedMetric"
+                        >
+                            0.00%
+                        </strong>
+
+                        <span class="metric-detail">
+                            Compounded from weekly results
+                        </span>
+                    </article>
+                </section>
+
+                <section class="workspace">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <h2>
+                                    Fund Setup
+                                </h2>
+
+                                <p>
+                                    Enter the initial proprietary capital once.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <form
+                                id="setupForm"
+                                class="form-grid"
+                            >
+                                <div
+                                    class="setup-message"
+                                    id="setupMessage"
+                                >
+                                    The initial NAV is fixed at $100.00
+                                    per model unit.
+                                </div>
+
+                                <div class="field">
+                                    <label for="fundName">
+                                        Portfolio name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="fundName"
+                                        value="Teske Capital Model Portfolio"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="field">
+                                        <label for="inceptionDate">
+                                            Inception date
+                                        </label>
+
+                                        <input
+                                            type="date"
+                                            id="inceptionDate"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="initialCapital">
+                                            Initial fund amount
+                                        </label>
+
+                                        <div class="input-prefix">
+                                            <span>$</span>
+
+                                            <input
+                                                type="number"
+                                                id="initialCapital"
+                                                min="0.01"
+                                                step="0.01"
+                                                placeholder="100000.00"
+                                                required
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="button button-primary button-full"
+                                    id="setupButton"
+                                >
+                                    Initialize Portfolio
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <h2 id="weeklyFormTitle">
+                                    Add Weekly Result
+                                </h2>
+
+                                <p>
+                                    Enter a positive dollar amount for a gain
+                                    or a negative amount for a loss.
+                                </p>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="button button-secondary button-small hidden"
+                                id="cancelEditButton"
+                            >
+                                Cancel Edit
+                            </button>
+                        </div>
+
+                        <div class="panel-body">
+                            <form
+                                id="weeklyForm"
+                                class="form-grid"
+                            >
+                                <div class="form-row">
+                                    <div class="field">
+                                        <label for="weekEnding">
+                                            Week ending
+                                        </label>
+
+                                        <input
+                                            type="date"
+                                            id="weekEnding"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="weeklyProfitLoss">
+                                            Weekly gain or loss
+                                        </label>
+
+                                        <div class="input-prefix">
+                                            <span>$</span>
+
+                                            <input
+                                                type="number"
+                                                id="weeklyProfitLoss"
+                                                step="0.01"
+                                                placeholder="1250.00 or -500.00"
+                                                required
+                                            >
+                                        </div>
+
+                                        <span class="field-hint">
+                                            Gains are positive. Losses are negative.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="weeklyNote">
+                                        Internal note
+                                    </label>
+
+                                    <textarea
+                                        id="weeklyNote"
+                                        placeholder="Optional summary of the week..."
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button
+                                        type="submit"
+                                        class="button button-primary"
+                                        id="weeklySubmitButton"
+                                    >
+                                        Add Weekly Result
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="button button-secondary"
+                                        id="useTodayButton"
+                                    >
+                                        Use Today's Date
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel export-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>
+                                Weekly Performance History
+                            </h2>
+
+                            <p id="historySummary">
+                                No reporting periods recorded.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="table-wrap"
+                        id="historyTableWrap"
+                    >
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Week Ending</th>
+                                    <th>Starting Balance</th>
+                                    <th>Gain / Loss</th>
+                                    <th>Ending Balance</th>
+                                    <th>Weekly Return</th>
+                                    <th>NAV</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="historyTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <div
+                        class="empty-state"
+                        id="historyEmptyState"
+                    >
+                        <strong>
+                            No weekly results yet
+                        </strong>
+
+                        Initialize the portfolio and enter the first
+                        completed reporting week.
+                    </div>
+                </section>
+
+                <section class="panel export-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>
+                                Export and Backup
+                            </h2>
+
+                            <p>
+                                Download data for backup or publication.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="export-grid">
+                            <article class="export-card">
+                                <h3>
+                                    Homepage NAV Data
+                                </h3>
+
+                                <p>
+                                    Generates the public
+                                    <strong>nav-data.json</strong>
+                                    file that the homepage will read.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="button button-primary"
+                                    id="exportNavButton"
+                                >
+                                    Export nav-data.json
+                                </button>
+                            </article>
+
+                            <article class="export-card">
+                                <h3>
+                                    Performance CSV
+                                </h3>
+
+                                <p>
+                                    Downloads the weekly performance
+                                    history for spreadsheets and records.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="button button-secondary"
+                                    id="exportCsvButton"
+                                >
+                                    Export CSV
+                                </button>
+                            </article>
+
+                            <article class="export-card">
+                                <h3>
+                                    Full Calculator Backup
+                                </h3>
+
+                                <p>
+                                    Downloads all setup data, entries,
+                                    and internal notes for restoration.
+                                </p>
+
+                                <button
+                                    type="button"
+                                    class="button button-secondary"
+                                    id="exportBackupButton"
+                                >
+                                    Export Backup
+                                </button>
+                            </article>
+                        </div>
+
+                        <div class="form-actions">
+                            <button
+                                type="button"
+                                class="button button-secondary"
+                                id="importBackupButton"
+                            >
+                                Import Backup
+                            </button>
+
+                            <button
+                                type="button"
+                                class="button button-danger"
+                                id="resetDataButton"
+                            >
+                                Reset All Calculator Data
+                            </button>
+                        </div>
+
+                        <input
+                            type="file"
+                            id="backupFileInput"
+                            accept=".json,application/json"
+                            class="hidden"
+                        >
+
+                        <div class="admin-warning">
+                            Data is currently saved only in this browser
+                            using localStorage. Export regular backups.
+                            Uploading <strong>nav-data.json</strong> to
+                            GitHub will be the publishing step until a
+                            secure database is added.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        /*
+         * IMPORTANT:
+         * This is only a convenience lock for a static page.
+         * Anyone who views the source can find this passcode.
+         * Replace it now, and add real authentication later.
+         */
+
+        const ADMIN_PASSCODE = "change-this-now";
+
+        const STORAGE_KEY =
+            "teskeCapitalNavCalculatorV1";
+
+        const LOGIN_SESSION_KEY =
+            "teskeCapitalAdminUnlocked";
+
+        const INITIAL_NAV = 100;
+
+        const loginScreen =
+            document.getElementById("loginScreen");
+
+        const adminDashboard =
+            document.getElementById("adminDashboard");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const adminPasscode =
+            document.getElementById("adminPasscode");
+
+        const loginError =
+            document.getElementById("loginError");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+        const setupForm =
+            document.getElementById("setupForm");
+
+        const fundNameInput =
+            document.getElementById("fundName");
+
+        const inceptionDateInput =
+            document.getElementById("inceptionDate");
+
+        const initialCapitalInput =
+            document.getElementById("initialCapital");
+
+        const setupButton =
+            document.getElementById("setupButton");
+
+        const setupMessage =
+            document.getElementById("setupMessage");
+
+        const weeklyForm =
+            document.getElementById("weeklyForm");
+
+        const weeklyFormTitle =
+            document.getElementById("weeklyFormTitle");
+
+        const weekEndingInput =
+            document.getElementById("weekEnding");
+
+        const weeklyProfitLossInput =
+            document.getElementById("weeklyProfitLoss");
+
+        const weeklyNoteInput =
+            document.getElementById("weeklyNote");
+
+        const weeklySubmitButton =
+            document.getElementById("weeklySubmitButton");
+
+        const cancelEditButton =
+            document.getElementById("cancelEditButton");
+
+        const useTodayButton =
+            document.getElementById("useTodayButton");
+
+        const currentBalanceMetric =
+            document.getElementById("currentBalanceMetric");
+
+        const currentNavMetric =
+            document.getElementById("currentNavMetric");
+
+        const sinceInceptionMetric =
+            document.getElementById("sinceInceptionMetric");
+
+        const annualizedMetric =
+            document.getElementById("annualizedMetric");
+
+        const balanceDetail =
+            document.getElementById("balanceDetail");
+
+        const historySummary =
+            document.getElementById("historySummary");
+
+        const historyTableWrap =
+            document.getElementById("historyTableWrap");
+
+        const historyTableBody =
+            document.getElementById("historyTableBody");
+
+        const historyEmptyState =
+            document.getElementById("historyEmptyState");
+
+        const exportNavButton =
+            document.getElementById("exportNavButton");
+
+        const exportCsvButton =
+            document.getElementById("exportCsvButton");
+
+        const exportBackupButton =
+            document.getElementById("exportBackupButton");
+
+        const importBackupButton =
+            document.getElementById("importBackupButton");
+
+        const backupFileInput =
+            document.getElementById("backupFileInput");
+
+        const resetDataButton =
+            document.getElementById("resetDataButton");
+
+        let calculatorData =
+            loadCalculatorData();
+
+        let editingEntryId = null;
+
+        function getDefaultData() {
+            return {
+                version: 1,
+                fundName:
+                    "Teske Capital Model Portfolio",
+                inceptionDate: "",
+                initialCapital: 0,
+                initialNav: INITIAL_NAV,
+                initialUnits: 0,
+                entries: []
+            };
+        }
+
+        function loadCalculatorData() {
+            try {
+                const storedData =
+                    localStorage.getItem(STORAGE_KEY);
+
+                if (!storedData) {
+                    return getDefaultData();
+                }
+
+                const parsedData =
+                    JSON.parse(storedData);
+
+                return {
+                    ...getDefaultData(),
+                    ...parsedData,
+                    entries:
+                        Array.isArray(parsedData.entries)
+                            ? parsedData.entries
+                            : []
+                };
+            } catch (error) {
+                console.error(
+                    "Could not load calculator data:",
+                    error
+                );
+
+                return getDefaultData();
+            }
+        }
+
+        function saveCalculatorData() {
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(calculatorData)
+            );
+        }
+
+        function isPortfolioInitialized() {
+            return (
+                calculatorData.initialCapital > 0 &&
+                calculatorData.inceptionDate
+            );
+        }
+
+        function sortEntries() {
+            calculatorData.entries.sort(
+                function (firstEntry, secondEntry) {
+                    return (
+                        new Date(firstEntry.weekEnding) -
+                        new Date(secondEntry.weekEnding)
+                    );
+                }
+            );
+        }
+
+        function rebuildPerformanceHistory() {
+            sortEntries();
+
+            let runningBalance =
+                calculatorData.initialCapital;
+
+            calculatorData.entries =
+                calculatorData.entries.map(
+                    function (entry) {
+                        const startingBalance =
+                            runningBalance;
+
+                        const profitLoss =
+                            Number(entry.profitLoss);
+
+                        const endingBalance =
+                            startingBalance +
+                            profitLoss;
+
+                        const weeklyReturn =
+                            startingBalance !== 0
+                                ? profitLoss /
+                                    startingBalance
+                                : 0;
+
+                        const nav =
+                            calculatorData.initialUnits > 0
+                                ? endingBalance /
+                                    calculatorData.initialUnits
+                                : INITIAL_NAV;
+
+                        runningBalance =
+                            endingBalance;
+
+                        return {
+                            ...entry,
+                            startingBalance,
+                            endingBalance,
+                            weeklyReturn,
+                            nav
+                        };
+                    }
+                );
+        }
+
+        function getCurrentBalance() {
+            if (!isPortfolioInitialized()) {
+                return 0;
+            }
+
+            if (
+                calculatorData.entries.length === 0
+            ) {
+                return calculatorData.initialCapital;
+            }
+
+            return calculatorData.entries[
+                calculatorData.entries.length - 1
+            ].endingBalance;
+        }
+
+        function getCurrentNav() {
+            if (!isPortfolioInitialized()) {
+                return INITIAL_NAV;
+            }
+
+            if (
+                calculatorData.entries.length === 0
+            ) {
+                return INITIAL_NAV;
+            }
+
+            return calculatorData.entries[
+                calculatorData.entries.length - 1
+            ].nav;
+        }
+
+        function getSinceInceptionReturn() {
+            if (
+                !isPortfolioInitialized() ||
+                calculatorData.initialCapital === 0
+            ) {
+                return 0;
+            }
+
+            return (
+                getCurrentBalance() /
+                    calculatorData.initialCapital -
+                1
+            );
+        }
+
+        function getElapsedWeeks() {
+            if (!isPortfolioInitialized()) {
+                return 0;
+            }
+
+            const startDate =
+                new Date(
+                    calculatorData.inceptionDate +
+                    "T00:00:00"
+                );
+
+            let endDate = new Date();
+
+            if (
+                calculatorData.entries.length > 0
+            ) {
+                endDate =
+                    new Date(
+                        calculatorData.entries[
+                            calculatorData.entries.length - 1
+                        ].weekEnding + "T00:00:00"
+                    );
+            }
+
+            const milliseconds =
+                endDate - startDate;
+
+            if (milliseconds <= 0) {
+                return 0;
+            }
+
+            return (
+                milliseconds /
+                (1000 * 60 * 60 * 24 * 7)
+            );
+        }
+
+        function getAnnualizedReturn() {
+            const elapsedWeeks =
+                getElapsedWeeks();
+
+            const totalReturn =
+                getSinceInceptionReturn();
+
+            if (
+                elapsedWeeks <= 0 ||
+                totalReturn <= -1
+            ) {
+                return 0;
+            }
+
+            return (
+                Math.pow(
+                    1 + totalReturn,
+                    52 / elapsedWeeks
+                ) - 1
+            );
+        }
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat(
+                "en-US",
+                {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            ).format(Number(value) || 0);
+        }
+
+        function formatPercent(value) {
+            const numericValue =
+                Number(value) || 0;
+
+            const sign =
+                numericValue > 0 ? "+" : "";
+
+            return (
+                sign +
+                new Intl.NumberFormat(
+                    "en-US",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                ).format(numericValue * 100) +
+                "%"
+            );
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) {
+                return "—";
+            }
+
+            return new Intl.DateTimeFormat(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            ).format(
+                new Date(
+                    dateString + "T00:00:00"
+                )
+            );
+        }
+
+        function getValueClass(value) {
+            if (value > 0) {
+                return "positive";
+            }
+
+            if (value < 0) {
+                return "negative";
+            }
+
+            return "neutral";
+        }
+
+        function setMetricClass(
+            element,
+            value
+        ) {
+            element.classList.remove(
+                "positive",
+                "negative",
+                "neutral"
+            );
+
+            element.classList.add(
+                getValueClass(value)
+            );
+        }
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function renderSetupForm() {
+            fundNameInput.value =
+                calculatorData.fundName ||
+                "Teske Capital Model Portfolio";
+
+            inceptionDateInput.value =
+                calculatorData.inceptionDate || "";
+
+            initialCapitalInput.value =
+                calculatorData.initialCapital || "";
+
+            if (isPortfolioInitialized()) {
+                inceptionDateInput.disabled = true;
+                initialCapitalInput.disabled = true;
+
+                setupButton.disabled = true;
+
+                setupButton.textContent =
+                    "Portfolio Initialized";
+
+                setupMessage.textContent =
+                    "The portfolio is active. To change the initial capital or inception date, reset all calculator data.";
+            } else {
+                inceptionDateInput.disabled = false;
+                initialCapitalInput.disabled = false;
+
+                setupButton.disabled = false;
+
+                setupButton.textContent =
+                    "Initialize Portfolio";
+
+                setupMessage.textContent =
+                    "The initial NAV is fixed at $100.00 per model unit.";
+            }
+        }
+
+        function renderMetrics() {
+            const currentBalance =
+                getCurrentBalance();
+
+            const currentNav =
+                getCurrentNav();
+
+            const sinceInception =
+                getSinceInceptionReturn();
+
+            const annualizedReturn =
+                getAnnualizedReturn();
+
+            currentBalanceMetric.textContent =
+                formatCurrency(currentBalance);
+
+            currentNavMetric.textContent =
+                formatCurrency(currentNav);
+
+            sinceInceptionMetric.textContent =
+                formatPercent(sinceInception);
+
+            annualizedMetric.textContent =
+                formatPercent(annualizedReturn);
+
+            setMetricClass(
+                sinceInceptionMetric,
+                sinceInception
+            );
+
+            setMetricClass(
+                annualizedMetric,
+                annualizedReturn
+            );
+
+            setMetricClass(
+                currentNavMetric,
+                currentNav - INITIAL_NAV
+            );
+
+            if (isPortfolioInitialized()) {
+                balanceDetail.textContent =
+                    calculatorData.entries.length +
+                    (
+                        calculatorData.entries.length === 1
+                            ? " completed week"
+                            : " completed weeks"
+                    );
+            } else {
+                balanceDetail.textContent =
+                    "Fund not initialized";
+            }
+        }
+
+        function renderHistory() {
+            historyTableBody.innerHTML = "";
+
+            const hasEntries =
+                calculatorData.entries.length > 0;
+
+            historyTableWrap.classList.toggle(
+                "hidden",
+                !hasEntries
+            );
+
+            historyEmptyState.classList.toggle(
+                "hidden",
+                hasEntries
+            );
+
+            historySummary.textContent =
+                hasEntries
+                    ? calculatorData.entries.length +
+                        (
+                            calculatorData.entries.length === 1
+                                ? " weekly period recorded."
+                                : " weekly periods recorded."
+                        )
+                    : "No reporting periods recorded.";
+
+            calculatorData.entries
+                .slice()
+                .reverse()
+                .forEach(
+                    function (entry) {
+                        const row =
+                            document.createElement("tr");
+
+                        const profitLossClass =
+                            getValueClass(
+                                entry.profitLoss
+                            );
+
+                        const returnClass =
+                            getValueClass(
+                                entry.weeklyReturn
+                            );
+
+                        row.innerHTML = `
+                            <td>
+                                ${formatDate(entry.weekEnding)}
+                            </td>
+
+                            <td>
+                                ${formatCurrency(entry.startingBalance)}
+                            </td>
+
+                            <td class="${profitLossClass}">
+                                ${entry.profitLoss > 0 ? "+" : ""}
+                                ${formatCurrency(entry.profitLoss)}
+                            </td>
+
+                            <td>
+                                ${formatCurrency(entry.endingBalance)}
+                            </td>
+
+                            <td class="${returnClass}">
+                                ${formatPercent(entry.weeklyReturn)}
+                            </td>
+
+                            <td>
+                                ${formatCurrency(entry.nav)}
+                            </td>
+
+                            <td>
+                                <div class="table-actions">
+                                    <button
+                                        type="button"
+                                        class="button button-secondary button-small"
+                                        data-action="edit"
+                                        data-id="${entry.id}"
+                                    >
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="button button-danger button-small"
+                                        data-action="delete"
+                                        data-id="${entry.id}"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        `;
+
+                        historyTableBody.appendChild(
+                            row
+                        );
+                    }
+                );
+        }
+
+        function renderAll() {
+            rebuildPerformanceHistory();
+            saveCalculatorData();
+
+            renderSetupForm();
+            renderMetrics();
+            renderHistory();
+
+            const initialized =
+                isPortfolioInitialized();
+
+            weekEndingInput.disabled =
+                !initialized;
+
+            weeklyProfitLossInput.disabled =
+                !initialized;
+
+            weeklyNoteInput.disabled =
+                !initialized;
+
+            weeklySubmitButton.disabled =
+                !initialized;
+
+            exportNavButton.disabled =
+                !initialized;
+
+            exportCsvButton.disabled =
+                !initialized;
+
+            exportBackupButton.disabled =
+                !initialized;
+        }
+
+        function openDashboard() {
+            loginScreen.classList.add("hidden");
+            adminDashboard.classList.remove("hidden");
+
+            renderAll();
+        }
+
+        function lockDashboard() {
+            sessionStorage.removeItem(
+                LOGIN_SESSION_KEY
+            );
+
+            adminDashboard.classList.add(
+                "hidden"
+            );
+
+            loginScreen.classList.remove(
+                "hidden"
+            );
+
+            adminPasscode.value = "";
+            loginError.textContent = "";
+        }
+
+        function resetWeeklyForm() {
+            editingEntryId = null;
+
+            weeklyForm.reset();
+
+            weeklyFormTitle.textContent =
+                "Add Weekly Result";
+
+            weeklySubmitButton.textContent =
+                "Add Weekly Result";
+
+            cancelEditButton.classList.add(
+                "hidden"
+            );
+        }
+
+        function editEntry(entryId) {
+            const entry =
+                calculatorData.entries.find(
+                    function (candidate) {
+                        return candidate.id === entryId;
+                    }
+                );
+
+            if (!entry) {
+                return;
+            }
+
+            editingEntryId = entry.id;
+
+            weekEndingInput.value =
+                entry.weekEnding;
+
+            weeklyProfitLossInput.value =
+                entry.profitLoss;
+
+            weeklyNoteInput.value =
+                entry.note || "";
+
+            weeklyFormTitle.textContent =
+                "Edit Weekly Result";
+
+            weeklySubmitButton.textContent =
+                "Save Changes";
+
+            cancelEditButton.classList.remove(
+                "hidden"
+            );
+
+            weeklyForm.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        function deleteEntry(entryId) {
+            const entry =
+                calculatorData.entries.find(
+                    function (candidate) {
+                        return candidate.id === entryId;
+                    }
+                );
+
+            if (!entry) {
+                return;
+            }
+
+            const confirmed =
+                window.confirm(
+                    "Delete the weekly result for " +
+                    formatDate(entry.weekEnding) +
+                    "? Later balances and NAV values will be recalculated."
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            calculatorData.entries =
+                calculatorData.entries.filter(
+                    function (candidate) {
+                        return candidate.id !== entryId;
+                    }
+                );
+
+            if (editingEntryId === entryId) {
+                resetWeeklyForm();
+            }
+
+            renderAll();
+        }
+
+        function downloadFile(
+            filename,
+            contents,
+            mimeType
+        ) {
+            const blob =
+                new Blob(
+                    [contents],
+                    {
+                        type: mimeType
+                    }
+                );
+
+            const downloadUrl =
+                URL.createObjectURL(blob);
+
+            const anchor =
+                document.createElement("a");
+
+            anchor.href = downloadUrl;
+            anchor.download = filename;
+
+            document.body.appendChild(anchor);
+
+            anchor.click();
+            anchor.remove();
+
+            URL.revokeObjectURL(
+                downloadUrl
+            );
+        }
+
+        function createPublicNavData() {
+            const currentBalance =
+                getCurrentBalance();
+
+            const currentNav =
+                getCurrentNav();
+
+            const sinceInception =
+                getSinceInceptionReturn();
+
+            const annualizedReturn =
+                getAnnualizedReturn();
+
+            const latestEntry =
+                calculatorData.entries.length > 0
+                    ? calculatorData.entries[
+                        calculatorData.entries.length - 1
+                    ]
+                    : null;
+
+            const cumulativeProfitLoss =
+                currentBalance -
+                calculatorData.initialCapital;
+
+            return {
+                fundName:
+                    calculatorData.fundName,
+
+                portfolioType:
+                    "Proprietary Model Portfolio",
+
+                reportingFrequency:
+                    "Weekly",
+
+                inceptionDate:
+                    calculatorData.inceptionDate,
+
+                initialCapital:
+                    Number(
+                        calculatorData.initialCapital.toFixed(2)
+                    ),
+
+                currentBalance:
+                    Number(
+                        currentBalance.toFixed(2)
+                    ),
+
+                cumulativeProfitLoss:
+                    Number(
+                        cumulativeProfitLoss.toFixed(2)
+                    ),
+
+                currentNav:
+                    Number(
+                        currentNav.toFixed(4)
+                    ),
+
+                initialNav:
+                    INITIAL_NAV,
+
+                sinceInceptionReturn:
+                    Number(
+                        sinceInception.toFixed(8)
+                    ),
+
+                annualizedReturn:
+                    Number(
+                        annualizedReturn.toFixed(8)
+                    ),
+
+                completedWeeks:
+                    calculatorData.entries.length,
+
+                latestWeekEnding:
+                    latestEntry
+                        ? latestEntry.weekEnding
+                        : null,
+
+                latestWeeklyReturn:
+                    latestEntry
+                        ? Number(
+                            latestEntry.weeklyReturn.toFixed(8)
+                        )
+                        : 0,
+
+                latestWeeklyProfitLoss:
+                    latestEntry
+                        ? Number(
+                            latestEntry.profitLoss.toFixed(2)
+                        )
+                        : 0,
+
+                updatedAt:
+                    new Date().toISOString(),
+
+                performanceHistory:
+                    calculatorData.entries.map(
+                        function (entry) {
+                            return {
+                                weekEnding:
+                                    entry.weekEnding,
+
+                                endingBalance:
+                                    Number(
+                                        entry.endingBalance.toFixed(2)
+                                    ),
+
+                                weeklyReturn:
+                                    Number(
+                                        entry.weeklyReturn.toFixed(8)
+                                    ),
+
+                                nav:
+                                    Number(
+                                        entry.nav.toFixed(4)
+                                    )
+                            };
+                        }
+                    ),
+
+                disclaimer:
+                    "Model portfolio results represent proprietary capital managed before the launch of an outside-investor fund. Results are unaudited and may not reflect fees, expenses, taxes, or the performance of any future investment vehicle."
+            };
+        }
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+
+                if (
+                    adminPasscode.value ===
+                    ADMIN_PASSCODE
+                ) {
+                    sessionStorage.setItem(
+                        LOGIN_SESSION_KEY,
+                        "true"
+                    );
+
+                    loginError.textContent = "";
+
+                    openDashboard();
+                } else {
+                    loginError.textContent =
+                        "Incorrect administrator passcode.";
+                }
+            }
+        );
+
+        logoutButton.addEventListener(
+            "click",
+            lockDashboard
+        );
+
+        setupForm.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+
+                if (isPortfolioInitialized()) {
+                    return;
+                }
+
+                const initialCapital =
+                    Number(
+                        initialCapitalInput.value
+                    );
+
+                if (
+                    !Number.isFinite(initialCapital) ||
+                    initialCapital <= 0
+                ) {
+                    window.alert(
+                        "Enter a valid initial fund amount."
+                    );
+
+                    return;
+                }
+
+                if (!inceptionDateInput.value) {
+                    window.alert(
+                        "Choose the inception date."
+                    );
+
+                    return;
+                }
+
+                calculatorData.fundName =
+                    fundNameInput.value.trim() ||
+                    "Teske Capital Model Portfolio";
+
+                calculatorData.inceptionDate =
+                    inceptionDateInput.value;
+
+                calculatorData.initialCapital =
+                    initialCapital;
+
+                calculatorData.initialNav =
+                    INITIAL_NAV;
+
+                calculatorData.initialUnits =
+                    initialCapital /
+                    INITIAL_NAV;
+
+                calculatorData.entries = [];
+
+                renderAll();
+            }
+        );
+
+        fundNameInput.addEventListener(
+            "change",
+            function () {
+                if (!isPortfolioInitialized()) {
+                    return;
+                }
+
+                calculatorData.fundName =
+                    fundNameInput.value.trim() ||
+                    "Teske Capital Model Portfolio";
+
+                renderAll();
+            }
+        );
+
+        weeklyForm.addEventListener(
+            "submit",
+            function (event) {
+                event.preventDefault();
+
+                if (!isPortfolioInitialized()) {
+                    window.alert(
+                        "Initialize the portfolio first."
+                    );
+
+                    return;
+                }
+
+                const weekEnding =
+                    weekEndingInput.value;
+
+                const profitLoss =
+                    Number(
+                        weeklyProfitLossInput.value
+                    );
+
+                if (!weekEnding) {
+                    window.alert(
+                        "Choose the week-ending date."
+                    );
+
+                    return;
+                }
+
+                if (!Number.isFinite(profitLoss)) {
+                    window.alert(
+                        "Enter a valid gain or loss."
+                    );
+
+                    return;
+                }
+
+                const duplicateEntry =
+                    calculatorData.entries.find(
+                        function (entry) {
+                            return (
+                                entry.weekEnding ===
+                                    weekEnding &&
+                                entry.id !==
+                                    editingEntryId
+                            );
+                        }
+                    );
+
+                if (duplicateEntry) {
+                    window.alert(
+                        "A weekly entry already exists for that date."
+                    );
+
+                    return;
+                }
+
+                if (editingEntryId) {
+                    const entry =
+                        calculatorData.entries.find(
+                            function (candidate) {
+                                return (
+                                    candidate.id ===
+                                    editingEntryId
+                                );
+                            }
+                        );
+
+                    if (!entry) {
+                        return;
+                    }
+
+                    entry.weekEnding =
+                        weekEnding;
+
+                    entry.profitLoss =
+                        profitLoss;
+
+                    entry.note =
+                        weeklyNoteInput.value.trim();
+                } else {
+                    calculatorData.entries.push({
+                        id:
+                            window.crypto &&
+                            typeof window.crypto.randomUUID ===
+                                "function"
+                                ? window.crypto.randomUUID()
+                                : String(Date.now()),
+
+                        weekEnding,
+                        profitLoss,
+
+                        note:
+                            weeklyNoteInput.value.trim(),
+
+                        createdAt:
+                            new Date().toISOString()
+                    });
+                }
+
+                resetWeeklyForm();
+                renderAll();
+            }
+        );
+
+        cancelEditButton.addEventListener(
+            "click",
+            resetWeeklyForm
+        );
+
+        useTodayButton.addEventListener(
+            "click",
+            function () {
+                const today =
+                    new Date();
+
+                const localDate =
+                    new Date(
+                        today.getTime() -
+                        today.getTimezoneOffset() *
+                            60000
+                    )
+                        .toISOString()
+                        .split("T")[0];
+
+                weekEndingInput.value =
+                    localDate;
+            }
+        );
+
+        historyTableBody.addEventListener(
+            "click",
+            function (event) {
+                const actionButton =
+                    event.target.closest(
+                        "button[data-action]"
+                    );
+
+                if (!actionButton) {
+                    return;
+                }
+
+                const action =
+                    actionButton.dataset.action;
+
+                const entryId =
+                    actionButton.dataset.id;
+
+                if (action === "edit") {
+                    editEntry(entryId);
+                }
+
+                if (action === "delete") {
+                    deleteEntry(entryId);
+                }
+            }
+        );
+
+        exportNavButton.addEventListener(
+            "click",
+            function () {
+                if (!isPortfolioInitialized()) {
+                    return;
+                }
+
+                const publicNavData =
+                    createPublicNavData();
+
+                downloadFile(
+                    "nav-data.json",
+                    JSON.stringify(
+                        publicNavData,
+                        null,
+                        2
+                    ),
+                    "application/json"
+                );
+            }
+        );
+
+        exportCsvButton.addEventListener(
+            "click",
+            function () {
+                if (!isPortfolioInitialized()) {
+                    return;
+                }
+
+                const rows = [
+                    [
+                        "Week Ending",
+                        "Starting Balance",
+                        "Gain or Loss",
+                        "Ending Balance",
+                        "Weekly Return",
+                        "NAV",
+                        "Note"
+                    ]
+                ];
+
+                calculatorData.entries.forEach(
+                    function (entry) {
+                        rows.push([
+                            entry.weekEnding,
+                            entry.startingBalance.toFixed(2),
+                            entry.profitLoss.toFixed(2),
+                            entry.endingBalance.toFixed(2),
+                            (
+                                entry.weeklyReturn * 100
+                            ).toFixed(4) + "%",
+                            entry.nav.toFixed(4),
+                            entry.note || ""
+                        ]);
+                    }
+                );
+
+                const csv =
+                    rows
+                        .map(
+                            function (row) {
+                                return row
+                                    .map(
+                                        function (cell) {
+                                            const value =
+                                                String(cell)
+                                                    .replaceAll(
+                                                        '"',
+                                                        '""'
+                                                    );
+
+                                            return (
+                                                '"' +
+                                                value +
+                                                '"'
+                                            );
+                                        }
+                                    )
+                                    .join(",");
+                            }
+                        )
+                        .join("\n");
+
+                downloadFile(
+                    "teske-capital-weekly-performance.csv",
+                    csv,
+                    "text/csv;charset=utf-8"
+                );
+            }
+        );
+
+        exportBackupButton.addEventListener(
+            "click",
+            function () {
+                const backupData = {
+                    exportedAt:
+                        new Date().toISOString(),
+
+                    calculatorData
+                };
+
+                downloadFile(
+                    "teske-capital-calculator-backup.json",
+                    JSON.stringify(
+                        backupData,
+                        null,
+                        2
+                    ),
+                    "application/json"
+                );
+            }
+        );
+
+        importBackupButton.addEventListener(
+            "click",
+            function () {
+                backupFileInput.click();
+            }
+        );
+
+        backupFileInput.addEventListener(
+            "change",
+            function () {
+                const selectedFile =
+                    backupFileInput.files[0];
+
+                if (!selectedFile) {
+                    return;
+                }
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function () {
+                        try {
+                            const importedData =
+                                JSON.parse(
+                                    reader.result
+                                );
+
+                            const data =
+                                importedData.calculatorData ||
+                                importedData;
+
+                            if (
+                                !data ||
+                                !Array.isArray(
+                                    data.entries
+                                )
+                            ) {
+                                throw new Error(
+                                    "Invalid backup format."
+                                );
+                            }
+
+                            const confirmed =
+                                window.confirm(
+                                    "Import this backup and replace the current calculator data?"
+                                );
+
+                            if (!confirmed) {
+                                return;
+                            }
+
+                            calculatorData = {
+                                ...getDefaultData(),
+                                ...data,
+                                entries:
+                                    data.entries
+                            };
+
+                            resetWeeklyForm();
+                            renderAll();
+                        } catch (error) {
+                            console.error(error);
+
+                            window.alert(
+                                "The selected file is not a valid Teske Capital calculator backup."
+                            );
+                        } finally {
+                            backupFileInput.value = "";
+                        }
+                    };
+
+                reader.readAsText(
+                    selectedFile
+                );
+            }
+        );
+
+        resetDataButton.addEventListener(
+            "click",
+            function () {
+                const confirmed =
+                    window.confirm(
+                        "Reset all Teske Capital calculator data? This cannot be undone unless you exported a backup."
+                    );
+
+                if (!confirmed) {
+                    return;
+                }
+
+                calculatorData =
+                    getDefaultData();
+
+                editingEntryId = null;
+
+                localStorage.removeItem(
+                    STORAGE_KEY
+                );
+
+                resetWeeklyForm();
+                renderAll();
+            }
+        );
+
+        if (
+            sessionStorage.getItem(
+                LOGIN_SESSION_KEY
+            ) === "true"
+        ) {
+            openDashboard();
+        } else {
+            lockDashboard();
+        }
+
+        const today =
+            new Date();
+
+        const localToday =
+            new Date(
+                today.getTime() -
+                today.getTimezoneOffset() *
+                    60000
+            )
+                .toISOString()
+                .split("T")[0];
+
+        if (!inceptionDateInput.value) {
+            inceptionDateInput.value =
+                localToday;
+        }
+
+        if (!weekEndingInput.value) {
+            weekEndingInput.value =
+                localToday;
+        }
+    </script>
+</body>
+</html>
