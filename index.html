@@ -999,6 +999,116 @@
 
     font-size: 1rem;
 }
+        /* Track Record */
+
+.track-record{
+
+    margin-top:60px;
+
+    padding-top:35px;
+
+    border-top:1px solid var(--border);
+
+}
+
+.track-record-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:20px;
+
+    margin-bottom:28px;
+
+}
+
+.track-record-header h3{
+
+    font-family:"Manrope",sans-serif;
+
+    font-size:1.85rem;
+
+    font-weight:800;
+
+    letter-spacing:-0.04em;
+
+}
+
+.track-record-header span{
+
+    color:var(--gray);
+
+    font-size:.82rem;
+
+    font-style:italic;
+
+    letter-spacing:.02em;
+
+    font-weight:500;
+
+}
+
+.track-record-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:0;
+
+}
+
+.track-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:24px 10px;
+
+    border-bottom:1px solid var(--border);
+
+    transition:.25s;
+
+}
+
+.track-card:hover{
+
+    background:rgba(255,255,255,.02);
+
+}
+
+.track-year{
+
+    color:var(--silver);
+
+    font-size:1rem;
+
+    font-weight:700;
+
+}
+
+.track-return{
+
+    font-family:"Manrope",sans-serif;
+
+    font-size:1.6rem;
+
+    font-weight:800;
+
+}
+
+.track-detail{
+
+    display:none;
+
+}
+}
         /* Approach */
 
         .approach {
@@ -1741,6 +1851,9 @@
 .performance-header {
     align-items: flex-start;
     flex-direction: column;
+}
+            .track-record-grid {
+    grid-template-columns: 1fr;
 }
 
             .process-grid {
@@ -2537,7 +2650,73 @@
                 </span>
             </article>
         </div>
+<div class="track-record reveal">
 
+    <div class="track-record-header">
+
+<h3>
+    Performance History
+</h3>
+
+<span>
+    Since Inception
+</span>
+
+    </div>
+
+    <div class="track-record-grid">
+
+        <article class="track-card">
+
+            <span class="track-year">
+                2024
+            </span>
+
+            <strong class="track-return performance-positive">
+                +9.80%
+            </strong>
+
+            <span class="track-detail">
+                Proprietary Capital
+            </span>
+
+        </article>
+
+        <article class="track-card">
+
+            <span class="track-year">
+                2025
+            </span>
+
+            <strong class="track-return performance-positive">
+                +12.20%
+            </strong>
+
+            <span class="track-detail">
+                Proprietary Capital
+            </span>
+
+        </article>
+
+        <article class="track-card">
+
+            <span class="track-year">
+                2026
+            </span>
+
+            <strong class="track-return">
+                In Progress
+            </strong>
+
+            <span class="track-detail">
+                Current Calendar Year
+            </span>
+
+        </article>
+
+    </div>
+
+</div>
         <div
             class="performance-empty hidden"
             id="performanceEmptyState"
