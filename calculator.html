@@ -372,14 +372,14 @@
         /* Cards */
 
         .metrics-grid {
-            margin-top: 50px;
+    margin-top: 50px;
 
-            display: grid;
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-            gap: 14px;
-        }
+    gap: 14px;
+}
 
         .metric-card {
             min-width: 0;
@@ -1021,78 +1021,115 @@
                     </span>
                 </div>
 
-                <section class="metrics-grid">
-                    <article class="metric-card">
-                        <span class="metric-label">
-                            Current Balance
-                        </span>
+               <section class="metrics-grid">
+    <article class="metric-card">
+        <span class="metric-label">
+            Current NAV
+        </span>
 
-                        <strong
-                            class="metric-value"
-                            id="currentBalanceMetric"
-                        >
-                            $0.00
-                        </strong>
+        <strong
+            class="metric-value"
+            id="currentNavMetric"
+        >
+            $100.00
+        </strong>
 
-                        <span
-                            class="metric-detail"
-                            id="balanceDetail"
-                        >
-                            Fund not initialized
-                        </span>
-                    </article>
+        <span class="metric-detail">
+            NAV per model unit
+        </span>
+    </article>
 
-                    <article class="metric-card">
-                        <span class="metric-label">
-                            Current NAV
-                        </span>
+    <article class="metric-card">
+        <span class="metric-label">
+            Portfolio Value
+        </span>
 
-                        <strong
-                            class="metric-value"
-                            id="currentNavMetric"
-                        >
-                            $100.00
-                        </strong>
+        <strong
+            class="metric-value"
+            id="currentBalanceMetric"
+        >
+            $0.00
+        </strong>
 
-                        <span class="metric-detail">
-                            NAV per model unit
-                        </span>
-                    </article>
+        <span
+            class="metric-detail"
+            id="balanceDetail"
+        >
+            Fund not initialized
+        </span>
+    </article>
 
-                    <article class="metric-card">
-                        <span class="metric-label">
-                            Since Inception
-                        </span>
+    <article class="metric-card">
+        <span class="metric-label">
+            Since-Inception Return
+        </span>
 
-                        <strong
-                            class="metric-value"
-                            id="sinceInceptionMetric"
-                        >
-                            0.00%
-                        </strong>
+        <strong
+            class="metric-value"
+            id="sinceInceptionMetric"
+        >
+            0.00%
+        </strong>
 
-                        <span class="metric-detail">
-                            Total portfolio return
-                        </span>
-                    </article>
+        <span class="metric-detail">
+            Total return from initial value
+        </span>
+    </article>
 
-                    <article class="metric-card">
-                        <span class="metric-label">
-                            Annualized Return
-                        </span>
+    <article class="metric-card">
+        <span class="metric-label">
+            Net Gain / Loss
+        </span>
 
-                        <strong
-                            class="metric-value"
-                            id="annualizedMetric"
-                        >
-                            0.00%
-                        </strong>
+        <strong
+            class="metric-value"
+            id="netGainLossMetric"
+        >
+            $0.00
+        </strong>
 
-                        <span class="metric-detail">
-                            Compounded from weekly results
-                        </span>
-                    </article>
-                </section>
+        <span class="metric-detail">
+            Dollar change since inception
+        </span>
+    </article>
+
+    <article class="metric-card">
+        <span class="metric-label">
+            Latest Weekly Return
+        </span>
+
+        <strong
+            class="metric-value"
+            id="latestWeeklyReturnMetric"
+        >
+            0.00%
+        </strong>
+
+        <span
+            class="metric-detail"
+            id="latestWeekDetail"
+        >
+            No completed weeks
+        </span>
+    </article>
+
+    <article class="metric-card">
+        <span class="metric-label">
+            Annualized Return
+        </span>
+
+        <strong
+            class="metric-value"
+            id="annualizedMetric"
+        >
+            0.00%
+        </strong>
+
+        <span class="metric-detail">
+            Compounded from recorded results
+        </span>
+    </article>
+</section>
 
                 <section class="workspace">
                     <div class="panel">
@@ -1521,10 +1558,23 @@
             document.getElementById("sinceInceptionMetric");
 
         const annualizedMetric =
-            document.getElementById("annualizedMetric");
+    document.getElementById("annualizedMetric");
 
-        const balanceDetail =
-            document.getElementById("balanceDetail");
+const netGainLossMetric =
+    document.getElementById("netGainLossMetric");
+
+const latestWeeklyReturnMetric =
+    document.getElementById(
+        "latestWeeklyReturnMetric"
+    );
+
+const latestWeekDetail =
+    document.getElementById(
+        "latestWeekDetail"
+    );
+
+const balanceDetail =
+    document.getElementById("balanceDetail");
 
         const historySummary =
             document.getElementById("historySummary");
@@ -1903,59 +1953,109 @@
             }
         }
 
-        function renderMetrics() {
-            const currentBalance =
-                getCurrentBalance();
+       function renderMetrics() {
+    const currentBalance =
+        getCurrentBalance();
 
-            const currentNav =
-                getCurrentNav();
+    const currentNav =
+        getCurrentNav();
 
-            const sinceInception =
-                getSinceInceptionReturn();
+    const sinceInception =
+        getSinceInceptionReturn();
 
-            const annualizedReturn =
-                getAnnualizedReturn();
+    const annualizedReturn =
+        getAnnualizedReturn();
 
-            currentBalanceMetric.textContent =
-                formatCurrency(currentBalance);
+    const netGainLoss =
+        isPortfolioInitialized()
+            ? currentBalance -
+                calculatorData.initialCapital
+            : 0;
 
-            currentNavMetric.textContent =
-                formatCurrency(currentNav);
+    const latestEntry =
+        calculatorData.entries.length > 0
+            ? calculatorData.entries[
+                calculatorData.entries.length - 1
+            ]
+            : null;
 
-            sinceInceptionMetric.textContent =
-                formatPercent(sinceInception);
+    const latestWeeklyReturn =
+        latestEntry
+            ? latestEntry.weeklyReturn
+            : 0;
 
-            annualizedMetric.textContent =
-                formatPercent(annualizedReturn);
+    currentBalanceMetric.textContent =
+        formatCurrency(currentBalance);
 
-            setMetricClass(
-                sinceInceptionMetric,
-                sinceInception
+    currentNavMetric.textContent =
+        formatCurrency(currentNav);
+
+    sinceInceptionMetric.textContent =
+        formatPercent(sinceInception);
+
+    netGainLossMetric.textContent =
+        (
+            netGainLoss > 0
+                ? "+"
+                : ""
+        ) +
+        formatCurrency(netGainLoss);
+
+    latestWeeklyReturnMetric.textContent =
+        formatPercent(latestWeeklyReturn);
+
+    annualizedMetric.textContent =
+        formatPercent(annualizedReturn);
+
+    setMetricClass(
+        currentNavMetric,
+        currentNav - INITIAL_NAV
+    );
+
+    setMetricClass(
+        sinceInceptionMetric,
+        sinceInception
+    );
+
+    setMetricClass(
+        netGainLossMetric,
+        netGainLoss
+    );
+
+    setMetricClass(
+        latestWeeklyReturnMetric,
+        latestWeeklyReturn
+    );
+
+    setMetricClass(
+        annualizedMetric,
+        annualizedReturn
+    );
+
+    if (isPortfolioInitialized()) {
+        balanceDetail.textContent =
+            calculatorData.entries.length +
+            (
+                calculatorData.entries.length === 1
+                    ? " completed week"
+                    : " completed weeks"
             );
+    } else {
+        balanceDetail.textContent =
+            "Fund not initialized";
+    }
 
-            setMetricClass(
-                annualizedMetric,
-                annualizedReturn
+    if (latestEntry) {
+        latestWeekDetail.textContent =
+            "Week ending " +
+            formatDate(
+                latestEntry.weekEnding
             );
-
-            setMetricClass(
-                currentNavMetric,
-                currentNav - INITIAL_NAV
-            );
-
-            if (isPortfolioInitialized()) {
-                balanceDetail.textContent =
-                    calculatorData.entries.length +
-                    (
-                        calculatorData.entries.length === 1
-                            ? " completed week"
-                            : " completed weeks"
-                    );
-            } else {
-                balanceDetail.textContent =
-                    "Fund not initialized";
-            }
-        }
+    } else {
+        latestWeekDetail.textContent =
+            "No completed weeks";
+    }
+}
 
         function renderHistory() {
             historyTableBody.innerHTML = "";
