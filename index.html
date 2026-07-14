@@ -3797,36 +3797,31 @@ function calculateHomepagePerformance(
     };
 }
 
-function loadHomepagePerformance() {
+async function loadHomepagePerformance() {
     try {
-        const storedData =
-            localStorage.getItem(
-                NAV_STORAGE_KEY
+        /*
+         * The timestamp prevents browsers and GitHub Pages
+         * from displaying an older cached copy after an update.
+         */
+        const response = await fetch(
+            "nav-data.json?v=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "Unable to load nav-data.json. HTTP status: " +
+                response.status
             );
-
-        if (!storedData) {
-            performanceMetrics.classList.add(
-                "hidden"
-            );
-
-            performanceEmptyState.classList.remove(
-                "hidden"
-            );
-
-            performanceUpdatedStatus.textContent =
-                "Awaiting portfolio data";
-
-            return;
         }
 
-        const calculatorData =
-            JSON.parse(storedData);
+        const navData = await response.json();
 
         if (
-            !calculatorData ||
-            Number(
-                calculatorData.initialCapital
-            ) <= 0
+            !navData ||
+            Number(navData.initialCapital) <= 0
         ) {
             performanceMetrics.classList.add(
                 "hidden"
@@ -3842,10 +3837,26 @@ function loadHomepagePerformance() {
             return;
         }
 
-        const performance =
-            calculateHomepagePerformance(
-                calculatorData
-            );
+        const currentNav =
+            Number(navData.currentNav) || 100;
+
+        const portfolioValue =
+            Number(navData.currentBalance) || 0;
+
+        const sinceInceptionReturn =
+            Number(navData.sinceInceptionReturn) || 0;
+
+        const netGainLoss =
+            Number(navData.cumulativeProfitLoss) || 0;
+
+        const latestWeeklyReturn =
+            Number(navData.latestWeeklyReturn) || 0;
+
+        const annualizedReturn =
+            Number(navData.annualizedReturn) || 0;
+
+        const completedWeeks =
+            Number(navData.completedWeeks) || 0;
 
         performanceMetrics.classList.remove(
             "hidden"
@@ -3857,92 +3868,84 @@ function loadHomepagePerformance() {
 
         homepageCurrentNav.textContent =
             formatHomepageCurrency(
-                performance.currentNav
+                currentNav
             );
 
         homepageSinceInception.textContent =
             formatHomepagePercent(
-                performance.sinceInceptionReturn
+                sinceInceptionReturn
             );
 
         homepagePortfolioValue.textContent =
             formatHomepageCurrency(
-                performance.currentBalance
+                portfolioValue
             );
 
         homepageNetGainLoss.textContent =
             (
-                performance.netGainLoss > 0
+                netGainLoss > 0
                     ? "+"
                     : ""
             ) +
             formatHomepageCurrency(
-                performance.netGainLoss
+                netGainLoss
             );
 
         homepageLatestWeekly.textContent =
             formatHomepagePercent(
-                performance.latestEntry
-                    ? performance.latestEntry
-                        .weeklyReturn
-                    : 0
+                latestWeeklyReturn
             );
 
         homepageLatestWeekDetail.textContent =
-            performance.latestEntry
+            navData.latestWeekEnding
                 ? "Week ending " +
                     formatHomepageDate(
-                        performance.latestEntry
-                            .weekEnding
+                        navData.latestWeekEnding
                     )
                 : "No completed weeks";
 
         homepageAnnualizedReturn.textContent =
             formatHomepagePercent(
-                performance.annualizedReturn
+                annualizedReturn
             );
 
         setHomepagePerformanceClass(
             homepageCurrentNav,
-            performance.currentNav -
-                HOMEPAGE_INITIAL_NAV
+            currentNav - 100
         );
 
         setHomepagePerformanceClass(
             homepageSinceInception,
-            performance.sinceInceptionReturn
+            sinceInceptionReturn
         );
 
         setHomepagePerformanceClass(
             homepageNetGainLoss,
-            performance.netGainLoss
+            netGainLoss
         );
 
         setHomepagePerformanceClass(
             homepageLatestWeekly,
-            performance.latestEntry
-                ? performance.latestEntry
-                    .weeklyReturn
-                : 0
+            latestWeeklyReturn
         );
 
         setHomepagePerformanceClass(
             homepageAnnualizedReturn,
-            performance.annualizedReturn
+            annualizedReturn
         );
 
         performanceUpdatedStatus.textContent =
-            performance.completedWeeks > 0
-                ? performance.completedWeeks +
+            completedWeeks > 0
+                ? completedWeeks +
                     (
-                        performance.completedWeeks === 1
+                        completedWeeks === 1
                             ? " completed week"
                             : " completed weeks"
                     )
                 : "Portfolio initialized";
     } catch (error) {
         console.error(
-            "Could not load Teske Capital performance:",
+            "Could not load nav-data.json:",
             error
         );
 
@@ -3960,23 +3963,6 @@ function loadHomepagePerformance() {
 }
 
 loadHomepagePerformance();
-
-window.addEventListener(
-    "storage",
-    function (event) {
-        if (
-            event.key ===
-            NAV_STORAGE_KEY
-        ) {
-            loadHomepagePerformance();
-        }
-    }
-);
-
-window.setInterval(
-    loadHomepagePerformance,
-    3000
-);
         const marketCanvas =
     document.getElementById("marketBackground");
 
