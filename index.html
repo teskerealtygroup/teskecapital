@@ -421,6 +421,40 @@
         }
 
         /* Hero */
+        .market-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    opacity: 0.5;
+}
+
+.hero-market-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 6, 0.2) 0%,
+            rgba(5, 5, 6, 0.05) 45%,
+            rgba(5, 5, 6, 0.28) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(5, 5, 6, 0.02) 0%,
+            rgba(5, 5, 6, 0.12) 60%,
+            rgba(5, 5, 6, 0.55) 100%
+        );
+}
 
         .hero {
             position: relative;
@@ -456,33 +490,23 @@
         }
 
         .hero::before {
-            content: "";
+    content: "";
 
-            position: absolute;
-            inset: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 
-            opacity: 0.32;
+    pointer-events: none;
 
-            background-image:
-                linear-gradient(
-                    rgba(255, 255, 255, 0.02) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.02) 1px,
-                    transparent 1px
-                );
+    background:
+        radial-gradient(
+            circle at 78% 30%,
+            rgba(223, 38, 56, 0.08),
+            transparent 32%
+        );
 
-            background-size: 76px 76px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black,
-                    transparent
-                );
-        }
+    opacity: 0.8;
+}
 
         .hero-layout {
             position: relative;
@@ -1723,6 +1747,16 @@
 
     <main>
         <section class="hero" id="home">
+            <canvas
+    id="marketBackground"
+    class="market-background"
+    aria-hidden="true"
+></canvas>
+
+<div
+    class="hero-market-overlay"
+    aria-hidden="true"
+></div>
             <div class="container hero-layout">
                 <div class="hero-copy reveal">
                     <p class="eyebrow">
@@ -2861,6 +2895,473 @@
 
         currentYear.textContent =
             new Date().getFullYear();
+        const marketCanvas =
+    document.getElementById("marketBackground");
+
+const marketContext =
+    marketCanvas.getContext("2d");
+
+let marketWidth = 0;
+let marketHeight = 0;
+let marketPixelRatio = 1;
+let marketAnimationFrame = null;
+let marketTime = 0;
+
+const prefersReducedMotion =
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+const marketParticles = [];
+const marketCandles = [];
+
+function createMarketParticle() {
+    return {
+        x: Math.random() * marketWidth,
+        y: Math.random() * marketHeight,
+        radius: Math.random() * 1.4 + 0.3,
+        speedX: Math.random() * 0.12 - 0.06,
+        speedY: Math.random() * 0.09 - 0.035,
+        opacity: Math.random() * 0.22 + 0.05
+    };
+}
+
+function createMarketCandle(index) {
+    const baseHeight =
+        marketHeight * 0.52;
+
+    const open =
+        baseHeight +
+        Math.sin(index * 0.75) * 36 +
+        Math.random() * 34 -
+        17;
+
+    const close =
+        open +
+        Math.random() * 50 -
+        25;
+
+    const high =
+        Math.min(open, close) -
+        Math.random() * 28 -
+        5;
+
+    const low =
+        Math.max(open, close) +
+        Math.random() * 28 +
+        5;
+
+    return {
+        open,
+        close,
+        high,
+        low
+    };
+}
+
+function initializeMarketScene() {
+    marketParticles.length = 0;
+    marketCandles.length = 0;
+
+    const particleCount =
+        marketWidth < 700 ? 24 : 46;
+
+    for (
+        let index = 0;
+        index < particleCount;
+        index += 1
+    ) {
+        marketParticles.push(
+            createMarketParticle()
+        );
+    }
+
+    const candleCount =
+        Math.ceil(marketWidth / 46) + 8;
+
+    for (
+        let index = 0;
+        index < candleCount;
+        index += 1
+    ) {
+        marketCandles.push(
+            createMarketCandle(index)
+        );
+    }
+}
+
+function resizeMarketCanvas() {
+    const hero =
+        marketCanvas.parentElement;
+
+    const heroRectangle =
+        hero.getBoundingClientRect();
+
+    marketPixelRatio =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+    marketWidth =
+        Math.max(
+            1,
+            Math.floor(heroRectangle.width)
+        );
+
+    marketHeight =
+        Math.max(
+            1,
+            Math.floor(heroRectangle.height)
+        );
+
+    marketCanvas.width =
+        Math.floor(
+            marketWidth * marketPixelRatio
+        );
+
+    marketCanvas.height =
+        Math.floor(
+            marketHeight * marketPixelRatio
+        );
+
+    marketCanvas.style.width =
+        `${marketWidth}px`;
+
+    marketCanvas.style.height =
+        `${marketHeight}px`;
+
+    marketContext.setTransform(
+        marketPixelRatio,
+        0,
+        0,
+        marketPixelRatio,
+        0,
+        0
+    );
+
+    initializeMarketScene();
+}
+
+function drawMarketGrid() {
+    const gridSize = 72;
+
+    const horizontalOffset =
+        (marketTime * 3) % gridSize;
+
+    const verticalOffset =
+        (marketTime * 1.3) % gridSize;
+
+    marketContext.save();
+
+    marketContext.strokeStyle =
+        "rgba(255, 255, 255, 0.026)";
+
+    marketContext.lineWidth = 1;
+
+    marketContext.beginPath();
+
+    for (
+        let x = -gridSize + horizontalOffset;
+        x < marketWidth + gridSize;
+        x += gridSize
+    ) {
+        marketContext.moveTo(x, 0);
+        marketContext.lineTo(
+            x,
+            marketHeight
+        );
+    }
+
+    for (
+        let y = -gridSize + verticalOffset;
+        y < marketHeight + gridSize;
+        y += gridSize
+    ) {
+        marketContext.moveTo(0, y);
+        marketContext.lineTo(
+            marketWidth,
+            y
+        );
+    }
+
+    marketContext.stroke();
+    marketContext.restore();
+}
+
+function drawMarketCandles() {
+    const candleSpacing = 46;
+    const candleWidth = 9;
+
+    const movement =
+        (marketTime * 8) % candleSpacing;
+
+    marketContext.save();
+
+    marketCandles.forEach(
+        function (candle, index) {
+            const x =
+                index * candleSpacing -
+                movement -
+                candleSpacing;
+
+            if (
+                x < -30 ||
+                x > marketWidth + 30
+            ) {
+                return;
+            }
+
+            const waveOffset =
+                Math.sin(
+                    marketTime * 0.8 +
+                    index * 0.5
+                ) * 8;
+
+            const open =
+                candle.open + waveOffset;
+
+            const close =
+                candle.close + waveOffset;
+
+            const high =
+                candle.high + waveOffset;
+
+            const low =
+                candle.low + waveOffset;
+
+            const isPositive =
+                close < open;
+
+            const candleColor =
+                isPositive
+                    ? "rgba(223, 38, 56, 0.22)"
+                    : "rgba(145, 145, 154, 0.15)";
+
+            marketContext.strokeStyle =
+                candleColor;
+
+            marketContext.fillStyle =
+                candleColor;
+
+            marketContext.lineWidth = 1;
+
+            marketContext.beginPath();
+
+            marketContext.moveTo(
+                x + candleWidth / 2,
+                high
+            );
+
+            marketContext.lineTo(
+                x + candleWidth / 2,
+                low
+            );
+
+            marketContext.stroke();
+
+            const bodyTop =
+                Math.min(open, close);
+
+            const bodyHeight =
+                Math.max(
+                    3,
+                    Math.abs(close - open)
+                );
+
+            marketContext.fillRect(
+                x,
+                bodyTop,
+                candleWidth,
+                bodyHeight
+            );
+        }
+    );
+
+    marketContext.restore();
+}
+
+function drawMarketLine() {
+    const pointCount = 90;
+    const centerY =
+        marketHeight * 0.47;
+
+    marketContext.save();
+
+    marketContext.beginPath();
+
+    for (
+        let index = 0;
+        index <= pointCount;
+        index += 1
+    ) {
+        const progress =
+            index / pointCount;
+
+        const x =
+            progress * marketWidth;
+
+        const waveOne =
+            Math.sin(
+                progress * 11 +
+                marketTime * 0.5
+            ) * 24;
+
+        const waveTwo =
+            Math.sin(
+                progress * 25 -
+                marketTime * 0.24
+            ) * 9;
+
+        const trend =
+            progress * -42;
+
+        const y =
+            centerY +
+            waveOne +
+            waveTwo +
+            trend;
+
+        if (index === 0) {
+            marketContext.moveTo(x, y);
+        } else {
+            marketContext.lineTo(x, y);
+        }
+    }
+
+    marketContext.strokeStyle =
+        "rgba(231, 37, 57, 0.15)";
+
+    marketContext.lineWidth = 8;
+
+    marketContext.shadowColor =
+        "rgba(223, 38, 56, 0.34)";
+
+    marketContext.shadowBlur = 18;
+
+    marketContext.stroke();
+
+    marketContext.shadowBlur = 0;
+
+    marketContext.strokeStyle =
+        "rgba(242, 72, 89, 0.4)";
+
+    marketContext.lineWidth = 1.5;
+
+    marketContext.stroke();
+
+    marketContext.restore();
+}
+
+function drawMarketParticles() {
+    marketContext.save();
+
+    marketParticles.forEach(
+        function (particle) {
+            particle.x +=
+                particle.speedX;
+
+            particle.y +=
+                particle.speedY;
+
+            if (particle.x < -10) {
+                particle.x =
+                    marketWidth + 10;
+            }
+
+            if (
+                particle.x >
+                marketWidth + 10
+            ) {
+                particle.x = -10;
+            }
+
+            if (particle.y < -10) {
+                particle.y =
+                    marketHeight + 10;
+            }
+
+            if (
+                particle.y >
+                marketHeight + 10
+            ) {
+                particle.y = -10;
+            }
+
+            marketContext.beginPath();
+
+            marketContext.arc(
+                particle.x,
+                particle.y,
+                particle.radius,
+                0,
+                Math.PI * 2
+            );
+
+            marketContext.fillStyle =
+                `rgba(
+                    225,
+                    225,
+                    230,
+                    ${particle.opacity}
+                )`;
+
+            marketContext.fill();
+        }
+    );
+
+    marketContext.restore();
+}
+
+function drawMarketScene() {
+    marketContext.clearRect(
+        0,
+        0,
+        marketWidth,
+        marketHeight
+    );
+
+    drawMarketGrid();
+    drawMarketCandles();
+    drawMarketLine();
+    drawMarketParticles();
+}
+
+function animateMarketScene() {
+    marketTime += 0.008;
+
+    drawMarketScene();
+
+    marketAnimationFrame =
+        window.requestAnimationFrame(
+            animateMarketScene
+        );
+}
+
+resizeMarketCanvas();
+
+if (prefersReducedMotion) {
+    drawMarketScene();
+} else {
+    animateMarketScene();
+}
+
+let marketResizeTimer;
+
+window.addEventListener(
+    "resize",
+    function () {
+        window.clearTimeout(
+            marketResizeTimer
+        );
+
+        marketResizeTimer =
+            window.setTimeout(
+                resizeMarketCanvas,
+                120
+            );
+    }
+);
 
         menuToggle.addEventListener(
             "click",
