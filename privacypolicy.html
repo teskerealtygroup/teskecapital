@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Teske Capital Privacy Policy explaining how website visitor and inquiry information may be collected, used, stored, protected, and disclosed."
+    >
+
+    <meta name="theme-color" content="#080808">
+
+    <title>
+        Privacy Policy | Teske Capital
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --red: #df2638;
+            --red-light: #f24859;
+            --red-dark: #961322;
+
+            --black: #050506;
+            --black-soft: #09090b;
+            --panel: #101013;
+            --panel-light: #17171b;
+
+            --white: #f5f5f7;
+            --silver: #c8c8ce;
+            --gray: #92929a;
+            --gray-dark: #6b6b73;
+
+            --border: rgba(255, 255, 255, 0.1);
+            --border-strong: rgba(255, 255, 255, 0.17);
+
+            --shadow:
+                0 28px 80px rgba(0, 0, 0, 0.45);
+
+            --container: 1180px;
+            --header-height: 94px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            color: var(--white);
+            background: var(--black);
+
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--container)
+            );
+
+            margin-inline: auto;
+        }
+
+        .top-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1100;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red),
+                    var(--red-light),
+                    var(--red),
+                    transparent
+                );
+        }
+
+        /* Header */
+
+        .site-header {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                rgba(6, 6, 7, 0.9);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: var(--header-height);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 34px;
+        }
+
+        .brand {
+            min-width: 0;
+            flex: 0 1 330px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: min(100%, 310px);
+            height: 66px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .main-nav a:not(.nav-cta) {
+            position: relative;
+
+            color: var(--silver);
+
+            font-size: 0.87rem;
+            font-weight: 700;
+
+            transition: color 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta)::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--red);
+
+            transition: width 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta):hover {
+            color: #ffffff;
+        }
+
+        .main-nav a:not(.nav-cta):hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            min-height: 44px;
+            padding: 0 18px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.65);
+            border-radius: 4px;
+
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-size: 0.84rem;
+            font-weight: 800;
+        }
+
+        .nav-cta:hover {
+            background:
+                rgba(223, 38, 56, 0.18);
+        }
+
+        .menu-toggle {
+            position: relative;
+            z-index: 4;
+
+            display: none;
+
+            width: 46px;
+            height: 46px;
+
+            flex: 0 0 auto;
+
+            border: 1px solid var(--border-strong);
+            border-radius: 4px;
+
+            background: transparent;
+
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            position: absolute;
+            left: 11px;
+
+            width: 22px;
+            height: 2px;
+
+            background: #ffffff;
+
+            transition:
+                top 0.25s ease,
+                opacity 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .menu-toggle span:nth-child(1) {
+            top: 14px;
+        }
+
+        .menu-toggle span:nth-child(2) {
+            top: 21px;
+        }
+
+        .menu-toggle span:nth-child(3) {
+            top: 28px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            top: 21px;
+
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            top: 21px;
+
+            transform: rotate(-45deg);
+        }
+
+        /* Hero */
+
+        .privacy-hero {
+            position: relative;
+
+            min-height: 560px;
+            padding-top:
+                calc(var(--header-height) + 115px);
+            padding-bottom: 95px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 82% 18%,
+                    rgba(223, 38, 56, 0.14),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 15% 85%,
+                    rgba(120, 120, 130, 0.06),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    145deg,
+                    #070708,
+                    #0c090a 55%,
+                    #12090b
+                );
+        }
+
+        .privacy-hero::before {
+            content: "TC";
+
+            position: absolute;
+            top: 50%;
+            right: 4%;
+
+            color:
+                rgba(255, 255, 255, 0.025);
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(13rem, 28vw, 30rem);
+            font-weight: 800;
+            letter-spacing: -0.13em;
+            line-height: 1;
+
+            pointer-events: none;
+
+            transform: translateY(-52%);
+        }
+
+        .privacy-hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 920px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 21px;
+
+            color: var(--red-light);
+
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.19em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 30px;
+            height: 1px;
+
+            background: var(--red);
+        }
+
+        .privacy-hero h1 {
+            max-width: 920px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(3.4rem, 7vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -0.065em;
+            line-height: 0.96;
+        }
+
+        .privacy-hero h1 span {
+            color: var(--red);
+        }
+
+        .privacy-hero-description {
+            max-width: 760px;
+            margin-top: 28px;
+
+            color: #b7b7bd;
+
+            font-size: clamp(1rem, 1.4vw, 1.16rem);
+            line-height: 1.8;
+        }
+
+        .effective-date {
+            margin-top: 34px;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 10px 14px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.28);
+            border-radius: 100px;
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.07);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .effective-date::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 13px rgba(223, 38, 56, 0.8);
+        }
+
+        /* Privacy body */
+
+        .privacy-section {
+            padding: 110px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #09090b,
+                    #060607
+                );
+        }
+
+        .privacy-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(220px, 0.34fr)
+                minmax(0, 1fr);
+
+            align-items: start;
+            gap: clamp(50px, 8vw, 110px);
+        }
+
+        .privacy-sidebar {
+            position: sticky;
+            top:
+                calc(var(--header-height) + 40px);
+
+            padding: 25px;
+
+            border: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.04),
+                    rgba(255, 255, 255, 0.01)
+                ),
+                var(--panel);
+        }
+
+        .privacy-sidebar h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: -0.03em;
+        }
+
+        .privacy-sidebar p {
+            margin-top: 11px;
+
+            color: var(--gray);
+
+            font-size: 0.78rem;
+        }
+
+        .privacy-sidebar nav {
+            margin-top: 24px;
+
+            display: grid;
+        }
+
+        .privacy-sidebar a {
+            padding: 12px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            color: var(--gray);
+
+            font-size: 0.78rem;
+            font-weight: 700;
+
+            transition:
+                color 0.2s ease,
+                padding-left 0.2s ease;
+        }
+
+        .privacy-sidebar a:hover {
+            padding-left: 7px;
+
+            color: var(--red-light);
+        }
+
+        .privacy-content {
+            min-width: 0;
+        }
+
+        .privacy-intro {
+            margin-bottom: 32px;
+            padding: 28px 30px;
+
+            border-left: 3px solid var(--red);
+
+            background:
+                rgba(223, 38, 56, 0.055);
+
+            color: #c7c7cd;
+
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .privacy-article {
+            padding: 34px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .privacy-number {
+            display: block;
+
+            margin-bottom: 13px;
+
+            color: var(--red);
+
+            font-size: 0.69rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .privacy-article h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.65rem, 3vw, 2.45rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+        }
+
+        .privacy-article p {
+            margin-top: 17px;
+
+            color: #a8a8b0;
+
+            font-size: 0.95rem;
+            line-height: 1.85;
+        }
+
+        .privacy-article strong {
+            color: var(--silver);
+        }
+
+        .privacy-list {
+            margin-top: 18px;
+            padding-left: 20px;
+
+            color: #a8a8b0;
+        }
+
+        .privacy-list li {
+            margin-top: 9px;
+            padding-left: 5px;
+
+            font-size: 0.94rem;
+            line-height: 1.75;
+        }
+
+        .privacy-callout {
+            margin-top: 27px;
+            padding: 24px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.28);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0,
+                    rgba(223, 38, 56, 0.11),
+                    transparent 40%
+                ),
+                var(--panel);
+        }
+
+        .privacy-callout strong {
+            display: block;
+
+            color: var(--white);
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1.12rem;
+        }
+
+        .privacy-callout p {
+            margin-top: 10px;
+
+            font-size: 0.84rem;
+        }
+
+        .privacy-link {
+            color: var(--red-light);
+            font-weight: 700;
+        }
+
+        .privacy-link:hover {
+            color: var(--white);
+        }
+
+        .legal-note {
+            margin-top: 55px;
+            padding: 26px;
+
+            border: 1px solid var(--border);
+
+            color: #696971;
+
+            background:
+                rgba(255, 255, 255, 0.018);
+
+            font-size: 0.7rem;
+            line-height: 1.75;
+        }
+
+        /* CTA */
+
+        .privacy-cta {
+            position: relative;
+
+            min-height: 370px;
+            padding: 80px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef3448,
+                    #a60e20
+                );
+        }
+
+        .privacy-cta-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 760px;
+        }
+
+        .privacy-cta h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.7rem, 6vw, 5.6rem);
+            font-weight: 800;
+            letter-spacing: -0.055em;
+            line-height: 0.98;
+        }
+
+        .privacy-cta p {
+            max-width: 620px;
+            margin: 22px auto 29px;
+
+            color:
+                rgba(255, 255, 255, 0.84);
+        }
+
+        .button {
+            min-height: 52px;
+            padding: 0 24px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+
+            color: #111114;
+            background: #ffffff;
+
+            font-size: 0.89rem;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ededf0;
+
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        .site-footer {
+            padding: 68px 0 28px;
+
+            background: #050506;
+        }
+
+        .footer-main {
+            padding-bottom: 48px;
+
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(0, 0.85fr);
+
+            gap: 70px;
+        }
+
+        .footer-brand img {
+            width: min(100%, 330px);
+            height: 82px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .footer-brand p {
+            max-width: 440px;
+            margin-top: 16px;
+
+            color: var(--gray);
+
+            font-size: 0.86rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 42px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 17px;
+
+            font-size: 0.85rem;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 0.83rem;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+        }
+
+        .footer-disclaimer {
+            padding: 25px 0;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-disclaimer p {
+            color: #66666e;
+
+            font-size: 0.68rem;
+            line-height: 1.75;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+
+            color: #6c6c74;
+
+            font-size: 0.73rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        /* Tablet */
+
+        @media (max-width: 1050px) {
+            :root {
+                --header-height: 86px;
+            }
+
+            .brand {
+                flex-basis: 300px;
+            }
+
+            .brand img {
+                width: min(100%, 285px);
+                height: 62px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                bottom: auto;
+
+                width: min(360px, 88vw);
+                height:
+                    calc(
+                        100dvh -
+                        var(--header-height) -
+                        3px
+                    );
+
+                padding: 30px;
+
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+
+                border-left: 1px solid var(--border);
+
+                background: #070708;
+
+                overflow-y: auto;
+
+                transform: translateX(105%);
+
+                transition:
+                    transform 0.3s ease;
+
+                z-index: 9999;
+            }
+
+            .main-nav.open {
+                transform: translateX(0);
+            }
+
+            .main-nav a:not(.nav-cta) {
+                padding: 15px 0;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-cta {
+                min-height: 50px;
+                margin-top: 22px;
+            }
+
+            .privacy-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-sidebar {
+                position: static;
+            }
+
+            .privacy-sidebar nav {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+                column-gap: 24px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 680px) {
+            :root {
+                --header-height: 78px;
+            }
+
+            .container {
+                width: min(
+                    calc(100% - 28px),
+                    var(--container)
+                );
+            }
+
+            .header-inner {
+                gap: 14px;
+            }
+
+            .brand {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .brand img {
+                width: min(100%, 255px);
+                height: 54px;
+            }
+
+            .menu-toggle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .main-nav {
+                top: 100%;
+            }
+
+            .privacy-hero {
+                min-height: auto;
+
+                padding-top:
+                    calc(var(--header-height) + 72px);
+                padding-bottom: 75px;
+            }
+
+            .privacy-hero h1 {
+                font-size:
+                    clamp(3rem, 14vw, 4.5rem);
+            }
+
+            .privacy-section {
+                padding: 78px 0;
+            }
+
+            .privacy-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-intro {
+                padding: 23px 21px;
+            }
+
+            .privacy-article {
+                padding: 29px 0;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand img {
+                width: min(100%, 300px);
+                height: 76px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand img {
+                width: min(100%, 225px);
+                height: 50px;
+            }
+
+            .privacy-hero h1 {
+                font-size:
+                    clamp(2.75rem, 13vw, 3.8rem);
+            }
+
+            .footer-brand img {
+                width: min(100%, 260px);
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-line"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Teske Capital home"
+            >
+                <img
+                    src="teskecapitallogo5.png"
+                    alt="Teske Capital"
+                >
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav
+                class="main-nav"
+                id="mainNavigation"
+                aria-label="Primary navigation"
+            >
+                <a href="index.html#performance">
+                    Performance
+                </a>
+
+                <a href="index.html#approach">
+                    Approach
+                </a>
+
+                <a href="index.html#portfolio">
+                    Portfolio
+                </a>
+
+                <a href="ips.html">
+                    Policy Statement
+                </a>
+
+                <a href="index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="nav-cta"
+                >
+                    Investor Access
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="privacy-hero">
+            <div class="container">
+                <div class="privacy-hero-content">
+                    <p class="eyebrow">
+                        Teske Capital Legal
+                    </p>
+
+                    <h1>
+                        Privacy
+                        <span>Policy.</span>
+                    </h1>
+
+                    <p class="privacy-hero-description">
+                        This Privacy Policy explains how Teske Capital
+                        may collect, use, store, protect, and disclose
+                        information when visitors use this website,
+                        submit an inquiry, or communicate with the firm.
+                    </p>
+
+                    <div class="effective-date">
+                        Effective July 2026
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="container privacy-layout">
+                <aside class="privacy-sidebar">
+                    <h2>
+                        Policy Sections
+                    </h2>
+
+                    <p>
+                        Review how website and inquiry information may
+                        be handled.
+                    </p>
+
+                    <nav aria-label="Privacy policy sections">
+                        <a href="#scope">
+                            Scope
+                        </a>
+
+                        <a href="#information-collected">
+                            Information Collected
+                        </a>
+
+                        <a href="#automatic-information">
+                            Automatic Information
+                        </a>
+
+                        <a href="#use-of-information">
+                            Use of Information
+                        </a>
+
+                        <a href="#contact-submissions">
+                            Contact Submissions
+                        </a>
+
+                        <a href="#cookies">
+                            Cookies and Analytics
+                        </a>
+
+                        <a href="#sharing">
+                            Information Sharing
+                        </a>
+
+                        <a href="#retention">
+                            Data Retention
+                        </a>
+
+                        <a href="#security">
+                            Data Security
+                        </a>
+
+                        <a href="#rights">
+                            Privacy Rights
+                        </a>
+
+                        <a href="#third-party">
+                            Third-Party Services
+                        </a>
+
+                        <a href="#children">
+                            Children’s Privacy
+                        </a>
+
+                        <a href="#changes">
+                            Policy Changes
+                        </a>
+
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="privacy-content">
+                    <div class="privacy-intro">
+                        Teske Capital is currently in a development and
+                        proprietary-capital phase. The website is
+                        primarily used to present information about the
+                        firm’s investment philosophy, model portfolio,
+                        performance methodology, policies, and future
+                        plans. Teske Capital is not currently accepting
+                        outside investor funds.
+                    </div>
+
+                    <article
+                        class="privacy-article"
+                        id="scope"
+                    >
+                        <span class="privacy-number">
+                            Section 01
+                        </span>
+
+                        <h2>
+                            Scope of this policy
+                        </h2>
+
+                        <p>
+                            This Privacy Policy applies to information
+                            collected through the Teske Capital website,
+                            related contact forms, email communications,
+                            and other digital interactions controlled by
+                            Teske Capital.
+                        </p>
+
+                        <p>
+                            This policy does not govern websites,
+                            platforms, applications, or services
+                            operated independently by third parties.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="information-collected"
+                    >
+                        <span class="privacy-number">
+                            Section 02
+                        </span>
+
+                        <h2>
+                            Information you provide
+                        </h2>
+
+                        <p>
+                            Teske Capital may collect information that
+                            you voluntarily provide when submitting a
+                            contact form, expressing future investor
+                            interest, sending an email, or otherwise
+                            communicating with the firm.
+                        </p>
+
+                        <p>
+                            This information may include:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                First and last name.
+                            </li>
+
+                            <li>
+                                Email address.
+                            </li>
+
+                            <li>
+                                Telephone number.
+                            </li>
+
+                            <li>
+                                State, country, or general location.
+                            </li>
+
+                            <li>
+                                Inquiry type and message contents.
+                            </li>
+
+                            <li>
+                                Potential investment range or timeline,
+                                when voluntarily provided.
+                            </li>
+
+                            <li>
+                                Accredited-investor status or related
+                                eligibility information, when
+                                voluntarily provided.
+                            </li>
+
+                            <li>
+                                Referral source and communication
+                                preferences.
+                            </li>
+
+                            <li>
+                                Any other information included in your
+                                message or correspondence.
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="automatic-information"
+                    >
+                        <span class="privacy-number">
+                            Section 03
+                        </span>
+
+                        <h2>
+                            Information collected automatically
+                        </h2>
+
+                        <p>
+                            When you visit the website, certain
+                            information may be collected automatically
+                            through hosting providers, server logs,
+                            security tools, analytics services, or
+                            similar technologies.
+                        </p>
+
+                        <p>
+                            Automatically collected information may
+                            include:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                Internet Protocol address.
+                            </li>
+
+                            <li>
+                                Browser type and version.
+                            </li>
+
+                            <li>
+                                Device type and operating system.
+                            </li>
+
+                            <li>
+                                Date and time of access.
+                            </li>
+
+                            <li>
+                                Referring and exit pages.
+                            </li>
+
+                            <li>
+                                Pages viewed and basic navigation
+                                activity.
+                            </li>
+
+                            <li>
+                                Approximate geographic region.
+                            </li>
+
+                            <li>
+                                Security, error, and diagnostic
+                                information.
+                            </li>
+                        </ul>
+
+                        <p>
+                            This information may be used to maintain the
+                            website, diagnose technical issues, detect
+                            misuse, improve performance, and protect the
+                            website and its users.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="use-of-information"
+                    >
+                        <span class="privacy-number">
+                            Section 04
+                        </span>
+
+                        <h2>
+                            How information may be used
+                        </h2>
+
+                        <p>
+                            Teske Capital may use collected information
+                            for purposes including:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                Responding to questions and inquiries.
+                            </li>
+
+                            <li>
+                                Recording nonbinding expressions of
+                                future investor interest.
+                            </li>
+
+                            <li>
+                                Providing requested information or
+                                website updates.
+                            </li>
+
+                            <li>
+                                Maintaining business and communication
+                                records.
+                            </li>
+
+                            <li>
+                                Improving website content, usability,
+                                security, and performance.
+                            </li>
+
+                            <li>
+                                Preventing fraud, abuse, spam, and
+                                unauthorized access.
+                            </li>
+
+                            <li>
+                                Complying with legal, regulatory,
+                                accounting, tax, or compliance
+                                obligations.
+                            </li>
+
+                            <li>
+                                Establishing, exercising, or defending
+                                legal rights.
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="contact-submissions"
+                    >
+                        <span class="privacy-number">
+                            Section 05
+                        </span>
+
+                        <h2>
+                            Contact and investor-interest submissions
+                        </h2>
+
+                        <p>
+                            The contact page may allow visitors to submit
+                            general inquiries or express nonbinding
+                            interest in receiving information about
+                            Teske Capital in the future.
+                        </p>
+
+                        <p>
+                            Submitting a form does not create an
+                            investment, advisory, fiduciary, client, or
+                            contractual relationship. It also does not
+                            constitute an investment commitment,
+                            subscription, offer, acceptance, or
+                            guarantee of future access.
+                        </p>
+
+                        <div class="privacy-callout">
+                            <strong>
+                                The website contact form is currently in
+                                development mode.
+                            </strong>
+
+                            <p>
+                                Before public launch, form submissions
+                                may be processed through Teske Capital’s
+                                own server infrastructure and an email
+                                delivery provider such as Mailgun.
+                                This policy may be updated when the final
+                                production system is implemented.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="cookies"
+                    >
+                        <span class="privacy-number">
+                            Section 06
+                        </span>
+
+                        <h2>
+                            Cookies, analytics, and similar technologies
+                        </h2>
+
+                        <p>
+                            Teske Capital may use cookies, local storage,
+                            analytics technologies, or similar tools to
+                            support website functionality, understand
+                            general usage, improve performance, and
+                            protect the website.
+                        </p>
+
+                        <p>
+                            These technologies may be used for:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                Remembering basic site preferences.
+                            </li>
+
+                            <li>
+                                Measuring aggregate website traffic.
+                            </li>
+
+                            <li>
+                                Identifying technical errors.
+                            </li>
+
+                            <li>
+                                Preventing abuse and malicious activity.
+                            </li>
+
+                            <li>
+                                Improving navigation and page
+                                performance.
+                            </li>
+                        </ul>
+
+                        <p>
+                            Visitors may adjust browser settings to
+                            block or delete cookies. Certain features
+                            may not function properly if cookies or
+                            local-storage technologies are disabled.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="sharing"
+                    >
+                        <span class="privacy-number">
+                            Section 07
+                        </span>
+
+                        <h2>
+                            How information may be shared
+                        </h2>
+
+                        <p>
+                            Teske Capital does not intend to sell or rent
+                            personal information.
+                        </p>
+
+                        <p>
+                            Information may be disclosed to:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                Website hosting, infrastructure, email,
+                                security, analytics, and technology
+                                service providers.
+                            </li>
+
+                            <li>
+                                Attorneys, accountants, consultants, or
+                                other professional advisors.
+                            </li>
+
+                            <li>
+                                Government, regulatory, judicial, or law
+                                enforcement authorities when required
+                                by applicable law or valid legal
+                                process.
+                            </li>
+
+                            <li>
+                                Parties involved in a potential business
+                                transaction, restructuring, acquisition,
+                                financing, or transfer of assets.
+                            </li>
+                        </ul>
+
+                        <p>
+                            Service providers may receive only the
+                            information reasonably necessary to perform
+                            services on behalf of Teske Capital and may
+                            be subject to contractual or legal
+                            confidentiality obligations.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="retention"
+                    >
+                        <span class="privacy-number">
+                            Section 08
+                        </span>
+
+                        <h2>
+                            Data retention
+                        </h2>
+
+                        <p>
+                            Teske Capital may retain personal information
+                            for as long as reasonably necessary to
+                            respond to inquiries, maintain business
+                            records, protect legal rights, comply with
+                            legal or regulatory obligations, and support
+                            legitimate business purposes.
+                        </p>
+
+                        <p>
+                            Retention periods may vary depending on the
+                            type of information, the reason it was
+                            collected, applicable legal requirements,
+                            and whether an ongoing communication or
+                            business relationship exists.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="security"
+                    >
+                        <span class="privacy-number">
+                            Section 09
+                        </span>
+
+                        <h2>
+                            Data security
+                        </h2>
+
+                        <p>
+                            Teske Capital intends to use reasonable
+                            administrative, technical, and physical
+                            safeguards designed to protect information
+                            from unauthorized access, disclosure,
+                            alteration, misuse, or destruction.
+                        </p>
+
+                        <p>
+                            Safeguards may include encrypted
+                            communications, access controls, server
+                            monitoring, software updates, authentication,
+                            backups, firewall protections, and security
+                            logging.
+                        </p>
+
+                        <p>
+                            No website, server, email system, or internet
+                            transmission can be guaranteed to be
+                            completely secure. Visitors should avoid
+                            submitting highly sensitive information
+                            through ordinary website forms or email.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="rights"
+                    >
+                        <span class="privacy-number">
+                            Section 10
+                        </span>
+
+                        <h2>
+                            Your privacy choices and rights
+                        </h2>
+
+                        <p>
+                            Depending on your location and applicable
+                            law, you may have rights concerning your
+                            personal information, including the right
+                            to:
+                        </p>
+
+                        <ul class="privacy-list">
+                            <li>
+                                Request access to information maintained
+                                about you.
+                            </li>
+
+                            <li>
+                                Request correction of inaccurate or
+                                incomplete information.
+                            </li>
+
+                            <li>
+                                Request deletion of certain information.
+                            </li>
+
+                            <li>
+                                Withdraw consent to certain
+                                communications.
+                            </li>
+
+                            <li>
+                                Opt out of nonessential promotional
+                                emails.
+                            </li>
+
+                            <li>
+                                Request information about how your data
+                                has been used or disclosed.
+                            </li>
+                        </ul>
+
+                        <p>
+                            Teske Capital may need to verify your
+                            identity before processing a privacy
+                            request. Certain information may be retained
+                            when required by law or necessary for
+                            legitimate legal, regulatory, security, or
+                            recordkeeping purposes.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="third-party"
+                    >
+                        <span class="privacy-number">
+                            Section 11
+                        </span>
+
+                        <h2>
+                            Third-party services and links
+                        </h2>
+
+                        <p>
+                            This website may use or link to third-party
+                            services such as hosting providers, email
+                            delivery services, analytics platforms,
+                            market-data services, social networks, or
+                            external websites.
+                        </p>
+
+                        <p>
+                            Teske Capital does not control the privacy,
+                            security, or data-handling practices of
+                            independent third parties. Visitors should
+                            review the applicable privacy policies of
+                            those services before providing personal
+                            information.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="children"
+                    >
+                        <span class="privacy-number">
+                            Section 12
+                        </span>
+
+                        <h2>
+                            Children’s privacy
+                        </h2>
+
+                        <p>
+                            The Teske Capital website is intended for
+                            adults and is not directed to children under
+                            the age of 13.
+                        </p>
+
+                        <p>
+                            Teske Capital does not knowingly collect
+                            personal information from children under
+                            13. If such information is identified, it
+                            may be deleted within a reasonable period.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="changes"
+                    >
+                        <span class="privacy-number">
+                            Section 13
+                        </span>
+
+                        <h2>
+                            Changes to this policy
+                        </h2>
+
+                        <p>
+                            Teske Capital may update this Privacy Policy
+                            as the website, business, legal structure,
+                            technology systems, or information practices
+                            change.
+                        </p>
+
+                        <p>
+                            Updated policies may be posted on this page
+                            without individual notice. The effective
+                            date displayed at the top of the page
+                            identifies when the policy was last
+                            materially revised.
+                        </p>
+                    </article>
+
+                    <article
+                        class="privacy-article"
+                        id="contact"
+                    >
+                        <span class="privacy-number">
+                            Section 14
+                        </span>
+
+                        <h2>
+                            Privacy questions and requests
+                        </h2>
+
+                        <p>
+                            Questions, correction requests, deletion
+                            requests, and other privacy inquiries may be
+                            submitted through the Teske Capital contact
+                            page.
+                        </p>
+
+                        <p>
+                            <a
+                                href="contact.html"
+                                class="privacy-link"
+                            >
+                                Contact Teske Capital →
+                            </a>
+                        </p>
+
+                        <p>
+                            You may also contact Teske Capital by email
+                            at:
+
+                            <a
+                                href="mailto:info@teskecapital.com"
+                                class="privacy-link"
+                            >
+                                info@teskecapital.com
+                            </a>
+                        </p>
+                    </article>
+
+                    <div class="legal-note">
+                        This Privacy Policy is intended as a general
+                        pre-launch website policy and does not replace
+                        advice from a qualified attorney or privacy
+                        professional. Teske Capital should update and
+                        review this policy before public launch and
+                        whenever its contact-form backend, email
+                        provider, analytics, cookies, investor systems,
+                        jurisdictional exposure, or regulatory
+                        obligations materially change.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-cta">
+            <div class="privacy-cta-content">
+                <h2>
+                    Questions about your information?
+                </h2>
+
+                <p>
+                    Contact Teske Capital with questions about this
+                    policy or requests concerning information you have
+                    submitted.
+                </p>
+
+                <a
+                    href="contact.html"
+                    class="button"
+                >
+                    Contact Teske Capital
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img
+                        src="teskecapitallogo5.png"
+                        alt="Teske Capital"
+                    >
+
+                    <p>
+                        Private capital. Disciplined allocation.
+                        Long-term focus.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>
+                            Explore
+                        </h3>
+
+                        <a href="index.html">
+                            Home
+                        </a>
+
+                        <a href="index.html#performance">
+                            Performance
+                        </a>
+
+                        <a href="index.html#portfolio">
+                            Investment Universe
+                        </a>
+
+                        <a href="ips.html">
+                            Policy Statement
+                        </a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>
+                            Connect
+                        </h3>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="contact.html">
+                            Investor Interest
+                        </a>
+
+                        <a href="privacypolicy.html">
+                            Privacy Policy
+                        </a>
+
+                        <a href="termsofuse.html">
+                            Terms of Use
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                <p>
+                    This website is provided solely for informational
+                    purposes and does not constitute an offer to sell,
+                    a solicitation of an offer to purchase, or a
+                    recommendation regarding any security, investment
+                    product, or investment strategy. Teske Capital is
+                    not currently accepting outside investor capital.
+                    All investments involve risk, including possible
+                    loss of principal. Past performance does not
+                    guarantee future results.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    ©
+                    <span id="currentYear"></span>
+                    Teske Capital LLC. All rights reserved.
+                </span>
+
+                <div class="footer-bottom-links">
+                    <a href="privacypolicy.html">
+                        Privacy
+                    </a>
+
+                    <a href="termsofuse.html">
+                        Terms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const mainNavigation =
+            document.getElementById(
+                "mainNavigation"
+            );
+
+        const currentYear =
+            document.getElementById(
+                "currentYear"
+            );
+
+        currentYear.textContent =
+            new Date().getFullYear();
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+                const isOpen =
+                    mainNavigation.classList.toggle(
+                        "open"
+                    );
+
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
+
+                document.body.classList.toggle(
+                    "menu-open",
+                    isOpen
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+            }
+        );
+
+        document
+            .querySelectorAll(
+                ".main-nav a"
+            )
+            .forEach(
+                function (navigationLink) {
+                    navigationLink.addEventListener(
+                        "click",
+                        function () {
+                            mainNavigation.classList.remove(
+                                "open"
+                            );
+
+                            menuToggle.classList.remove(
+                                "active"
+                            );
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+                        }
+                    );
+                }
+            );
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+                if (
+                    event.key === "Escape"
+                ) {
+                    mainNavigation.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+            }
+        );
+    </script>
+</body>
+</html>
