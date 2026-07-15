@@ -1786,10 +1786,11 @@
             }
 
             .main-nav {
-                position: fixed;
-                top: calc(var(--header-height) + 3px);
+                position: absolute;
+                top: 100%;
                 right: 0;
-                bottom: 0;
+                bottom: auto;
+                height: calc(100dvh - var(--header-height) - 3px);
 
                 width: min(360px, 88vw);
                 padding: 30px;
@@ -1906,7 +1907,7 @@
             }
 
             .main-nav {
-                top: calc(var(--header-height) + 3px);
+                top: 100%;
             }
 
             .hero {
