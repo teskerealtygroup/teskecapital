@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Teske Capital investor letters, quarterly portfolio commentary, historical reflections, and future updates."
+    >
+
+    <meta name="theme-color" content="#080808">
+
+    <title>
+        Investor Letters | Teske Capital
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --red: #df2638;
+            --red-light: #f24859;
+            --red-dark: #961322;
+
+            --black: #050506;
+            --black-soft: #09090b;
+            --panel: #101013;
+            --panel-light: #17171b;
+            --panel-lighter: #1d1d22;
+
+            --white: #f5f5f7;
+            --silver: #c8c8ce;
+            --gray: #92929a;
+            --gray-dark: #6b6b73;
+
+            --green: #42d392;
+
+            --border: rgba(255, 255, 255, 0.1);
+            --border-strong: rgba(255, 255, 255, 0.17);
+
+            --shadow:
+                0 28px 80px rgba(0, 0, 0, 0.45);
+
+            --container: 1180px;
+            --header-height: 94px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            color: var(--white);
+            background: var(--black);
+
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--container)
+            );
+
+            margin-inline: auto;
+        }
+
+        .top-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1100;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red),
+                    var(--red-light),
+                    var(--red),
+                    transparent
+                );
+        }
+
+        /* Header */
+
+        .site-header {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                rgba(6, 6, 7, 0.9);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: var(--header-height);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 34px;
+        }
+
+        .brand {
+            min-width: 0;
+            flex: 0 1 330px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: min(100%, 310px);
+            height: 66px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .main-nav a:not(.nav-cta) {
+            position: relative;
+
+            color: var(--silver);
+
+            font-size: 0.85rem;
+            font-weight: 700;
+
+            transition: color 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta)::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--red);
+
+            transition: width 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta):hover {
+            color: #ffffff;
+        }
+
+        .main-nav a:not(.nav-cta):hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            min-height: 44px;
+            padding: 0 18px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.65);
+            border-radius: 4px;
+
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-size: 0.84rem;
+            font-weight: 800;
+        }
+
+        .nav-cta:hover {
+            background:
+                rgba(223, 38, 56, 0.18);
+        }
+
+        .menu-toggle {
+            position: relative;
+            z-index: 4;
+
+            display: none;
+
+            width: 46px;
+            height: 46px;
+
+            flex: 0 0 auto;
+
+            border: 1px solid var(--border-strong);
+            border-radius: 4px;
+
+            background: transparent;
+
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            position: absolute;
+            left: 11px;
+
+            width: 22px;
+            height: 2px;
+
+            background: #ffffff;
+
+            transition:
+                top 0.25s ease,
+                opacity 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .menu-toggle span:nth-child(1) {
+            top: 14px;
+        }
+
+        .menu-toggle span:nth-child(2) {
+            top: 21px;
+        }
+
+        .menu-toggle span:nth-child(3) {
+            top: 28px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            top: 21px;
+
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            top: 21px;
+
+            transform: rotate(-45deg);
+        }
+
+        /* Hero */
+
+        .letters-hero {
+            position: relative;
+
+            min-height: 640px;
+            padding-top:
+                calc(var(--header-height) + 115px);
+            padding-bottom: 100px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 82% 18%,
+                    rgba(223, 38, 56, 0.15),
+                    transparent 29%
+                ),
+                radial-gradient(
+                    circle at 14% 88%,
+                    rgba(120, 120, 130, 0.06),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    145deg,
+                    #070708,
+                    #0c090a 55%,
+                    #12090b
+                );
+        }
+
+        .letters-hero::before {
+            content: "TC";
+
+            position: absolute;
+            top: 50%;
+            right: 4%;
+
+            color:
+                rgba(255, 255, 255, 0.025);
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(13rem, 28vw, 30rem);
+            font-weight: 800;
+            letter-spacing: -0.13em;
+            line-height: 1;
+
+            pointer-events: none;
+
+            transform: translateY(-52%);
+        }
+
+        .letters-hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 940px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 21px;
+
+            color: var(--red-light);
+
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.19em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 30px;
+            height: 1px;
+
+            background: var(--red);
+        }
+
+        .letters-hero h1 {
+            max-width: 940px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(3.5rem, 7vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -0.065em;
+            line-height: 0.96;
+        }
+
+        .letters-hero h1 span {
+            color: var(--red);
+        }
+
+        .letters-hero-description {
+            max-width: 790px;
+            margin-top: 28px;
+
+            color: #b7b7bd;
+
+            font-size: clamp(1rem, 1.4vw, 1.16rem);
+            line-height: 1.8;
+        }
+
+        .letters-status {
+            margin-top: 36px;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 11px 15px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.3);
+            border-radius: 100px;
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.07);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .letters-status::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 13px rgba(223, 38, 56, 0.8);
+        }
+
+        /* Disclosure */
+
+        .draft-disclosure {
+            padding: 30px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            background: #09090b;
+        }
+
+        .draft-disclosure-inner {
+            padding: 21px 23px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.28);
+
+            background:
+                rgba(223, 38, 56, 0.05);
+        }
+
+        .draft-symbol {
+            width: 28px;
+            height: 28px;
+
+            flex: 0 0 auto;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.12);
+
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .draft-disclosure strong {
+            display: block;
+
+            font-size: 0.86rem;
+        }
+
+        .draft-disclosure p {
+            margin-top: 4px;
+
+            color: var(--gray);
+
+            font-size: 0.77rem;
+            line-height: 1.7;
+        }
+
+        /* Main archive */
+
+        .letters-section {
+            padding: 110px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #09090b,
+                    #060607
+                );
+        }
+
+        .letters-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(220px, 0.31fr)
+                minmax(0, 1fr);
+
+            align-items: start;
+            gap: clamp(50px, 8vw, 105px);
+        }
+
+        .letters-sidebar {
+            position: sticky;
+            top:
+                calc(var(--header-height) + 40px);
+
+            padding: 25px;
+
+            border: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.04),
+                    rgba(255, 255, 255, 0.01)
+                ),
+                var(--panel);
+        }
+
+        .letters-sidebar h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: -0.03em;
+        }
+
+        .letters-sidebar p {
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 0.77rem;
+        }
+
+        .letters-sidebar nav {
+            margin-top: 22px;
+
+            display: grid;
+        }
+
+        .letters-sidebar a {
+            padding: 13px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            color: var(--gray);
+
+            font-size: 0.8rem;
+            font-weight: 700;
+
+            transition:
+                color 0.2s ease,
+                padding-left 0.2s ease;
+        }
+
+        .letters-sidebar a:hover {
+            padding-left: 7px;
+
+            color: var(--red-light);
+        }
+
+        .archive-content {
+            min-width: 0;
+        }
+
+        .archive-intro {
+            margin-bottom: 58px;
+        }
+
+        .archive-intro h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.4rem, 5vw, 4.7rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.03;
+        }
+
+        .archive-intro p {
+            max-width: 760px;
+            margin-top: 22px;
+
+            color: var(--gray);
+
+            font-size: 0.94rem;
+            line-height: 1.8;
+        }
+
+        /* Year groups */
+
+        .letter-year {
+            scroll-margin-top:
+                calc(var(--header-height) + 35px);
+
+            margin-top: 80px;
+        }
+
+        .letter-year:first-of-type {
+            margin-top: 0;
+        }
+
+        .year-heading {
+            padding-bottom: 22px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 25px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .year-label {
+            color: var(--red-light);
+
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .year-heading h2 {
+            margin-top: 8px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.4rem, 5vw, 4.3rem);
+            font-weight: 800;
+            letter-spacing: -0.055em;
+            line-height: 1;
+        }
+
+        .year-performance {
+            text-align: right;
+        }
+
+        .year-performance span {
+            display: block;
+
+            color: var(--gray-dark);
+
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .year-performance strong {
+            display: block;
+
+            margin-top: 5px;
+
+            color: var(--green);
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1.65rem;
+            letter-spacing: -0.04em;
+        }
+
+        .year-performance.pending strong {
+            color: var(--silver);
+
+            font-size: 1rem;
+        }
+
+        .year-summary {
+            margin-top: 25px;
+
+            color: var(--gray);
+
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .quarter-list {
+            margin-top: 32px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        /* Expandable letters */
+
+        .quarter-letter {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quarter-summary {
+            width: 100%;
+            padding: 26px 0;
+
+            display: grid;
+            grid-template-columns:
+                minmax(90px, 0.17fr)
+                minmax(0, 1fr)
+                auto;
+
+            align-items: center;
+            gap: 25px;
+
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .quarter-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .quarter-label {
+            color: var(--red-light);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .quarter-title strong {
+            display: block;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1.05rem;
+        }
+
+        .quarter-title span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--gray-dark);
+
+            font-size: 0.73rem;
+        }
+
+        .quarter-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .quarter-return {
+            color: var(--green);
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .quarter-return.pending {
+            color: var(--gray);
+
+            font-family: "Inter", sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .quarter-icon {
+            width: 34px;
+            height: 34px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            flex: 0 0 auto;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.38);
+            border-radius: 50%;
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.06);
+
+            font-size: 1.2rem;
+            font-weight: 500;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .quarter-letter[open] .quarter-icon {
+            transform: rotate(45deg);
+
+            background:
+                rgba(223, 38, 56, 0.14);
+        }
+
+        .quarter-body {
+            padding:
+                0 60px 36px 115px;
+        }
+
+        .quarter-body p {
+            color: #a8a8b0;
+
+            font-size: 0.91rem;
+            line-height: 1.85;
+        }
+
+        .quarter-body p + p {
+            margin-top: 18px;
+        }
+
+        .quarter-body h3 {
+            margin-top: 27px;
+
+            color: var(--silver);
+
+            font-size: 0.9rem;
+        }
+
+        .quarter-body ul {
+            margin-top: 12px;
+            padding-left: 20px;
+
+            color: #a8a8b0;
+        }
+
+        .quarter-body li {
+            margin-top: 8px;
+
+            font-size: 0.87rem;
+            line-height: 1.75;
+        }
+
+        .letter-signature {
+            margin-top: 28px;
+
+            color: var(--silver) !important;
+        }
+
+        .letter-signature strong {
+            display: block;
+
+            color: var(--white);
+        }
+
+        .letter-note {
+            margin-top: 25px;
+            padding: 17px 18px;
+
+            border-left: 2px solid var(--red);
+
+            color: #72727a;
+            background:
+                rgba(223, 38, 56, 0.045);
+
+            font-size: 0.7rem;
+            line-height: 1.7;
+        }
+
+        /* Placeholder letter */
+
+        .placeholder-body {
+            padding: 30px;
+
+            border:
+                1px dashed rgba(255, 255, 255, 0.16);
+
+            color: var(--gray);
+            background:
+                rgba(255, 255, 255, 0.018);
+
+            font-size: 0.86rem;
+            line-height: 1.8;
+        }
+
+        /* Bottom CTA */
+
+        .letters-cta {
+            position: relative;
+
+            min-height: 390px;
+            padding: 80px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef3448,
+                    #a60e20
+                );
+        }
+
+        .letters-cta-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 790px;
+        }
+
+        .letters-cta h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5.7rem);
+            font-weight: 800;
+            letter-spacing: -0.055em;
+            line-height: 0.98;
+        }
+
+        .letters-cta p {
+            max-width: 640px;
+            margin: 22px auto 30px;
+
+            color:
+                rgba(255, 255, 255, 0.84);
+        }
+
+        .button {
+            min-height: 52px;
+            padding: 0 24px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+
+            color: #111114;
+            background: #ffffff;
+
+            font-size: 0.89rem;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ededf0;
+
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        .site-footer {
+            padding: 68px 0 28px;
+
+            background: #050506;
+        }
+
+        .footer-main {
+            padding-bottom: 48px;
+
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(0, 0.85fr);
+
+            gap: 70px;
+        }
+
+        .footer-brand img {
+            width: min(100%, 330px);
+            height: 82px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .footer-brand p {
+            max-width: 440px;
+            margin-top: 16px;
+
+            color: var(--gray);
+
+            font-size: 0.86rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 42px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 17px;
+
+            font-size: 0.85rem;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 0.83rem;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+        }
+
+        .footer-disclaimer {
+            padding: 25px 0;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-disclaimer p {
+            color: #66666e;
+
+            font-size: 0.68rem;
+            line-height: 1.75;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+
+            color: #6c6c74;
+
+            font-size: 0.73rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        /* Tablet */
+
+        @media (max-width: 1050px) {
+            :root {
+                --header-height: 86px;
+            }
+
+            .brand {
+                flex-basis: 300px;
+            }
+
+            .brand img {
+                width: min(100%, 285px);
+                height: 62px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                bottom: auto;
+
+                width: min(360px, 88vw);
+                height:
+                    calc(
+                        100dvh -
+                        var(--header-height) -
+                        3px
+                    );
+
+                padding: 30px;
+
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+
+                border-left: 1px solid var(--border);
+
+                background: #070708;
+
+                overflow-y: auto;
+
+                transform: translateX(105%);
+
+                transition:
+                    transform 0.3s ease;
+
+                z-index: 9999;
+            }
+
+            .main-nav.open {
+                transform: translateX(0);
+            }
+
+            .main-nav a:not(.nav-cta) {
+                padding: 15px 0;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-cta {
+                min-height: 50px;
+                margin-top: 22px;
+            }
+
+            .letters-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .letters-sidebar {
+                position: static;
+            }
+
+            .letters-sidebar nav {
+                grid-template-columns:
+                    repeat(4, minmax(0, 1fr));
+
+                gap: 0 20px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 680px) {
+            :root {
+                --header-height: 78px;
+            }
+
+            .container {
+                width: min(
+                    calc(100% - 28px),
+                    var(--container)
+                );
+            }
+
+            .header-inner {
+                gap: 14px;
+            }
+
+            .brand {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .brand img {
+                width: min(100%, 255px);
+                height: 54px;
+            }
+
+            .menu-toggle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .main-nav {
+                top: 100%;
+            }
+
+            .letters-hero {
+                min-height: auto;
+
+                padding-top:
+                    calc(var(--header-height) + 72px);
+                padding-bottom: 76px;
+            }
+
+            .letters-hero h1 {
+                font-size:
+                    clamp(3rem, 14vw, 4.5rem);
+            }
+
+            .draft-disclosure-inner {
+                padding: 18px;
+            }
+
+            .letters-section {
+                padding: 78px 0;
+            }
+
+            .letters-sidebar nav {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .year-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .year-performance {
+                text-align: left;
+            }
+
+            .quarter-summary {
+                grid-template-columns: 1fr auto;
+                gap: 15px;
+            }
+
+            .quarter-label {
+                grid-column: 1 / -1;
+            }
+
+            .quarter-right {
+                gap: 12px;
+            }
+
+            .quarter-body {
+                padding:
+                    0 0 30px 0;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand img {
+                width: min(100%, 300px);
+                height: 76px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand img {
+                width: min(100%, 225px);
+                height: 50px;
+            }
+
+            .letters-hero h1 {
+                font-size:
+                    clamp(2.75rem, 13vw, 3.8rem);
+            }
+
+            .quarter-return {
+                display: none;
+            }
+
+            .footer-brand img {
+                width: min(100%, 260px);
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-line"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Teske Capital home"
+            >
+                <img
+                    src="teskecapitallogo5.png"
+                    alt="Teske Capital"
+                >
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav
+                class="main-nav"
+                id="mainNavigation"
+                aria-label="Primary navigation"
+            >
+                <a href="index.html#performance">
+                    Performance
+                </a>
+
+                <a href="index.html#approach">
+                    Approach
+                </a>
+
+                <a href="index.html#portfolio">
+                    Portfolio
+                </a>
+
+                <a href="ips.html">
+                    Policy Statement
+                </a>
+
+                <a href="founder.html">
+                    Founder
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="nav-cta"
+                >
+                    Investor Access
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="letters-hero">
+            <div class="container">
+                <div class="letters-hero-content">
+                    <p class="eyebrow">
+                        Teske Capital Archive
+                    </p>
+
+                    <h1>
+                        Investor
+                        <span>Letters.</span>
+                    </h1>
+
+                    <p class="letters-hero-description">
+                        Quarterly reflections on portfolio positioning,
+                        market conditions, risk, capital allocation,
+                        and the long-term principles guiding Teske
+                        Capital.
+                    </p>
+
+                    <div class="letters-status">
+                        Proprietary Capital Phase
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="draft-disclosure">
+            <div class="container">
+                <div class="draft-disclosure-inner">
+                    <span class="draft-symbol">
+                        !
+                    </span>
+
+                    <div>
+                        <strong>
+                            Development archive — not final investor reporting
+                        </strong>
+
+                        <p>
+                            The quarterly percentages and historical
+                            narratives on this page are preliminary
+                            draft reconstructions based on stated annual
+                            results, general strategy, and known asset
+                            exposure. They have not been verified
+                            against quarterly brokerage statements and
+                            should be reviewed, corrected, or removed
+                            before public launch.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="letters-section">
+            <div class="container letters-layout">
+                <aside class="letters-sidebar">
+                    <h2>
+                        Letter Archive
+                    </h2>
+
+                    <p>
+                        Select a year to review the available quarterly
+                        letters.
+                    </p>
+
+                    <nav aria-label="Investor letter years">
+                        <a href="#year-2024">
+                            2024
+                        </a>
+
+                        <a href="#year-2025">
+                            2025
+                        </a>
+
+                        <a href="#year-2026">
+                            2026
+                        </a>
+
+                        <a href="#year-2027">
+                            2027
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="archive-content">
+                    <div class="archive-intro">
+                        <p class="eyebrow">
+                            Portfolio Communication
+                        </p>
+
+                        <h2>
+                            Documenting decisions, not just outcomes.
+                        </h2>
+
+                        <p>
+                            Each letter is intended to explain how the
+                            portfolio was positioned, what influenced
+                            allocation decisions, where risks were
+                            identified, and how Teske Capital approached
+                            the quarter within a long-term framework.
+                        </p>
+                    </div>
+
+                    <!-- 2024 -->
+
+                    <section
+                        class="letter-year"
+                        id="year-2024"
+                    >
+                        <div class="year-heading">
+                            <div>
+                                <span class="year-label">
+                                    Historical Draft Archive
+                                </span>
+
+                                <h2>
+                                    2024
+                                </h2>
+                            </div>
+
+                            <div class="year-performance">
+                                <span>
+                                    Stated Annual Return
+                                </span>
+
+                                <strong>
+                                    +9.80%
+                                </strong>
+                            </div>
+                        </div>
+
+                        <p class="year-summary">
+                            The 2024 draft archive reflects a broadly
+                            diversified growth strategy with technology
+                            and broad-market exposure supported by
+                            Treasury securities, defensive sectors, and
+                            selective digital-asset participation.
+                        </p>
+
+                        <div class="quarter-list">
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q1 2024
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Establishing disciplined growth exposure
+                                        </strong>
+
+                                        <span>
+                                            January through March 2024
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.10%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The first quarter focused on
+                                        maintaining exposure to broad
+                                        U.S. equities and technology
+                                        while avoiding excessive
+                                        concentration in any single
+                                        company. VOO, QQQ, and VGT
+                                        represented the portfolio’s
+                                        principal growth engines, while
+                                        sector exposure helped reduce
+                                        dependence on one market theme.
+                                    </p>
+
+                                    <p>
+                                        Treasury Bills and cash
+                                        equivalents remained important
+                                        sources of liquidity. Rather
+                                        than treating idle cash as
+                                        unproductive, short-duration
+                                        government securities provided
+                                        income and preserved flexibility
+                                        for future allocation changes.
+                                    </p>
+
+                                    <h3>
+                                        Quarter focus
+                                    </h3>
+
+                                    <ul>
+                                        <li>
+                                            Core exposure through VOO,
+                                            QQQ, and VGT.
+                                        </li>
+
+                                        <li>
+                                            Liquidity maintained through
+                                            Treasury Bills and cash.
+                                        </li>
+
+                                        <li>
+                                            Controlled digital-asset
+                                            exposure through Bitcoin and
+                                            Ethereum.
+                                        </li>
+                                    </ul>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify against original
+                                        account statements before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q2 2024
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Expanding diversification beyond technology
+                                        </strong>
+
+                                        <span>
+                                            April through June 2024
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.40%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        During the second quarter, the
+                                        portfolio continued to benefit
+                                        from growth assets, but the
+                                        allocation process placed greater
+                                        emphasis on diversification.
+                                        Financials, health care,
+                                        industrials, and utilities were
+                                        used to broaden exposure beyond
+                                        technology-led performance.
+                                    </p>
+
+                                    <p>
+                                        Berkshire Hathaway remained
+                                        attractive as a diversified
+                                        operating business and capital
+                                        allocator. Realty Income added
+                                        an income-producing real-estate
+                                        component, helping balance assets
+                                        whose returns depended primarily
+                                        on price appreciation.
+                                    </p>
+
+                                    <h3>
+                                        Quarter focus
+                                    </h3>
+
+                                    <ul>
+                                        <li>
+                                            Added balance through VFH,
+                                            VHT, VIS, and VPU.
+                                        </li>
+
+                                        <li>
+                                            Maintained Berkshire
+                                            Hathaway as a long-term
+                                            quality holding.
+                                        </li>
+
+                                        <li>
+                                            Used Realty Income for
+                                            dividend and real-estate
+                                            exposure.
+                                        </li>
+                                    </ul>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify against original
+                                        account statements before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q3 2024
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Balancing conviction with defensive reserves
+                                        </strong>
+
+                                        <span>
+                                            July through September 2024
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.70%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The third quarter emphasized
+                                        maintaining participation in
+                                        long-term growth while preserving
+                                        the ability to respond to
+                                        volatility. Technology and
+                                        broad-market positions remained
+                                        central, but liquidity and
+                                        defensive assets continued to
+                                        serve as stabilizing components.
+                                    </p>
+
+                                    <p>
+                                        Gold-related exposure was viewed
+                                        as a portfolio diversifier rather
+                                        than a short-term trade. The
+                                        objective was not to predict
+                                        macroeconomic events, but to
+                                        maintain assets that could behave
+                                        differently during inflation,
+                                        geopolitical stress, or periods
+                                        of falling confidence.
+                                    </p>
+
+                                    <h3>
+                                        Quarter focus
+                                    </h3>
+
+                                    <ul>
+                                        <li>
+                                            Maintained long-term growth
+                                            exposure.
+                                        </li>
+
+                                        <li>
+                                            Preserved cash and Treasury
+                                            flexibility.
+                                        </li>
+
+                                        <li>
+                                            Used gold ETFs as a
+                                            defensive diversifier.
+                                        </li>
+                                    </ul>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify against original
+                                        account statements before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q4 2024
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Finishing the year with balanced participation
+                                        </strong>
+
+                                        <span>
+                                            October through December 2024
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.30%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The final quarter of 2024 was
+                                        approached with an emphasis on
+                                        preserving gains without
+                                        abandoning assets supported by
+                                        long-term conviction. Broad-market
+                                        and technology exposure remained
+                                        meaningful, while sector ETFs,
+                                        Treasury Bills, gold, and income
+                                        assets helped maintain a more
+                                        balanced risk profile.
+                                    </p>
+
+                                    <p>
+                                        The year reinforced the value of
+                                        combining growth and defensive
+                                        assets rather than attempting to
+                                        identify a single permanent
+                                        winner. The portfolio finished
+                                        2024 with a stated annual gain of
+                                        9.80%.
+                                    </p>
+
+                                    <h3>
+                                        Year-end observations
+                                    </h3>
+
+                                    <ul>
+                                        <li>
+                                            Diversification reduced
+                                            dependence on any single
+                                            asset class.
+                                        </li>
+
+                                        <li>
+                                            Liquidity supported patience
+                                            and flexibility.
+                                        </li>
+
+                                        <li>
+                                            The portfolio remained
+                                            focused on long-term
+                                            compounding.
+                                        </li>
+                                    </ul>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        The four draft quarterly returns
+                                        compound to approximately 9.84%,
+                                        close to the stated 2024 annual
+                                        result of 9.80%. Replace with
+                                        verified figures before launch.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- 2025 -->
+
+                    <section
+                        class="letter-year"
+                        id="year-2025"
+                    >
+                        <div class="year-heading">
+                            <div>
+                                <span class="year-label">
+                                    Historical Draft Archive
+                                </span>
+
+                                <h2>
+                                    2025
+                                </h2>
+                            </div>
+
+                            <div class="year-performance">
+                                <span>
+                                    Stated Annual Return
+                                </span>
+
+                                <strong>
+                                    +12.20%
+                                </strong>
+                            </div>
+                        </div>
+
+                        <p class="year-summary">
+                            The 2025 draft archive reflects continued
+                            participation in broad-market and technology
+                            growth, paired with increased attention to
+                            sector balance, income, liquidity, and
+                            digital-asset risk management.
+                        </p>
+
+                        <div class="quarter-list">
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q1 2025
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Entering the year with selective conviction
+                                        </strong>
+
+                                        <span>
+                                            January through March 2025
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.80%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The portfolio entered 2025 with
+                                        conviction in broad-market
+                                        equities and technology, but
+                                        without treating recent strength
+                                        as a reason to abandon risk
+                                        controls. VOO, QQQ, and VGT
+                                        remained important holdings,
+                                        supported by exposure to durable
+                                        businesses and diversified
+                                        sectors.
+                                    </p>
+
+                                    <p>
+                                        Bitcoin and Ethereum continued
+                                        to provide long-term digital-asset
+                                        exposure. Position sizes were
+                                        kept within a broader multi-asset
+                                        framework rather than allowing
+                                        crypto volatility to define the
+                                        portfolio’s overall risk.
+                                    </p>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q2 2025
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Strengthening sector and income exposure
+                                        </strong>
+
+                                        <span>
+                                            April through June 2025
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +3.00%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The second quarter focused on
+                                        strengthening the portfolio’s
+                                        ability to participate across
+                                        different economic outcomes.
+                                        Financials, health care,
+                                        industrials, utilities, real
+                                        estate, and Treasury securities
+                                        complemented the growth-oriented
+                                        core.
+                                    </p>
+
+                                    <p>
+                                        The portfolio’s structure
+                                        reflected a central principle:
+                                        diversification should have a
+                                        purpose. Each allocation was
+                                        intended to provide growth,
+                                        income, liquidity, inflation
+                                        sensitivity, or defensive value.
+                                    </p>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q3 2025
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Maintaining growth while monitoring valuation
+                                        </strong>
+
+                                        <span>
+                                            July through September 2025
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +3.40%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        Stronger growth performance
+                                        during the third quarter did not
+                                        eliminate the need to monitor
+                                        valuation and concentration.
+                                        The portfolio continued to
+                                        participate in technology and
+                                        innovation while retaining
+                                        defensive and liquid holdings.
+                                    </p>
+
+                                    <p>
+                                        Berkshire Hathaway remained a
+                                        useful counterweight to more
+                                        valuation-sensitive growth
+                                        exposure. Treasury Bills and cash
+                                        provided dry powder, while gold
+                                        and utilities supported portfolio
+                                        resilience.
+                                    </p>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Draft reconstructed quarterly
+                                        estimate. Verify before public
+                                        use.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q4 2025
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Preserving flexibility into the next cycle
+                                        </strong>
+
+                                        <span>
+                                            October through December 2025
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return">
+                                            +2.50%
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The fourth quarter concluded a
+                                        productive year with continued
+                                        emphasis on flexibility. The
+                                        portfolio remained positioned to
+                                        benefit from long-term growth,
+                                        but liquidity, Treasury exposure,
+                                        sector diversification, and
+                                        defensive assets remained
+                                        central to the process.
+                                    </p>
+
+                                    <p>
+                                        The stated 2025 annual gain of
+                                        12.20% reflected steady
+                                        participation rather than
+                                        dependence on a single trade.
+                                        The portfolio entered the next
+                                        year with a focus on protecting
+                                        decision quality as market
+                                        conditions evolved.
+                                    </p>
+
+                                    <p class="letter-signature">
+                                        Sincerely,
+                                        <strong>
+                                            Teddy R. Teske
+                                        </strong>
+                                        Founder &amp; Portfolio Manager
+                                    </p>
+
+                                    <div class="letter-note">
+                                        The four draft quarterly returns
+                                        compound to approximately 12.22%,
+                                        close to the stated 2025 annual
+                                        result of 12.20%. Replace with
+                                        verified figures before launch.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- 2026 -->
+
+                    <section
+                        class="letter-year"
+                        id="year-2026"
+                    >
+                        <div class="year-heading">
+                            <div>
+                                <span class="year-label">
+                                    Current Development Year
+                                </span>
+
+                                <h2>
+                                    2026
+                                </h2>
+                            </div>
+
+                            <div class="year-performance pending">
+                                <span>
+                                    Annual Result
+                                </span>
+
+                                <strong>
+                                    In Progress
+                                </strong>
+                            </div>
+                        </div>
+
+                        <p class="year-summary">
+                            During 2026, the strategy is being formalized
+                            into the Teske Capital proprietary model
+                            portfolio. Verified quarterly returns should
+                            be inserted from account records as the year
+                            progresses.
+                        </p>
+
+                        <div class="quarter-list">
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q1 2026
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Formalizing the multi-asset framework
+                                        </strong>
+
+                                        <span>
+                                            Draft commentary — return not entered
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Verify Return
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The first quarter marked a shift
+                                        from managing a collection of
+                                        personal investments toward a
+                                        more formally documented
+                                        multi-asset strategy. Greater
+                                        attention was placed on defining
+                                        the purpose of each holding,
+                                        separating growth exposure from
+                                        defensive reserves, and
+                                        establishing consistent
+                                        performance reporting.
+                                    </p>
+
+                                    <p>
+                                        Core holdings continued to
+                                        include broad-market ETFs,
+                                        technology, sector funds,
+                                        Berkshire Hathaway, Treasury
+                                        Bills, gold exposure, Realty
+                                        Income, Bitcoin, and Ethereum.
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Enter the verified Q1 return and
+                                        revise this narrative using
+                                        original account records.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q2 2026
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Increasing attention to hedging and liquidity
+                                        </strong>
+
+                                        <span>
+                                            Draft commentary — return not entered
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Verify Return
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        Economic uncertainty,
+                                        geopolitical risk, and inflation
+                                        concerns reinforced the value of
+                                        maintaining Treasury securities,
+                                        gold-related exposure, utilities,
+                                        cash reserves, and diversified
+                                        sector positions.
+                                    </p>
+
+                                    <p>
+                                        Digital-asset exposure was
+                                        treated as variable rather than
+                                        permanent. The strategy allowed
+                                        Bitcoin and Ethereum allocations
+                                        to decrease when uncertainty and
+                                        risk aversion increased, with the
+                                        ability to reposition as market
+                                        sentiment and liquidity improved.
+                                    </p>
+
+                                    <div class="letter-note">
+                                        Enter the verified Q2 return and
+                                        revise this narrative using
+                                        original account records.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q3 2026
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Building the Teske Capital reporting foundation
+                                        </strong>
+
+                                        <span>
+                                            Current-quarter development entry
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            In Progress
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <p>
+                                        The third quarter is focused on
+                                        building the operational
+                                        foundation required for Teske
+                                        Capital. This includes weekly
+                                        NAV reporting, performance
+                                        history, an Investment Policy
+                                        Statement, investor
+                                        communications, legal policies,
+                                        and a documented portfolio
+                                        process.
+                                    </p>
+
+                                    <p>
+                                        The portfolio remains funded
+                                        exclusively with proprietary
+                                        capital. The objective is to
+                                        continue producing and
+                                        documenting results before
+                                        considering outside investors.
+                                    </p>
+
+                                    <div class="letter-note">
+                                        This entry should be updated
+                                        after the quarter closes.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q4 2026
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Year-end portfolio letter
+                                        </strong>
+
+                                        <span>
+                                            Reserved for future update
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            In Progress
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <div class="placeholder-body">
+                                        This section is reserved for the
+                                        Q4 2026 letter. Add the verified
+                                        quarterly result, year-end
+                                        performance, major allocation
+                                        changes, risk observations, and
+                                        the portfolio outlook for 2027
+                                        after the quarter closes.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- 2027 -->
+
+                    <section
+                        class="letter-year"
+                        id="year-2027"
+                    >
+                        <div class="year-heading">
+                            <div>
+                                <span class="year-label">
+                                    Future Letter Archive
+                                </span>
+
+                                <h2>
+                                    2027
+                                </h2>
+                            </div>
+
+                            <div class="year-performance pending">
+                                <span>
+                                    Annual Result
+                                </span>
+
+                                <strong>
+                                    Future Reporting
+                                </strong>
+                            </div>
+                        </div>
+
+                        <p class="year-summary">
+                            The 2027 archive is reserved for verified
+                            quarterly reporting as Teske Capital
+                            approaches its anticipated launch and future
+                            investor-access phase.
+                        </p>
+
+                        <div class="quarter-list">
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q1 2027
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            First-quarter investor letter
+                                        </strong>
+
+                                        <span>
+                                            Reserved for future update
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Pending
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <div class="placeholder-body">
+                                        Add the Q1 2027 performance
+                                        result, portfolio positioning,
+                                        significant purchases or sales,
+                                        risk observations, and market
+                                        outlook after the quarter closes.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q2 2027
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Second-quarter investor letter
+                                        </strong>
+
+                                        <span>
+                                            Reserved for future update
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Pending
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <div class="placeholder-body">
+                                        Add the Q2 2027 performance
+                                        result, asset-allocation changes,
+                                        portfolio contributors and
+                                        detractors, risk positioning, and
+                                        second-half outlook.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q3 2027
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Third-quarter investor letter
+                                        </strong>
+
+                                        <span>
+                                            Reserved for future update
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Pending
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <div class="placeholder-body">
+                                        Add the Q3 2027 performance
+                                        result, market review, allocation
+                                        changes, liquidity position, and
+                                        key risks heading into year-end.
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="quarter-letter">
+                                <summary class="quarter-summary">
+                                    <span class="quarter-label">
+                                        Q4 2027
+                                    </span>
+
+                                    <div class="quarter-title">
+                                        <strong>
+                                            Annual investor letter
+                                        </strong>
+
+                                        <span>
+                                            Reserved for future update
+                                        </span>
+                                    </div>
+
+                                    <div class="quarter-right">
+                                        <span class="quarter-return pending">
+                                            Pending
+                                        </span>
+
+                                        <span class="quarter-icon">
+                                            +
+                                        </span>
+                                    </div>
+                                </summary>
+
+                                <div class="quarter-body">
+                                    <div class="placeholder-body">
+                                        Add the Q4 and full-year 2027
+                                        results, portfolio review,
+                                        lessons learned, major allocation
+                                        decisions, and the investment
+                                        outlook for 2028.
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="letters-cta">
+            <div class="letters-cta-content">
+                <h2>
+                    Our process is built to be documented.
+                </h2>
+
+                <p>
+                    Review the Investment Policy Statement for a deeper
+                    explanation of the principles guiding portfolio
+                    allocation, liquidity, and risk.
+                </p>
+
+                <a
+                    href="ips.html"
+                    class="button"
+                >
+                    Read the Policy Statement
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img
+                        src="teskecapitallogo5.png"
+                        alt="Teske Capital"
+                    >
+
+                    <p>
+                        Private capital. Disciplined allocation.
+                        Long-term focus.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>
+                            Explore
+                        </h3>
+
+                        <a href="index.html">
+                            Home
+                        </a>
+
+                        <a href="founder.html">
+                            Meet Our Founder
+                        </a>
+
+                        <a href="investorletters.html">
+                            Investor Letters
+                        </a>
+
+                        <a href="index.html#performance">
+                            Performance
+                        </a>
+
+                        <a href="ips.html">
+                            Policy Statement
+                        </a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>
+                            Connect
+                        </h3>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="contact.html">
+                            Investor Interest
+                        </a>
+
+                        <a href="privacypolicy.html">
+                            Privacy Policy
+                        </a>
+
+                        <a href="termsofuse.html">
+                            Terms of Use
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                <p>
+                    This website is provided solely for informational
+                    purposes and does not constitute an offer to sell,
+                    a solicitation of an offer to purchase, or a
+                    recommendation regarding any security, investment
+                    product, or investment strategy. Historical
+                    quarterly information on this development page may
+                    include preliminary reconstructions that have not
+                    been verified against original account statements.
+                    Teske Capital is not currently accepting outside
+                    investor capital. All investments involve risk,
+                    including possible loss of principal.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    ©
+                    <span id="currentYear"></span>
+                    Teske Capital LLC. All rights reserved.
+                </span>
+
+                <div class="footer-bottom-links">
+                    <a href="privacypolicy.html">
+                        Privacy
+                    </a>
+
+                    <a href="termsofuse.html">
+                        Terms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const mainNavigation =
+            document.getElementById(
+                "mainNavigation"
+            );
+
+        const currentYear =
+            document.getElementById(
+                "currentYear"
+            );
+
+        currentYear.textContent =
+            new Date().getFullYear();
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+                const isOpen =
+                    mainNavigation.classList.toggle(
+                        "open"
+                    );
+
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
+
+                document.body.classList.toggle(
+                    "menu-open",
+                    isOpen
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+            }
+        );
+
+        document
+            .querySelectorAll(
+                ".main-nav a"
+            )
+            .forEach(
+                function (navigationLink) {
+                    navigationLink.addEventListener(
+                        "click",
+                        function () {
+                            mainNavigation.classList.remove(
+                                "open"
+                            );
+
+                            menuToggle.classList.remove(
+                                "active"
+                            );
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+                        }
+                    );
+                }
+            );
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+                if (
+                    event.key === "Escape"
+                ) {
+                    mainNavigation.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+            }
+        );
+    </script>
+</body>
+</html>
