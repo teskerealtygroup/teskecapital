@@ -1649,7 +1649,140 @@
             color:
                 rgba(255, 255, 255, 0.84);
         }
+/* FAQ */
 
+.faq {
+    padding: 110px 0;
+
+    border-bottom: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(223, 38, 56, 0.08),
+            transparent 28%
+        ),
+        #08080a;
+}
+
+.faq-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(250px, 0.7fr)
+        minmax(0, 1.3fr);
+
+    align-items: start;
+    gap: clamp(50px, 8vw, 110px);
+}
+
+.faq-intro {
+    position: sticky;
+    top: calc(var(--header-height) + 40px);
+}
+
+.faq-intro h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.7rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+}
+
+.faq-intro p:last-child {
+    max-width: 500px;
+    margin-top: 22px;
+
+    color: var(--gray);
+
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.faq-list {
+    border-top: 1px solid var(--border);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 25px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    color: var(--white);
+
+    cursor: pointer;
+    list-style: none;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question::after {
+    content: "+";
+
+    width: 34px;
+    height: 34px;
+
+    flex: 0 0 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(223, 38, 56, 0.4);
+    border-radius: 50%;
+
+    color: var(--red-light);
+    background: rgba(223, 38, 56, 0.06);
+
+    font-family: "Inter", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.faq-item[open] .faq-question::after {
+    content: "−";
+
+    transform: rotate(180deg);
+
+    background: rgba(223, 38, 56, 0.14);
+}
+
+.faq-answer {
+    max-width: 760px;
+    padding: 0 65px 25px 0;
+
+    color: var(--gray);
+
+    font-size: 0.91rem;
+    line-height: 1.8;
+}
+
+.faq-answer a {
+    color: var(--red-light);
+    font-weight: 700;
+}
+
+.faq-answer a:hover {
+    color: var(--white);
+}
         /* Footer */
 
         .site-footer {
@@ -1868,8 +2001,15 @@
             .about-visual {
                 max-width: 700px;
             }
-        }
+           .faq-layout {
+    grid-template-columns: 1fr;
+}
 
+.faq-intro {
+    position: static;
+} 
+        }
+        
         /* Mobile */
 
         @media (max-width: 680px) {
@@ -1946,6 +2086,19 @@
             .section {
                 padding: 82px 0;
             }
+            .faq {
+    padding: 78px 0;
+}
+
+.faq-question {
+    padding: 22px 0;
+
+    font-size: 0.94rem;
+}
+
+.faq-answer {
+    padding-right: 0;
+}
 
             .approach-grid {
                 margin-top: 45px;
@@ -3368,9 +3521,188 @@
                 </a>
             </div>
         </section>
-    </main>
+   <section
+    class="faq"
+    id="faq"
+>
+    <div class="container faq-layout">
+        <div class="faq-intro reveal">
+            <p class="eyebrow">
+                Frequently Asked Questions
+            </p>
 
-    <footer class="site-footer">
+            <h2>
+                Clear answers. No unnecessary complexity.
+            </h2>
+
+            <p>
+                Learn more about Teske Capital, our proprietary
+                model portfolio, investment philosophy, and plans
+                for future investor access.
+            </p>
+        </div>
+
+        <div class="faq-list reveal">
+            <details class="faq-item">
+                <summary class="faq-question">
+                    What is Teske Capital?
+                </summary>
+
+                <div class="faq-answer">
+                    Teske Capital is a private investment firm being
+                    developed around disciplined, long-term capital
+                    allocation. The strategy evaluates opportunities
+                    across public equities, exchange-traded funds,
+                    digital assets, Treasury securities, gold-related
+                    investments, real estate securities, and cash
+                    equivalents.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    Is Teske Capital currently accepting investors?
+                </summary>
+
+                <div class="faq-answer">
+                    No. Teske Capital is currently managing and
+                    documenting a proprietary model portfolio using
+                    the founder’s own capital. The firm is not
+                    presently accepting outside investor funds.
+                    Future access will depend on completion of the
+                    appropriate business, legal, regulatory, and
+                    operational requirements.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    What types of assets may the portfolio hold?
+                </summary>
+
+                <div class="faq-answer">
+                    The investment universe may include Bitcoin,
+                    Ethereum, broad-market and sector ETFs, Berkshire
+                    Hathaway, Realty Income, Treasury Bills, gold
+                    ETFs, cash equivalents, and other investments
+                    consistent with the firm’s strategy. Holdings
+                    and allocations may change as valuations,
+                    economic conditions, and market risks evolve.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    Does Teske Capital guarantee investment returns?
+                </summary>
+
+                <div class="faq-answer">
+                    No. No return, yield, annual percentage, or
+                    investment outcome is guaranteed. All investments
+                    involve risk, including the possible loss of
+                    principal. Historical and model-portfolio results
+                    do not guarantee future performance.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    How often is portfolio performance updated?
+                </summary>
+
+                <div class="faq-answer">
+                    The proprietary model portfolio is generally
+                    updated weekly. Teske Capital uses weekly reporting
+                    to provide a consistent view of NAV, portfolio
+                    value, gains or losses, and investment performance
+                    without placing excessive emphasis on daily market
+                    noise.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    What does NAV mean?
+                </summary>
+
+                <div class="faq-answer">
+                    NAV means net asset value. On this website, the
+                    model NAV begins at $100.00 per model unit and
+                    moves in proportion to the portfolio’s performance.
+                    For example, a NAV of $105.60 represents a 5.60%
+                    increase from the initial $100.00 model value.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    How does Teske Capital manage risk?
+                </summary>
+
+                <div class="faq-answer">
+                    Risk management may include diversification,
+                    position sizing, maintaining cash reserves,
+                    rebalancing among asset classes, monitoring
+                    liquidity, and increasing exposure to defensive
+                    holdings such as Treasury securities and gold
+                    during periods of elevated uncertainty.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    Why does the strategy include both equities and digital assets?
+                </summary>
+
+                <div class="faq-answer">
+                    Teske Capital uses a multi-asset framework designed
+                    to participate in different sources of long-term
+                    growth. Public equities and ETFs provide exposure
+                    to established businesses and broad markets, while
+                    Bitcoin and Ethereum may offer exposure to
+                    developing digital financial infrastructure.
+                    Digital-asset allocations may be reduced when
+                    market, liquidity, or economic risks increase.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    Where can I read the firm’s investment policy?
+                </summary>
+
+                <div class="faq-answer">
+                    The current Investment Policy Statement explains
+                    the firm’s objectives, eligible assets, allocation
+                    approach, liquidity policy, and risk-management
+                    principles.
+
+                    <a href="ips.html">
+                        Read the Policy Statement →
+                    </a>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary class="faq-question">
+                    How can I express interest in investing later?
+                </summary>
+
+                <div class="faq-answer">
+                    A dedicated contact page will allow prospective
+                    investors to introduce themselves and request
+                    additional information. Submitting an inquiry will
+                    not constitute an investment commitment,
+                    subscription, offer, or acceptance by Teske Capital.
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
         <div class="container">
             <div class="footer-main">
                 <div class="footer-brand">
