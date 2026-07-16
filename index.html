@@ -1424,7 +1424,246 @@
 
             font-size: 0.86rem;
         }
+/* Fee Structure */
 
+.fees {
+    position: relative;
+    overflow: hidden;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(223, 38, 56, 0.11),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #0b0b0d,
+            #070708
+        );
+}
+
+.fees::before {
+    content: "1%";
+
+    position: absolute;
+    top: 50%;
+    right: 4%;
+
+    color: rgba(255, 255, 255, 0.025);
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(12rem, 25vw, 27rem);
+    font-weight: 800;
+    letter-spacing: -0.1em;
+    line-height: 1;
+
+    pointer-events: none;
+
+    transform: translateY(-52%);
+}
+
+.fees-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.fees-header {
+    max-width: 850px;
+}
+
+.fees-header h2 {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+}
+
+.fees-header-description {
+    max-width: 720px;
+    margin-top: 23px;
+
+    color: var(--gray);
+
+    font-size: 0.96rem;
+    line-height: 1.8;
+}
+
+.fee-layout {
+    margin-top: 58px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.82fr)
+        minmax(0, 1.18fr);
+
+    align-items: stretch;
+    gap: 18px;
+}
+
+.fee-primary-card {
+    position: relative;
+
+    min-width: 0;
+    padding: clamp(31px, 5vw, 55px);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(223, 38, 56, 0.38);
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(223, 38, 56, 0.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #171317,
+            #0e0e11
+        );
+}
+
+.fee-label {
+    display: block;
+
+    color: var(--red-light);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.fee-rate {
+    display: block;
+
+    margin-top: 24px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(4.8rem, 10vw, 8.5rem);
+    font-weight: 800;
+    letter-spacing: -0.075em;
+    line-height: 0.9;
+}
+
+.fee-rate-detail {
+    display: block;
+
+    margin-top: 18px;
+
+    color: var(--silver);
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.fee-primary-card p {
+    max-width: 560px;
+    margin-top: 23px;
+
+    color: var(--gray);
+
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.fee-details {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.fee-detail-card {
+    min-width: 0;
+    padding: 27px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.012)
+        ),
+        var(--panel);
+}
+
+.fee-detail-card span {
+    display: block;
+
+    color: var(--red);
+
+    font-size: 0.69rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.fee-detail-card h3 {
+    margin-top: 24px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: -0.03em;
+}
+
+.fee-detail-card p {
+    margin-top: 10px;
+
+    color: var(--gray);
+
+    font-size: 0.82rem;
+    line-height: 1.75;
+}
+
+.fee-examples {
+    margin-top: 18px;
+
+    border-top: 1px solid var(--border);
+}
+
+.fee-example {
+    padding: 18px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.fee-example span {
+    color: var(--gray);
+
+    font-size: 0.82rem;
+}
+
+.fee-example strong {
+    color: var(--white);
+
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+
+.fee-note {
+    margin-top: 30px;
+    padding: 22px 24px;
+
+    border-left: 3px solid var(--red);
+
+    color: #77777f;
+    background: rgba(223, 38, 56, 0.045);
+
+    font-size: 0.71rem;
+    line-height: 1.75;
+}
         /* About */
 
         .about {
@@ -1997,6 +2236,9 @@
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .fee-layout {
+    grid-template-columns: 1fr;
+}
 
             .about-visual {
                 max-width: 700px;
@@ -2105,12 +2347,13 @@
             }
 
             .asset-grid,
-            .performance-grid,
-            .principles-grid,
-            .process-grid,
-            .footer-links {
-               grid-template-columns: 1fr;
-            }
+.performance-grid,
+.principles-grid,
+.process-grid,
+.fee-details,
+.footer-links {
+    grid-template-columns: 1fr;
+}
             .performance-card {
     min-height: 155px;
 }
@@ -2250,19 +2493,25 @@
     aria-label="Primary navigation"
 >
 
-    <a href="#performance">Performance</a>
+<a href="#performance">Performance</a>
 
-    <a href="#approach">Approach</a>
+<a href="#approach">Approach</a>
 
-    <a href="#portfolio">Portfolio</a>
+<a href="#portfolio">Portfolio</a>
 
-    <a href="#principles">Principles</a>
+<a href="investmentuniverse.html">Investment Universe</a>
 
-    <a href="#process">Process</a>
+<a href="#principles">Principles</a>
 
-    <a href="ips.html">Policy Statement</a>
+<a href="#process">Process</a>
 
-    <a href="#about">About</a>
+<a href="ips.html">Policy Statement</a>
+
+<a href="investorletters.html">Investor Letters</a>
+
+<a href="founder.html">Founder</a>
+
+<a href="#about">About</a>
 
     <a
     href="contact.html"
@@ -3410,7 +3659,166 @@
                 </div>
             </div>
         </section>
+<section
+    class="section fees"
+    id="fees"
+>
+    <div class="container fees-inner">
+        <div class="fees-header reveal">
+            <p class="eyebrow">
+                Proposed Fee Structure
+            </p>
 
+            <h2>
+                Simple, transparent, and aligned.
+            </h2>
+
+            <p class="fees-header-description">
+                Teske Capital anticipates charging one straightforward
+                annual management fee based on the value of each
+                investor’s assets under management. The proposed
+                structure is designed to remain clear and easy to
+                understand without unnecessary layers of fees.
+            </p>
+        </div>
+
+        <div class="fee-layout">
+            <article class="fee-primary-card reveal">
+                <span class="fee-label">
+                    Proposed Annual Management Fee
+                </span>
+
+                <strong class="fee-rate">
+                    1.00%
+                </strong>
+
+                <span class="fee-rate-detail">
+                    Of each investor’s assets under management annually
+                </span>
+
+                <p>
+                    The management fee is intended to compensate Teske
+                    Capital for portfolio research, asset allocation,
+                    risk monitoring, investment oversight, performance
+                    reporting, and ongoing portfolio management.
+                </p>
+            </article>
+
+            <div class="fee-details">
+                <article class="fee-detail-card reveal">
+                    <span>
+                        01
+                    </span>
+
+                    <h3>
+                        Straightforward calculation
+                    </h3>
+
+                    <p>
+                        The proposed annual fee equals 1.00% of the
+                        applicable value of each investor’s managed
+                        capital.
+                    </p>
+
+                    <div class="fee-examples">
+                        <div class="fee-example">
+                            <span>
+                                $10,000 managed
+                            </span>
+
+                            <strong>
+                                $100 annually
+                            </strong>
+                        </div>
+
+                        <div class="fee-example">
+                            <span>
+                                $120,000 managed
+                            </span>
+
+                            <strong>
+                                $1,200 annually
+                            </strong>
+                        </div>
+
+                        <div class="fee-example">
+                            <span>
+                                $250,000 managed
+                            </span>
+
+                            <strong>
+                                $2,500 annually
+                            </strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="fee-detail-card reveal">
+                    <span>
+                        02
+                    </span>
+
+                    <h3>
+                        No proposed performance fee
+                    </h3>
+
+                    <p>
+                        Teske Capital does not currently anticipate
+                        charging an incentive or performance fee. The
+                        proposed compensation structure is limited to
+                        the annual management fee, subject to the final
+                        legal and offering documents.
+                    </p>
+                </article>
+
+                <article class="fee-detail-card reveal">
+                    <span>
+                        03
+                    </span>
+
+                    <h3>
+                        Proposed quarterly assessment
+                    </h3>
+
+                    <p>
+                        The annual fee may be calculated and charged
+                        quarterly in arrears, generally representing
+                        approximately 0.25% per quarter. The final
+                        calculation method will be defined in the
+                        governing documents.
+                    </p>
+                </article>
+
+                <article class="fee-detail-card reveal">
+                    <span>
+                        04
+                    </span>
+
+                    <h3>
+                        Full disclosure before investing
+                    </h3>
+
+                    <p>
+                        Investors will receive complete information
+                        regarding management fees, fund expenses,
+                        calculation methods, payment timing, and any
+                        applicable waivers before committing capital.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <div class="fee-note reveal">
+            This proposed fee structure is presented for development
+            and planning purposes only. Teske Capital is not currently
+            accepting outside investor capital. Final fees, expenses,
+            billing practices, and investor terms will be established
+            in the applicable operating, subscription, offering, and
+            disclosure documents and may differ from the structure
+            described above.
+        </div>
+    </div>
+</section>
         <section
             class="section about"
             id="about"
