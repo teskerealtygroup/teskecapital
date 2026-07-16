@@ -1,0 +1,2652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore the Teske Capital investment universe, including equities, ETFs, digital assets, Treasury securities, gold, real estate, and cash reserves."
+    >
+
+    <meta name="theme-color" content="#080808">
+
+    <title>
+        Investment Universe | Teske Capital
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --red: #df2638;
+            --red-light: #f24859;
+            --red-dark: #961322;
+
+            --black: #050506;
+            --black-soft: #09090b;
+            --panel: #101013;
+            --panel-light: #17171b;
+            --panel-lighter: #1d1d22;
+
+            --white: #f5f5f7;
+            --silver: #c8c8ce;
+            --gray: #92929a;
+            --gray-dark: #6b6b73;
+
+            --border: rgba(255, 255, 255, 0.1);
+            --border-strong: rgba(255, 255, 255, 0.17);
+
+            --shadow:
+                0 28px 80px rgba(0, 0, 0, 0.45);
+
+            --container: 1240px;
+            --header-height: 94px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            color: var(--white);
+            background: var(--black);
+
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        section {
+            scroll-margin-top:
+                calc(var(--header-height) + 25px);
+        }
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--container)
+            );
+
+            margin-inline: auto;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+            color: var(--red-light);
+
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.19em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 30px;
+            height: 1px;
+
+            background: var(--red);
+        }
+
+        .top-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1100;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--red),
+                    var(--red-light),
+                    var(--red),
+                    transparent
+                );
+        }
+
+        /* Header */
+
+        .site-header {
+            position: fixed;
+            top: 3px;
+            left: 0;
+            z-index: 1000;
+
+            width: 100%;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                rgba(6, 6, 7, 0.9);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: var(--header-height);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 34px;
+        }
+
+        .brand {
+            min-width: 0;
+            flex: 0 1 330px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .brand img {
+            width: min(100%, 310px);
+            height: 66px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .main-nav a:not(.nav-cta) {
+            position: relative;
+
+            color: var(--silver);
+
+            font-size: 0.85rem;
+            font-weight: 700;
+
+            transition: color 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta)::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 1px;
+
+            background: var(--red);
+
+            transition: width 0.2s ease;
+        }
+
+        .main-nav a:not(.nav-cta):hover {
+            color: #ffffff;
+        }
+
+        .main-nav a:not(.nav-cta):hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            min-height: 44px;
+            padding: 0 18px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.65);
+            border-radius: 4px;
+
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-size: 0.84rem;
+            font-weight: 800;
+        }
+
+        .nav-cta:hover {
+            background:
+                rgba(223, 38, 56, 0.18);
+        }
+
+        .menu-toggle {
+            position: relative;
+            z-index: 4;
+
+            display: none;
+
+            width: 46px;
+            height: 46px;
+
+            flex: 0 0 auto;
+
+            border: 1px solid var(--border-strong);
+            border-radius: 4px;
+
+            background: transparent;
+
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            position: absolute;
+            left: 11px;
+
+            width: 22px;
+            height: 2px;
+
+            background: #ffffff;
+
+            transition:
+                top 0.25s ease,
+                opacity 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .menu-toggle span:nth-child(1) {
+            top: 14px;
+        }
+
+        .menu-toggle span:nth-child(2) {
+            top: 21px;
+        }
+
+        .menu-toggle span:nth-child(3) {
+            top: 28px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            top: 21px;
+
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            top: 21px;
+
+            transform: rotate(-45deg);
+        }
+
+        /* Hero */
+
+        .universe-hero {
+            position: relative;
+
+            min-height: 690px;
+            padding-top:
+                calc(var(--header-height) + 120px);
+            padding-bottom: 105px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 82% 18%,
+                    rgba(223, 38, 56, 0.15),
+                    transparent 29%
+                ),
+                radial-gradient(
+                    circle at 14% 88%,
+                    rgba(120, 120, 130, 0.06),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    145deg,
+                    #070708,
+                    #0c090a 55%,
+                    #12090b
+                );
+        }
+
+        .universe-hero::before {
+            content: "TC";
+
+            position: absolute;
+            top: 50%;
+            right: 4%;
+
+            color:
+                rgba(255, 255, 255, 0.025);
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(13rem, 28vw, 30rem);
+            font-weight: 800;
+            letter-spacing: -0.13em;
+            line-height: 1;
+
+            pointer-events: none;
+
+            transform: translateY(-52%);
+        }
+
+        .universe-hero-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 980px;
+        }
+
+        .universe-hero h1 {
+            max-width: 980px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(3.5rem, 7vw, 7.2rem);
+            font-weight: 800;
+            letter-spacing: -0.065em;
+            line-height: 0.95;
+        }
+
+        .universe-hero h1 span {
+            color: var(--red);
+        }
+
+        .universe-hero-description {
+            max-width: 800px;
+            margin-top: 29px;
+
+            color: #b7b7bd;
+
+            font-size: clamp(1rem, 1.4vw, 1.17rem);
+            line-height: 1.8;
+        }
+
+        .universe-status {
+            margin-top: 37px;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 11px 15px;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.3);
+            border-radius: 100px;
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.07);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .universe-status::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 13px rgba(223, 38, 56, 0.8);
+        }
+
+        /* Purpose strip */
+
+        .purpose-strip {
+            border-bottom: 1px solid var(--border);
+
+            background: #08080a;
+        }
+
+        .purpose-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 1px;
+
+            background: var(--border);
+        }
+
+        .purpose-item {
+            min-width: 0;
+            padding: 27px 25px;
+
+            background: #0d0d10;
+        }
+
+        .purpose-item span {
+            color: var(--red);
+
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+        }
+
+        .purpose-item strong {
+            display: block;
+
+            margin-top: 20px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1rem;
+        }
+
+        .purpose-item p {
+            margin-top: 7px;
+
+            color: var(--gray);
+
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+
+        /* Universe layout */
+
+        .universe-section {
+            padding: 115px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #09090b,
+                    #060607
+                );
+        }
+
+        .universe-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(225px, 0.31fr)
+                minmax(0, 1fr);
+
+            align-items: start;
+            gap: clamp(50px, 8vw, 105px);
+        }
+
+        .universe-sidebar {
+            position: sticky;
+            top:
+                calc(var(--header-height) + 40px);
+
+            padding: 25px;
+
+            border: 1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.04),
+                    rgba(255, 255, 255, 0.01)
+                ),
+                var(--panel);
+        }
+
+        .universe-sidebar h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: -0.03em;
+        }
+
+        .universe-sidebar p {
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 0.77rem;
+        }
+
+        .universe-sidebar nav {
+            margin-top: 23px;
+
+            display: grid;
+        }
+
+        .universe-sidebar a {
+            padding: 13px 0;
+
+            border-bottom: 1px solid var(--border);
+
+            color: var(--gray);
+
+            font-size: 0.79rem;
+            font-weight: 700;
+
+            transition:
+                color 0.2s ease,
+                padding-left 0.2s ease;
+        }
+
+        .universe-sidebar a:hover {
+            padding-left: 7px;
+
+            color: var(--red-light);
+        }
+
+        .universe-content {
+            min-width: 0;
+        }
+
+        .universe-intro {
+            margin-bottom: 64px;
+        }
+
+        .universe-intro h2 {
+            max-width: 850px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.8rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.02;
+        }
+
+        .universe-intro p {
+            max-width: 800px;
+            margin-top: 23px;
+
+            color: var(--gray);
+
+            font-size: 0.95rem;
+            line-height: 1.85;
+        }
+
+        /* Asset groups */
+
+        .asset-group {
+            margin-top: 90px;
+
+            scroll-margin-top:
+                calc(var(--header-height) + 35px);
+        }
+
+        .asset-group:first-of-type {
+            margin-top: 0;
+        }
+
+        .asset-group-header {
+            padding-bottom: 24px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .asset-group-number {
+            color: var(--red-light);
+
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .asset-group-header h2 {
+            margin-top: 9px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.1rem, 4.5vw, 3.8rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.05;
+        }
+
+        .asset-group-header p {
+            max-width: 760px;
+            margin-top: 17px;
+
+            color: var(--gray);
+
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .asset-grid {
+            margin-top: 30px;
+
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .asset-card {
+            position: relative;
+
+            min-width: 0;
+            min-height: 330px;
+            padding: 29px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0,
+                    rgba(223, 38, 56, 0.08),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    145deg,
+                    #151519,
+                    #0d0d10
+                );
+
+            transition:
+                transform 0.22s ease,
+                border-color 0.22s ease;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(223, 38, 56, 0.5);
+        }
+
+        .asset-card::after {
+            content: "";
+
+            position: absolute;
+            right: -80px;
+            bottom: -80px;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(223, 38, 56, 0.07);
+
+            filter: blur(8px);
+
+            pointer-events: none;
+        }
+
+        .asset-card-top {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .asset-symbol {
+            min-width: 54px;
+            height: 54px;
+            padding-inline: 11px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid rgba(223, 38, 56, 0.4);
+
+            color: var(--red-light);
+            background:
+                rgba(223, 38, 56, 0.08);
+
+            font-family: "Manrope", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+
+        .asset-role {
+            padding: 7px 9px;
+
+            border: 1px solid var(--border);
+
+            color: var(--gray-dark);
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .asset-category {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 29px;
+
+            color: var(--red-light);
+
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .asset-card h3 {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 5px;
+
+            font-family: "Manrope", sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: -0.035em;
+            line-height: 1.25;
+        }
+
+        .asset-thesis {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 14px;
+
+            color: #a4a4ac;
+
+            font-size: 0.86rem;
+            line-height: 1.75;
+        }
+
+        .asset-purpose {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 22px;
+            padding-top: 18px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .asset-purpose strong {
+            display: block;
+
+            color: var(--silver);
+
+            font-size: 0.71rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .asset-purpose p {
+            margin-top: 7px;
+
+            color: var(--gray);
+
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+
+        /* Allocation philosophy */
+
+        .allocation-section {
+            padding: 105px 0;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at 82% 10%,
+                    rgba(223, 38, 56, 0.11),
+                    transparent 28%
+                ),
+                #0a0a0c;
+        }
+
+        .allocation-layout {
+            display: grid;
+            grid-template-columns:
+                minmax(0, 0.8fr)
+                minmax(0, 1.2fr);
+
+            align-items: start;
+            gap: clamp(55px, 8vw, 110px);
+        }
+
+        .allocation-copy h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.03;
+        }
+
+        .allocation-copy p {
+            margin-top: 22px;
+
+            color: var(--gray);
+
+            font-size: 0.93rem;
+            line-height: 1.82;
+        }
+
+        .allocation-rules {
+            display: grid;
+            gap: 1px;
+
+            background: var(--border);
+        }
+
+        .allocation-rule {
+            padding: 25px;
+
+            background: var(--panel);
+        }
+
+        .allocation-rule span {
+            color: var(--red);
+
+            font-size: 0.69rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .allocation-rule h3 {
+            margin-top: 17px;
+
+            font-size: 1rem;
+        }
+
+        .allocation-rule p {
+            margin-top: 8px;
+
+            color: var(--gray);
+
+            font-size: 0.82rem;
+            line-height: 1.72;
+        }
+
+        /* Disclosure */
+
+        .universe-disclosure {
+            padding: 33px 0;
+
+            background: #08080a;
+        }
+
+        .disclosure-box {
+            padding: 23px 25px;
+
+            border: 1px solid var(--border);
+
+            color: #717179;
+            background:
+                rgba(255, 255, 255, 0.018);
+
+            font-size: 0.7rem;
+            line-height: 1.75;
+        }
+
+        /* CTA */
+
+        .universe-cta {
+            position: relative;
+
+            min-height: 400px;
+            padding: 85px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef3448,
+                    #a60e20
+                );
+        }
+
+        .universe-cta-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 820px;
+        }
+
+        .universe-cta h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5.8rem);
+            font-weight: 800;
+            letter-spacing: -0.055em;
+            line-height: 0.98;
+        }
+
+        .universe-cta p {
+            max-width: 650px;
+            margin: 22px auto 30px;
+
+            color:
+                rgba(255, 255, 255, 0.84);
+        }
+
+        .button {
+            min-height: 52px;
+            padding: 0 24px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            border: 1px solid transparent;
+            border-radius: 4px;
+
+            color: #111114;
+            background: #ffffff;
+
+            font-size: 0.89rem;
+            font-weight: 800;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            background: #ededf0;
+
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        .site-footer {
+            padding: 68px 0 28px;
+
+            background: #050506;
+        }
+
+        .footer-main {
+            padding-bottom: 48px;
+
+            display: grid;
+            grid-template-columns:
+                minmax(0, 1.15fr)
+                minmax(0, 0.85fr);
+
+            gap: 70px;
+        }
+
+        .footer-brand img {
+            width: min(100%, 330px);
+            height: 82px;
+
+            object-fit: contain;
+            object-position: left center;
+        }
+
+        .footer-brand p {
+            max-width: 440px;
+            margin-top: 16px;
+
+            color: var(--gray);
+
+            font-size: 0.86rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 42px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 17px;
+
+            font-size: 0.85rem;
+        }
+
+        .footer-column a {
+            display: block;
+
+            margin-top: 10px;
+
+            color: var(--gray);
+
+            font-size: 0.83rem;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+        }
+
+        .footer-disclaimer {
+            padding: 25px 0;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .footer-disclaimer p {
+            color: #66666e;
+
+            font-size: 0.68rem;
+            line-height: 1.75;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+
+            color: #6c6c74;
+
+            font-size: 0.73rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        /* Tablet */
+
+        @media (max-width: 1050px) {
+            :root {
+                --header-height: 86px;
+            }
+
+            .brand {
+                flex-basis: 300px;
+            }
+
+            .brand img {
+                width: min(100%, 285px);
+                height: 62px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                bottom: auto;
+
+                width: min(360px, 88vw);
+                height:
+                    calc(
+                        100dvh -
+                        var(--header-height) -
+                        3px
+                    );
+
+                padding: 30px;
+
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+
+                border-left: 1px solid var(--border);
+
+                background: #070708;
+
+                overflow-y: auto;
+
+                transform: translateX(105%);
+
+                transition:
+                    transform 0.3s ease;
+
+                z-index: 9999;
+            }
+
+            .main-nav.open {
+                transform: translateX(0);
+            }
+
+            .main-nav a:not(.nav-cta) {
+                padding: 15px 0;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-cta {
+                min-height: 50px;
+                margin-top: 22px;
+            }
+
+            .purpose-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .universe-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .universe-sidebar {
+                position: static;
+            }
+
+            .universe-sidebar nav {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+
+                column-gap: 22px;
+            }
+
+            .allocation-layout,
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 680px) {
+            :root {
+                --header-height: 78px;
+            }
+
+            .container {
+                width: min(
+                    calc(100% - 28px),
+                    var(--container)
+                );
+            }
+
+            .header-inner {
+                gap: 14px;
+            }
+
+            .brand {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .brand img {
+                width: min(100%, 255px);
+                height: 54px;
+            }
+
+            .menu-toggle {
+                width: 44px;
+                height: 44px;
+            }
+
+            .main-nav {
+                top: 100%;
+            }
+
+            .universe-hero {
+                min-height: auto;
+
+                padding-top:
+                    calc(var(--header-height) + 72px);
+
+                padding-bottom: 78px;
+            }
+
+            .universe-hero h1 {
+                font-size:
+                    clamp(3rem, 14vw, 4.5rem);
+            }
+
+            .purpose-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .universe-section {
+                padding: 78px 0;
+            }
+
+            .universe-sidebar nav {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .asset-group {
+                margin-top: 70px;
+            }
+
+            .asset-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .asset-card {
+                min-height: auto;
+            }
+
+            .allocation-section {
+                padding: 78px 0;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand img {
+                width: min(100%, 300px);
+                height: 76px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .brand img {
+                width: min(100%, 225px);
+                height: 50px;
+            }
+
+            .universe-hero h1 {
+                font-size:
+                    clamp(2.75rem, 13vw, 3.8rem);
+            }
+
+            .universe-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand img {
+                width: min(100%, 260px);
+                height: 68px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-line"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a
+                href="index.html"
+                class="brand"
+                aria-label="Teske Capital home"
+            >
+                <img
+                    src="teskecapitallogo5.png"
+                    alt="Teske Capital"
+                >
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNavigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav
+                class="main-nav"
+                id="mainNavigation"
+                aria-label="Primary navigation"
+            >
+                <a href="index.html#performance">
+                    Performance
+                </a>
+
+                <a href="index.html#approach">
+                    Approach
+                </a>
+
+                <a href="investmentuniverse.html">
+                    Investment Universe
+                </a>
+
+                <a href="ips.html">
+                    Policy Statement
+                </a>
+
+                <a href="investorletters.html">
+                    Investor Letters
+                </a>
+
+                <a href="founder.html">
+                    Founder
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="nav-cta"
+                >
+                    Investor Access
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="universe-hero">
+            <div class="container">
+                <div class="universe-hero-content">
+                    <p class="eyebrow">
+                        Teske Capital Strategy
+                    </p>
+
+                    <h1>
+                        Our Investment
+                        <span>Universe.</span>
+                    </h1>
+
+                    <p class="universe-hero-description">
+                        Teske Capital allocates across a defined group
+                        of assets selected for growth, diversification,
+                        income, liquidity, inflation protection, and
+                        resilience during changing market conditions.
+                    </p>
+
+                    <div class="universe-status">
+                        Multi-Asset Investment Framework
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="purpose-strip">
+            <div class="purpose-grid">
+                <article class="purpose-item">
+                    <span>
+                        01
+                    </span>
+
+                    <strong>
+                        Long-Term Growth
+                    </strong>
+
+                    <p>
+                        Participate in the growth of public companies,
+                        technology, and developing digital markets.
+                    </p>
+                </article>
+
+                <article class="purpose-item">
+                    <span>
+                        02
+                    </span>
+
+                    <strong>
+                        Diversification
+                    </strong>
+
+                    <p>
+                        Reduce dependence on one company, sector,
+                        asset class, or economic outcome.
+                    </p>
+                </article>
+
+                <article class="purpose-item">
+                    <span>
+                        03
+                    </span>
+
+                    <strong>
+                        Income and Liquidity
+                    </strong>
+
+                    <p>
+                        Generate portfolio income while maintaining
+                        capital available for future opportunities.
+                    </p>
+                </article>
+
+                <article class="purpose-item">
+                    <span>
+                        04
+                    </span>
+
+                    <strong>
+                        Defensive Resilience
+                    </strong>
+
+                    <p>
+                        Maintain assets intended to help during
+                        inflation, volatility, and economic uncertainty.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="universe-section">
+            <div class="container universe-layout">
+                <aside class="universe-sidebar">
+                    <h2>
+                        Asset Categories
+                    </h2>
+
+                    <p>
+                        Explore the role each asset may serve within the
+                        Teske Capital portfolio.
+                    </p>
+
+                    <nav aria-label="Investment universe categories">
+                        <a href="#core-markets">
+                            Core Markets
+                        </a>
+
+                        <a href="#growth">
+                            Technology &amp; Growth
+                        </a>
+
+                        <a href="#sectors">
+                            Sector Diversification
+                        </a>
+
+                        <a href="#quality-equity">
+                            Quality Equity
+                        </a>
+
+                        <a href="#digital-assets">
+                            Digital Assets
+                        </a>
+
+                        <a href="#income">
+                            Income &amp; Real Estate
+                        </a>
+
+                        <a href="#defensive">
+                            Defensive Assets
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="universe-content">
+                    <div class="universe-intro">
+                        <p class="eyebrow">
+                            Purpose-Driven Allocation
+                        </p>
+
+                        <h2>
+                            Every asset should have a reason to exist.
+                        </h2>
+
+                        <p>
+                            Teske Capital does not seek to own assets
+                            merely because they are popular. Each
+                            position should serve a defined purpose
+                            within the portfolio, whether that purpose
+                            is growth, income, liquidity, diversification,
+                            inflation protection, or downside resilience.
+                            Holdings and allocations may change as
+                            valuations, risks, and economic conditions
+                            evolve.
+                        </p>
+                    </div>
+
+                    <!-- Core Markets -->
+
+                    <section
+                        class="asset-group"
+                        id="core-markets"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 01
+                            </span>
+
+                            <h2>
+                                Core Market Exposure
+                            </h2>
+
+                            <p>
+                                Broad-market funds provide a diversified
+                                foundation and reduce the need to depend
+                                entirely on individual stock selection.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VOO
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Core Holding
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Broad-Market ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard S&amp;P 500 ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VOO provides diversified exposure to
+                                    many of the largest and most
+                                    established public companies in the
+                                    United States. It serves as a
+                                    foundation for long-term participation
+                                    in the broader U.S. economy.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Core market participation,
+                                        broad diversification, and
+                                        long-term capital appreciation.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Technology and Growth -->
+
+                    <section
+                        class="asset-group"
+                        id="growth"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 02
+                            </span>
+
+                            <h2>
+                                Technology and Growth
+                            </h2>
+
+                            <p>
+                                These funds provide targeted exposure to
+                                innovation, digital infrastructure, and
+                                businesses capable of producing
+                                above-average long-term growth.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        QQQ
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Growth
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Nasdaq-100 ETF
+                                </p>
+
+                                <h3>
+                                    Invesco QQQ Trust
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    QQQ provides exposure to many of the
+                                    largest nonfinancial companies listed
+                                    on the Nasdaq. Its holdings are
+                                    concentrated in technology,
+                                    communications, consumer growth, and
+                                    other innovation-led industries.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Participation in innovative
+                                        companies with meaningful
+                                        long-term growth potential.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VGT
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Sector Growth
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Technology ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard Information Technology ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VGT provides focused exposure to
+                                    companies involved in software,
+                                    semiconductors, hardware, cloud
+                                    infrastructure, cybersecurity, and
+                                    other areas of information
+                                    technology.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Targeted participation in the
+                                        technology sector and the
+                                        continued expansion of digital
+                                        infrastructure.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Sector Diversification -->
+
+                    <section
+                        class="asset-group"
+                        id="sectors"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 03
+                            </span>
+
+                            <h2>
+                                Sector Diversification
+                            </h2>
+
+                            <p>
+                                Sector funds broaden the portfolio beyond
+                                technology and allow capital to
+                                participate in different parts of the
+                                economy.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VFH
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Cyclical
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Financials ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard Financials ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VFH provides exposure to banks,
+                                    insurers, investment firms,
+                                    payment businesses, and other
+                                    financial-service companies.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Diversification beyond
+                                        technology and participation in
+                                        credit, banking, insurance, and
+                                        financial activity.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VHT
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Defensive Growth
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Health Care ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard Health Care ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VHT provides exposure to
+                                    pharmaceutical companies, medical
+                                    technology, biotechnology, health
+                                    services, and other businesses tied
+                                    to long-term health-care demand.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        A combination of defensive
+                                        demand, innovation, and long-term
+                                        demographic growth.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VIS
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Economic Growth
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Industrials ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard Industrials ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VIS provides exposure to industrial
+                                    companies involved in aerospace,
+                                    transportation, construction,
+                                    machinery, logistics, and
+                                    infrastructure.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Participation in manufacturing,
+                                        infrastructure spending,
+                                        transportation, and broader
+                                        economic expansion.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        VPU
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Defensive Income
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Utilities ETF
+                                </p>
+
+                                <h3>
+                                    Vanguard Utilities ETF
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    VPU provides exposure to electricity,
+                                    natural gas, water, and utility
+                                    infrastructure companies whose
+                                    services remain necessary across
+                                    economic cycles.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Defensive exposure, dividend
+                                        income, and reduced dependence on
+                                        high-growth market sectors.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Quality Equity -->
+
+                    <section
+                        class="asset-group"
+                        id="quality-equity"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 04
+                            </span>
+
+                            <h2>
+                                Quality Public Equity
+                            </h2>
+
+                            <p>
+                                Select individual companies may be held
+                                when their structure, leadership, assets,
+                                and capital-allocation discipline provide
+                                a compelling long-term case.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        BRK.B
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Quality Compounder
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Public Equity
+                                </p>
+
+                                <h3>
+                                    Berkshire Hathaway
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Berkshire Hathaway owns a collection
+                                    of operating businesses, insurance
+                                    companies, public securities, and
+                                    cash-producing assets. Its structure
+                                    offers internal diversification and a
+                                    history of disciplined capital
+                                    allocation.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Exposure to durable businesses,
+                                        insurance operations, financial
+                                        strength, and experienced capital
+                                        allocation.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Digital Assets -->
+
+                    <section
+                        class="asset-group"
+                        id="digital-assets"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 05
+                            </span>
+
+                            <h2>
+                                Digital Assets
+                            </h2>
+
+                            <p>
+                                Digital assets provide exposure to a
+                                developing financial and technological
+                                ecosystem, but allocations may be
+                                actively reduced when volatility,
+                                liquidity, or economic risk increases.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        BTC
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Alternative Growth
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Digital Asset
+                                </p>
+
+                                <h3>
+                                    Bitcoin
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Bitcoin is a scarce digital asset
+                                    with a fixed issuance framework and
+                                    a globally accessible network. Teske
+                                    Capital views it as a potential
+                                    long-term store of value and an
+                                    alternative asset with asymmetric
+                                    growth potential.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Long-term digital-asset exposure,
+                                        monetary diversification, and
+                                        potential upside outside
+                                        traditional financial markets.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        ETH
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Digital Infrastructure
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Digital Asset
+                                </p>
+
+                                <h3>
+                                    Ethereum
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Ethereum provides infrastructure for
+                                    smart contracts, decentralized
+                                    applications, tokenized assets, and
+                                    digital financial services. Its value
+                                    proposition is tied to the continued
+                                    use and development of its network.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Exposure to blockchain
+                                        infrastructure and the potential
+                                        development of programmable
+                                        digital finance.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Income and Real Estate -->
+
+                    <section
+                        class="asset-group"
+                        id="income"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 06
+                            </span>
+
+                            <h2>
+                                Income and Real Estate
+                            </h2>
+
+                            <p>
+                                Income-producing assets can support
+                                portfolio cash flow and provide exposure
+                                to sources of return beyond equity price
+                                appreciation.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        O
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Income
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Real Estate Investment Trust
+                                </p>
+
+                                <h3>
+                                    Realty Income
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Realty Income owns a diversified
+                                    portfolio of commercial properties
+                                    leased to operating businesses. It is
+                                    known for distributing dividends on
+                                    a monthly schedule.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Real-estate exposure, recurring
+                                        dividend income, and
+                                        diversification beyond stocks,
+                                        bonds, and digital assets.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Defensive -->
+
+                    <section
+                        class="asset-group"
+                        id="defensive"
+                    >
+                        <div class="asset-group-header">
+                            <span class="asset-group-number">
+                                Category 07
+                            </span>
+
+                            <h2>
+                                Defensive Assets and Liquidity
+                            </h2>
+
+                            <p>
+                                Defensive assets are intended to preserve
+                                flexibility and help the portfolio
+                                withstand inflation, volatility,
+                                geopolitical uncertainty, and market
+                                downturns.
+                            </p>
+                        </div>
+
+                        <div class="asset-grid">
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        T
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Capital Preservation
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Treasury Securities
+                                </p>
+
+                                <h3>
+                                    Treasury Bills
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Treasury Bills are short-duration
+                                    obligations of the United States
+                                    government. They may provide income
+                                    while helping maintain liquidity and
+                                    limit exposure to longer-duration
+                                    interest-rate risk.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why they exist
+                                    </strong>
+
+                                    <p>
+                                        Liquidity, capital preservation,
+                                        short-duration income, and dry
+                                        powder for future opportunities.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        Au
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Inflation Hedge
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Alternative Exposure
+                                </p>
+
+                                <h3>
+                                    Gold ETFs
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Gold ETFs provide exposure to the
+                                    price of gold without requiring the
+                                    direct storage of physical bullion.
+                                    Gold may behave differently from
+                                    equities during periods of inflation,
+                                    currency concern, or geopolitical
+                                    stress.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why they exist
+                                    </strong>
+
+                                    <p>
+                                        Inflation sensitivity,
+                                        geopolitical diversification,
+                                        and defensive exposure during
+                                        periods of reduced market
+                                        confidence.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="asset-card">
+                                <div class="asset-card-top">
+                                    <span class="asset-symbol">
+                                        CASH
+                                    </span>
+
+                                    <span class="asset-role">
+                                        Liquidity Reserve
+                                    </span>
+                                </div>
+
+                                <p class="asset-category">
+                                    Cash and Cash Equivalents
+                                </p>
+
+                                <h3>
+                                    Strategic Cash Reserves
+                                </h3>
+
+                                <p class="asset-thesis">
+                                    Cash is not treated as a failure to
+                                    invest. It provides stability,
+                                    flexibility, and the ability to act
+                                    when market prices become more
+                                    attractive or when risk increases.
+                                </p>
+
+                                <div class="asset-purpose">
+                                    <strong>
+                                        Why it exists
+                                    </strong>
+
+                                    <p>
+                                        Teske Capital intends to
+                                        generally maintain a meaningful
+                                        liquidity reserve, currently
+                                        expected to fall near 10% to 20%
+                                        depending on market conditions.
+                                    </p>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section class="allocation-section">
+            <div class="container allocation-layout">
+                <div class="allocation-copy">
+                    <p class="eyebrow">
+                        Allocation Philosophy
+                    </p>
+
+                    <h2>
+                        The universe is defined. The allocation remains flexible.
+                    </h2>
+
+                    <p>
+                        Teske Capital may adjust the weight of each
+                        asset as valuations, inflation, interest rates,
+                        geopolitical risks, market sentiment, and
+                        economic conditions change. The goal is not to
+                        maintain a permanently fixed portfolio. It is to
+                        remain disciplined while allowing the portfolio
+                        to evolve.
+                    </p>
+                </div>
+
+                <div class="allocation-rules">
+                    <article class="allocation-rule">
+                        <span>
+                            01
+                        </span>
+
+                        <h3>
+                            Increase growth exposure selectively
+                        </h3>
+
+                        <p>
+                            Technology, broad-market equities, and
+                            digital assets may receive greater
+                            allocation when valuations, liquidity, and
+                            market conditions support additional risk.
+                        </p>
+                    </article>
+
+                    <article class="allocation-rule">
+                        <span>
+                            02
+                        </span>
+
+                        <h3>
+                            Increase defensive exposure when needed
+                        </h3>
+
+                        <p>
+                            Treasury securities, gold, utilities, and
+                            cash reserves may be increased during
+                            inflation, geopolitical stress, or elevated
+                            uncertainty.
+                        </p>
+                    </article>
+
+                    <article class="allocation-rule">
+                        <span>
+                            03
+                        </span>
+
+                        <h3>
+                            Reduce concentration risk
+                        </h3>
+
+                        <p>
+                            Sector funds, real estate, quality public
+                            equities, and defensive assets help reduce
+                            dependence on technology or any single
+                            source of return.
+                        </p>
+                    </article>
+
+                    <article class="allocation-rule">
+                        <span>
+                            04
+                        </span>
+
+                        <h3>
+                            Preserve liquidity
+                        </h3>
+
+                        <p>
+                            Cash and short-duration Treasury securities
+                            allow the portfolio to respond to market
+                            opportunities without being forced to sell
+                            long-term holdings at unfavorable prices.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="universe-disclosure">
+            <div class="container">
+                <div class="disclosure-box">
+                    The assets identified on this page represent the
+                    current Teske Capital investment universe and do not
+                    constitute a promise that any asset will be held,
+                    purchased, or maintained. Holdings, allocation
+                    levels, and investment categories may change
+                    without notice. This page is provided for
+                    informational purposes only and does not constitute
+                    investment advice, an offer, or a solicitation.
+                </div>
+            </div>
+        </section>
+
+        <section class="universe-cta">
+            <div class="universe-cta-content">
+                <h2>
+                    Learn how these assets become a portfolio.
+                </h2>
+
+                <p>
+                    Review the Teske Capital Investment Policy Statement
+                    for more information about allocation, liquidity,
+                    rebalancing, and risk-management principles.
+                </p>
+
+                <a
+                    href="ips.html"
+                    class="button"
+                >
+                    Read the Policy Statement
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img
+                        src="teskecapitallogo5.png"
+                        alt="Teske Capital"
+                    >
+
+                    <p>
+                        Private capital. Disciplined allocation.
+                        Long-term focus.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>
+                            Explore
+                        </h3>
+
+                        <a href="index.html">
+                            Home
+                        </a>
+
+                        <a href="investmentuniverse.html">
+                            Investment Universe
+                        </a>
+
+                        <a href="founder.html">
+                            Meet Our Founder
+                        </a>
+
+                        <a href="investorletters.html">
+                            Investor Letters
+                        </a>
+
+                        <a href="ips.html">
+                            Policy Statement
+                        </a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>
+                            Connect
+                        </h3>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="contact.html">
+                            Investor Interest
+                        </a>
+
+                        <a href="privacypolicy.html">
+                            Privacy Policy
+                        </a>
+
+                        <a href="termsofuse.html">
+                            Terms of Use
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                <p>
+                    This website is provided solely for informational
+                    purposes and does not constitute an offer to sell,
+                    a solicitation of an offer to purchase, or a
+                    recommendation regarding any security, investment
+                    product, or investment strategy. Teske Capital is
+                    not currently accepting outside investor capital.
+                    All investments involve risk, including possible
+                    loss of principal. Past performance does not
+                    guarantee future results.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    ©
+                    <span id="currentYear"></span>
+                    Teske Capital LLC. All rights reserved.
+                </span>
+
+                <div class="footer-bottom-links">
+                    <a href="privacypolicy.html">
+                        Privacy
+                    </a>
+
+                    <a href="termsofuse.html">
+                        Terms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const mainNavigation =
+            document.getElementById(
+                "mainNavigation"
+            );
+
+        const currentYear =
+            document.getElementById(
+                "currentYear"
+            );
+
+        currentYear.textContent =
+            new Date().getFullYear();
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+                const isOpen =
+                    mainNavigation.classList.toggle(
+                        "open"
+                    );
+
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
+
+                document.body.classList.toggle(
+                    "menu-open",
+                    isOpen
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+            }
+        );
+
+        document
+            .querySelectorAll(
+                ".main-nav a"
+            )
+            .forEach(
+                function (navigationLink) {
+                    navigationLink.addEventListener(
+                        "click",
+                        function () {
+                            mainNavigation.classList.remove(
+                                "open"
+                            );
+
+                            menuToggle.classList.remove(
+                                "active"
+                            );
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+                            menuToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+                        }
+                    );
+                }
+            );
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+                if (
+                    event.key === "Escape"
+                ) {
+                    mainNavigation.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+            }
+        );
+    </script>
+</body>
+</html>
