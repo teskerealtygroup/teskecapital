@@ -1363,11 +1363,28 @@
                         </p>
                     </div>
 
-                    <form
-                        id="teskeContactForm"
-                        action="#"
-                        method="post"
-                    >
+    <form
+    id="teskeContactForm"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+>
+    <input
+        type="hidden"
+        name="access_key"
+        value="ff92a227-a90c-4107-82f2-04d20a51ef2a"
+    >
+
+    <input
+        type="hidden"
+        name="subject"
+        value="New Investor Inquiry - Teske Capital"
+    >
+
+    <input
+        type="hidden"
+        name="from_name"
+        value="Teske Capital Website"
+    >
                         <div class="form-grid">
                             <div class="form-field">
                                 <label for="firstName">
@@ -1655,15 +1672,13 @@
                             formal legal and offering documents.
                         </div>
 
-                        <div class="form-actions">
-                            <button
-                                type="submit"
-                                class="submit-button"
-                            >
-                                Submit Inquiry
-                            </button>
-
-                            <span
+                        <span
+    class="form-status"
+    id="formStatus"
+    aria-live="polite"
+>
+    Secure inquiry form
+</span>
                                 class="form-status"
                                 id="formStatus"
                                 aria-live="polite"
@@ -1789,9 +1804,9 @@
                             Connect
                         </h3>
 
-                        <a href="mailto:info@teskecapital.com">
-                            info@teskecapital.com
-                        </a>
+                        <a href="mailto:teskerealtygroup@gmail.com">
+    teskerealtygroup@gmail.com
+</a>
 
                         <a href="#contact-form">
                             Investor Interest
@@ -1951,20 +1966,7 @@
                 }
             }
         );
-
-        contactForm.addEventListener(
-            "submit",
-            function (event) {
-                event.preventDefault();
-
-                formStatus.textContent =
-                    "Form received in development mode. Secure submission will be enabled before launch.";
-
-                formStatus.classList.add(
-                    "success"
-                );
-            }
-        );
+        
     </script>
 </body>
 </html>
